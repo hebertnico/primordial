@@ -1,0 +1,28 @@
+{
+    "pasangan": ["KrmS"],
+    "anak": ["OS", "ReS", "JS", "SHS", "RuS", "MS", "NS", "RoS"],
+    "posP": ["top-[50vh] left-182"],
+    "posA": [
+      "top-25 left-100",
+      "top-40 left-50",
+      "top-97 left-50",
+      "top-112 left-100",
+      "top-25 left-220",
+      "top-40 left-270",
+      "top-97 left-270",
+      "top-112 left-220"
+      ],
+    "fam" : [
+        {
+          "pasangan": ["KS"],
+          "anak": ["RS", "LS", "Chan", "Chna"],
+          "posP": ["top-40 left-182"],
+          "posA": [
+            "top-83 left-50",
+            "top-97 left-100",
+            "top-97 left-220",
+            "top-83 left-270"
+          ]
+        }
+      ]
+  }

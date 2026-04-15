@@ -1,0 +1,16 @@
+{
+    "pasangan": ["SbT", "I2"],
+    "anak": ["TP", "AgP", "RsP", "NP", "AsP", "EP", "RtP", "RuP", "RaP"],
+    "posP": ["top-[50vh] left-135", "top-[50vh] left-240"],
+    "posA": [
+      "top-25 left-105",
+      "top-30 left-67",
+      "top-48 left-35",
+      "top-[50vh] left-85",
+      "top-92 left-35",
+      "top-110 left-67",
+      "top-115 left-105",
+        "top-40 left-280",
+        "top-97 left-280"
+      ]
+  }

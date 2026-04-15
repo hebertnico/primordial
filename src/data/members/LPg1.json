@@ -1,0 +1,132 @@
+{
+  "G1": {
+    "id": "LPg1",
+    "name": "Lisnawati Purba",
+    "image": "lisnawati.png",
+    "tubu": "1955-11-11",
+    "monding": null,
+    "sex": "F",
+    "spouse": "MHsg1",
+    "children": ["NRHg2", "IMHg2", "RHHHg2", "GUHg2", "BMHg2", "YLHg2"],
+    "position": "top-[50vh] left-182",
+    "email": null
+  },
+  "SG1": {
+    "id": "MHsg1",
+    "name": "Mangihut Hutabarat",
+    "image": "mhtb.png",
+    "tubu": "1955-11-11",
+    "monding": null,
+    "sex": "M",
+    "position": "top-[50vh] left-182",
+    "email": null
+  },
+  "G2": [
+    {
+      "id": "NRHg2",
+      "name": "Netty Roslina Hutabarat",
+      "image": "nrh.png",
+      "tubu": "07-07-1969",
+      "monding": null,
+      "sex": "F",
+      "spouse": "KPSsg2",
+      "children": ["HTSg3", "HNNSg3"],
+      "position": "top-[50vh] left-182",
+      "email": null
+    },
+    {
+      "id": "IMHg2",
+      "name": "Isdar Meriati Hutabarat",
+      "image": "imh.png",
+      "tubu": "07-07-1969",
+      "monding": null,
+      "sex": "F",
+      "spouse": "Tsg2",
+      "children": ["DATg3", "CATg3", "ACTg3"],
+      "position": "top-[50vh] left-182",
+      "email": null
+    },
+    {
+      "id": "RHHHg2",
+      "name": "Ronny Heriss Hasudungan Hutabarat",
+      "image": "nrh.png",
+      "tubu": "07-07-1969",
+      "monding": null,
+      "sex": "F",
+      "spouse": "KPSsg2",
+      "children": ["HTSg3", "HNNSg3"],
+      "position": "top-[50vh] left-182",
+      "email": null
+    },
+    {
+      "id": "GUHg2",
+      "name": "Gokma Uli Hutabarat",
+      "image": "imh.png",
+      "tubu": "07-07-1969",
+      "monding": null,
+      "sex": "F",
+      "spouse": "Tsg2",
+      "children": ["DATg3", "CATg3", "ACTg3"],
+      "position": "top-[50vh] left-182",
+      "email": null
+    },
+    {
+      "id": "BMHg2",
+      "name": "Bobby Masliana Hutabarat",
+      "image": "nrh.png",
+      "tubu": "07-07-1969",
+      "monding": null,
+      "sex": "F",
+      "spouse": "KPSsg2",
+      "children": ["HTSg3", "HNNSg3"],
+      "position": "top-[50vh] left-182",
+      "email": null
+    },
+    {
+      "id": "YLHg2",
+      "name": "Yenny Lasriana Hutabarat",
+      "image": "imh.png",
+      "tubu": "07-07-1969",
+      "monding": null,
+      "sex": "F",
+      "spouse": "Tsg2",
+      "children": ["DATg3", "CATg3", "ACTg3"],
+      "position": "top-[50vh] left-182",
+      "email": null
+    }
+  ],
+  "SG2": [
+    {
+      "id": "KPSsg2",
+      "name": "Kr Par Sim",
+      "image": "kps.png",
+      "tubu": "07-07-1969",
+      "monding": null,
+      "sex": "M",
+      "position": "top-[50vh] left-182",
+      "email": null
+    }
+  ],
+  "G3": [
+    {
+      "id": "HTSg3",
+      "name": "Helg Th Sim",
+      "image": "hts.png",
+      "tubu": "07-07-1969",
+      "monding": null,
+      "sex": "F",
+      "position": "top-[50vh] left-182",
+      "email": null
+    },
+    {
+      "id": "HNNSg3",
+      "name": "He N Sim",
+      "image": "hnns.png",
+      "tubu": "07-07-1969",
+      "monding": null,
+      "sex": "F",
+      "position": "top-[50vh] left-182",
+      "email": null
+    }
+  ]
+}

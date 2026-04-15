@@ -1,0 +1,16 @@
+{
+    "pasangan": ["MeS", "MaS"],
+    "anak": ["MiS", "RoS", "LiS", "NS", "DS", "JoS", "AS", "JuS", "JnS"],
+    "posP": ["top-[50vh] left-80", "top-[50vh] left-180"],
+    "posA": [
+        "top-40 left-40",
+        "top-97 left-40",
+      "top-25 left-210",
+      "top-30 left-250",
+      "top-48 left-285",
+      "top-[50vh] left-230",
+      "top-92 left-285",
+      "top-110 left-250",
+      "top-115 left-210"
+      ]
+  }

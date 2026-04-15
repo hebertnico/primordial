@@ -1,0 +1,12 @@
+{
+    "pasangan": ["TM"],
+    "anak": ["SM", "PHM", "PM", "DJM", "RM"],
+    "posP":["top-40 left-182"],
+    "posA": [
+        "top-83 left-50",
+        "top-97 left-100",
+        "top-109 left-[50vw]",
+        "top-97 left-220",
+        "top-83 left-270"
+      ]
+}

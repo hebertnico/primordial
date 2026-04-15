@@ -1,0 +1,10 @@
+{
+    "pasangan": ["MB"],
+    "anak": ["NIB", "RFB", "JEIB"],
+    "posP":["top-40 left-182"],
+    "posA": [
+        "top-97 left-100",
+        "top-109 left-[50vw]",
+        "top-97 left-220"
+      ]
+}
