@@ -15,7 +15,7 @@ function Tree() {
         setMembers(module.default);
       })
       .catch((error) => {
-        // console.error("Error loading members json data:", error);
+        console.error("Error loading members json data:", error);
         setMembers({});
         setPosA([]);
       });

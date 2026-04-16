@@ -1,55 +1,55 @@
-import Person from "./components/Person";
 import "./App.css";
-import RG1 from "./components/RG1";
-import RG2 from "./components/RG2";
-import { useEffect, useState } from "react";
+// import Person from "./components/Person";
+// import RG1 from "./components/RG1";
+// import RG2 from "./components/RG2";
+// import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Tree from "./components/Tree";
 import { Home } from "lucide-react";
 
 function App() {
-  const [rg1act, setRg1Act] = useState(false);
-  const [rg2act, setRg2Act] = useState(false);
-  const [gen1Act, setGen1Act] = useState(false);
+  // const [rg1act, setRg1Act] = useState(false);
+  // const [rg2act, setRg2Act] = useState(false);
+  // const [gen1Act, setGen1Act] = useState(false);
 
-  useEffect(() => {
-    const handlePopState = (event: PopStateEvent) => {
-      // When back button is pressed, check the state
-      if (event.state && event.state.page === "rg1") {
-        // Going back to /rg1 view
-        setRg1Act(true);
-        setRg2Act(false);
-        setGen1Act(false);
-      } else {
-        // Going back to initial state
-        setRg1Act(false);
-        setRg2Act(false);
-        setGen1Act(false);
-      }
-    };
+  // useEffect(() => {
+  //   const handlePopState = (event: PopStateEvent) => {
+  //     // When back button is pressed, check the state
+  //     if (event.state && event.state.page === "rg1") {
+  //       // Going back to /rg1 view
+  //       setRg1Act(true);
+  //       setRg2Act(false);
+  //       setGen1Act(false);
+  //     } else {
+  //       // Going back to initial state
+  //       setRg1Act(false);
+  //       setRg2Act(false);
+  //       setGen1Act(false);
+  //     }
+  //   };
 
-    window.addEventListener("popstate", handlePopState);
+  //   window.addEventListener("popstate", handlePopState);
 
-    return () => {
-      window.removeEventListener("popstate", handlePopState);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("popstate", handlePopState);
+  //   };
+  // }, []);
 
-  const handle1Gen1Change = (data: boolean) => {
-    setGen1Act(data);
-    if (data) {
-      setRg1Act(true);
-      setRg2Act(false);
-    }
-  };
+  // const handle1Gen1Change = (data: boolean) => {
+  //   setGen1Act(data);
+  //   if (data) {
+  //     setRg1Act(true);
+  //     setRg2Act(false);
+  //   }
+  // };
 
-  const handle2Gen1Change = (data: boolean) => {
-    setGen1Act(data);
-    if (data) {
-      setRg2Act(true);
-      setRg1Act(false);
-    }
-  };
+  // const handle2Gen1Change = (data: boolean) => {
+  //   setGen1Act(data);
+  //   if (data) {
+  //     setRg2Act(true);
+  //     setRg1Act(false);
+  //   }
+  // };
 
   return (
     <Routes>

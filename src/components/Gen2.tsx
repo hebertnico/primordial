@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import Person from "./Person";
 
 interface Members {
@@ -9,16 +9,14 @@ interface Members {
 }
 
 function Gen2({ isVisible = false, g2 = "", members = {} as Members }) {
-  
-
-//   useEffect(() => {
-//     import(`../data/members/${g2}.json`)
-//       .then((module) => setMembers(module.default))
-//       .catch((error) => {
-//         // console.error("Error loading members json data:", error);
-//         setMembers({ pasangan: [], anak: [], posP: [], posA: [] });
-//       });
-//   }, [g2]);
+  //   useEffect(() => {
+  //     import(`../data/members/${g2}.json`)
+  //       .then((module) => setMembers(module.default))
+  //       .catch((error) => {
+  //         // console.error("Error loading members json data:", error);
+  //         setMembers({ pasangan: [], anak: [], posP: [], posA: [] });
+  //       });
+  //   }, [g2]);
 
   if (!members) {
     return null; // or a loading indicator
