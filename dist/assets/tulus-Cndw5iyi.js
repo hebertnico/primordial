@@ -1,0 +1,1 @@
+var e=[`TH`],t=[`IAP`,`MAP`,`JPP`,`ERP`],n=[`top-40 left-182`],r=[`top-83 left-50`,`top-97 left-100`,`top-97 left-220`,`top-83 left-270`],i={pasangan:e,anak:t,posP:n,posA:r};export{t as anak,i as default,e as pasangan,r as posA,n as posP};
