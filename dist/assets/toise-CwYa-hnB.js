@@ -1,1 +1,0 @@
-var e=[`JLT`],t=[`GBLT`,`JWLT`,`HSLT`,`BMLT`,`ENLT`,`IRLT`],n=[`top-[50vh] left-182`],r=[`top-25 left-100`,`top-[50vh] left-50`,`top-112 left-100`,`top-25 left-220`,`top-[50vh] left-270`,`top-112 left-220`],i={pasangan:e,anak:t,posP:n,posA:r};export{t as anak,i as default,e as pasangan,r as posA,n as posP};

@@ -1,1 +1,0 @@
-var e=[`HRS`],t=[`JSMP`],n=[`top-40 left-182`],r=[`top-109 left-[50vw]`],i={pasangan:e,anak:t,posP:n,posA:r};export{t as anak,i as default,e as pasangan,r as posA,n as posP};
