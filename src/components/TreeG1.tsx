@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import Person from "./Person";
-import { useParams } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import position from "../data/position.json" with { type: "json" };
 
-function Tree() {
+function TreeG1() {
   const [members, setMembers] = useState<Record<string, any>>({});
 
   let { head } = useParams();
   const [posA, setPosA] = useState<string[]>([]);
+  const [offspring, setOffspring] = useState(0);
 
   useEffect(() => {
     import(`../data/members/${head}.json`)
@@ -53,11 +54,13 @@ function Tree() {
               person={person.name}
               size="lg:size-[10vw] md:size-[15vw] size-[20vw]"
               classname={`${posA[members.G2.indexOf(person)]}`}
+              onClick={() => setOffspring(members.G2.indexOf(person))}
             />
           ))}
+        <Outlet context={members.G2[offspring]} />
       </div>
     </>
   );
 }
 
-export default Tree;
+export default TreeG1;

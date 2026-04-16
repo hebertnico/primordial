@@ -4,8 +4,10 @@ import "./App.css";
 // import RG2 from "./components/RG2";
 // import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import Tree from "./components/Tree";
+import TreeG1 from "./components/TreeG1";
 import Home from "./components/Home";
+import TreeDesc from "./components/TreeDesc";
+import UploadImage from "./UploadImage";
 
 function App() {
   // const [rg1act, setRg1Act] = useState(false);
@@ -54,7 +56,10 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path=":head" element={<Tree />} />
+      <Route path="/upload" element={<UploadImage />} />
+      <Route path=":head" element={<TreeG1 />}>
+        <Route path=":descendant" element={<TreeDesc />} />
+      </Route>
     </Routes>
     // <div className="h-screen relative mx-auto overflow-x-hidden overflow-y-hidden">
     //   {/* <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16"> */}

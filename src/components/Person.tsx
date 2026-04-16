@@ -3,6 +3,7 @@ import { useState } from "react";
 
 function Person({
   person = "",
+  photo = "",
   size = "size-25",
   classname = "",
   animate = {},
@@ -35,7 +36,17 @@ function Person({
           >
             <div
               className={`${size} bg-white border-5 border-red-500 p-2 rounded-full cursor-pointer shadow-lg`}
-            />
+            >
+              {photo ? (
+                <img
+                  src={photo}
+                  alt={person}
+                  className="w-full h-full object-cover rounded-full"
+                />
+              ) : (
+                <></>
+              )}
+            </div>
             <p>{person}</p>
           </motion.div>
         </motion.div>

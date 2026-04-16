@@ -1,13 +1,33 @@
 import Person from "./Person";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+  const navigate = useNavigate();
+  const [photo, setPhoto] = useState("");
+
+  useEffect(() => {
+    async function load() {
+      const snapshot = await getDocs(collection(db, "person"));
+      snapshot.forEach((doc) => {
+        console.log(doc.data());
+      });
+      setPhoto(snapshot.docs[0]?.data().photo || "");
+    }
+    load();
+  }, []);
+
   return (
     <>
       <div className="h-screen relative mx-auto overflow-x-hidden overflow-y-hidden">
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-          test
-        </div>
-        <Person />
+        <Person
+          person="xx"
+          classname="left-[50%] top-[50%]"
+          photo={photo}
+          onClick={() => navigate("/upload")}
+        />
       </div>
     </>
   );
