@@ -5,7 +5,7 @@ import "./App.css";
 // import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Tree from "./components/Tree";
-import { Home } from "lucide-react";
+import Home from "./components/Home";
 
 function App() {
   // const [rg1act, setRg1Act] = useState(false);
