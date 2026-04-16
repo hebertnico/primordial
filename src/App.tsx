@@ -5,6 +5,7 @@ import RG2 from "./components/RG2";
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Tree from "./components/Tree";
+import { Home } from "lucide-react";
 
 function App() {
   const [rg1act, setRg1Act] = useState(false);
@@ -52,6 +53,7 @@ function App() {
 
   return (
     <Routes>
+      <Route path="/" element={<Home />} />
       <Route path=":head" element={<Tree />} />
     </Routes>
     // <div className="h-screen relative mx-auto overflow-x-hidden overflow-y-hidden">
