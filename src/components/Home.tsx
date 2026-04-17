@@ -8,6 +8,7 @@ import FloatingElement from "./Floating Element";
 function Home() {
   const navigate = useNavigate();
   const [photo, setPhoto] = useState("");
+  const [name, setName] = useState("xx");
 
   useEffect(() => {
     async function load() {
@@ -16,6 +17,7 @@ function Home() {
         console.log(doc.data());
       });
       setPhoto(snapshot.docs[0]?.data().image || "");
+      setName(snapshot.docs[0]?.data().name || "xx");
     }
     load();
   }, []);
@@ -24,7 +26,7 @@ function Home() {
     <>
       <div className="h-screen relative mx-auto overflow-x-hidden overflow-y-hidden">
         <Person
-          person="xx"
+          person={name}
           classname="left-[50%] top-[50%]"
           photo={photo}
           onClick={() => navigate("/form")}
