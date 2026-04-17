@@ -10,6 +10,8 @@ function TreeG1() {
   const [posA, setPosA] = useState<string[]>([]);
   const [offspring, setOffspring] = useState(0);
 
+  console.log(offspring);
+
   useEffect(() => {
     import(`../data/members/${head}.json`)
       .then((module) => {
@@ -54,10 +56,10 @@ function TreeG1() {
               person={person.name}
               size="lg:size-[10vw] md:size-[15vw] size-[20vw]"
               classname={`${posA[members.G2.indexOf(person)]}`}
-              onClick={() => setOffspring(members.G2.indexOf(person))}
+              onClick={() => setOffspring(members.G2.indexOf(person) + 1)}
             />
           ))}
-        <Outlet context={members.G2[offspring]} />
+        {offspring > 0 && <Outlet context={members.G2[offspring - 1]} />}
       </div>
     </>
   );
