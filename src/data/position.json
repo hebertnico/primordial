@@ -1,86 +1,78 @@
 {
-    "self": {
-        "position": "top-[50vh] left-182"
+  "self": {
+    "position": "top-[50vh] left-182"
+  },
+  "spouse": [
+    {
+      "position": "top-[50vh] left-182"
     },
-    "spouse": [
-        {
-            "position": "top-[50vh] left-182"
-        },
-        {
-            "position": [
-                "top-[50vh] left-182", 
-                "top-[50vh] left-182"
-            ]
-        }
-    ],
-    "children":  [
-        {
-            "position": [
-                "top-[50vh] left-182"
-            ]
-        },
-        {
-            "position": [
-                "top-[50vh] left-182",
-                "top-[50vh] left-182"
-            ]
-        },
-        {
-            "position": [
-                "top-[50vh] left-182",
-                "top-[50vh] left-182",
-                "top-[50vh] left-182"
-            ]
-        },
-        {
-            "position": [
-                "top-[50vh] left-182",
-                "top-[50vh] left-182",
-                "top-[50vh] left-182",
-                "top-[50vh] left-182"
-            ]
-        },
-        {
-            "position": [
-                "top-[50vh] left-182",
-                "top-[50vh] left-182",
-                "top-[50vh] left-182",
-                "top-[50vh] left-182",
-                "top-[50vh] left-182"
-            ]
-        },
-        {
-            "position": [
-                "md:top-5 md:left-100 top-10 left-[50vw]",
-                "md:top-[35vh] md:left-50 top-40 left-[30%]",
-                "md:top-92 md:left-100 top-40 left-[70%]",
-                "md:top-5 md:left-220 top-140 left-[30%]",
-                "md:top-[35vh] md:left-270 top-140 left-[70%]",
-                "md:top-92 md:left-220 top-180 left-[50vw]"
-            ]
-        },
-        {
-            "position": [
-                "top-[50vh] left-182",
-                "top-[50vh] left-182",
-                "top-[50vh] left-182",
-                "top-[50vh] left-182",
-                "top-[50vh] left-182",
-                "top-[50vh] left-182",
-                "top-[50vh] left-182"
-            ]
-        },
-        {
-            "position": [
-                "top-[50vh] left-182",
-                "top-[50vh] left-182",
-                "top-[50vh] left-182",
-                "top-[50vh] left-182",
-                "top-[50vh] left-182",
-                "top-[50vh] left-182",
-                "top-[50vh] left-182",
-                "top-[50vh] left-182"
-            ]
-        }
-    ]
+    {
+      "position": ["top-[50vh] left-182", "top-[50vh] left-182"]
+    }
+  ],
+  "children": [
+    {
+      "position": ["top-[50vh] left-182"]
+    },
+    {
+      "position": ["top-[50vh] left-182", "top-[50vh] left-182"]
+    },
+    {
+      "position": [
+        "top-[50vh] left-182",
+        "top-[50vh] left-182",
+        "top-[50vh] left-182"
+      ]
+    },
+    {
+      "position": [
+        "top-[50vh] left-182",
+        "top-[50vh] left-182",
+        "top-[50vh] left-182",
+        "top-[50vh] left-182"
+      ]
+    },
+    {
+      "position": [
+        "top-[50vh] left-182",
+        "top-[50vh] left-182",
+        "top-[50vh] left-182",
+        "top-[50vh] left-182",
+        "top-[50vh] left-182"
+      ]
+    },
+    {
+      "position": [
+        "md:top-5 md:left-100 top-10 left-[50vw]",
+        "md:top-[50%] md:left-50 top-40 left-[30%]",
+        "md:top-92 md:left-100 top-40 left-[70%]",
+        "md:top-5 md:left-220 top-140 left-[30%]",
+        "md:top-[50%] md:left-270 top-140 left-[70%]",
+        "md:top-92 md:left-220 top-180 left-[50vw]"
+      ]
+    },
+    {
+      "position": [
+        "top-[50vh] left-182",
+        "top-[50vh] left-182",
+        "top-[50vh] left-182",
+        "top-[50vh] left-182",
+        "top-[50vh] left-182",
+        "top-[50vh] left-182",
+        "top-[50vh] left-182"
+      ]
+    },
+    {
+      "position": [
+        "top-[50vh] left-182",
+        "top-[50vh] left-182",
+        "top-[50vh] left-182",
+        "top-[50vh] left-182",
+        "top-[50vh] left-182",
+        "top-[50vh] left-182",
+        "top-[50vh] left-182",
+        "top-[50vh] left-182"
+      ]
+    }
+  ]
 }
