@@ -31,7 +31,12 @@ function Home() {
           photo={photo}
           onClick={() => navigate("/form")}
         />
-        <FloatingElement />
+        <Person
+          person="lpg1"
+          classname="left-[50%] top-[20%]"
+          photo={photo}
+          onClick={() => navigate("/LPg1")}
+        />
       </div>
     </>
   );
