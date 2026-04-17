@@ -14,23 +14,24 @@ function Person({
   initial = {},
 }) {
   const [isToggled, setIsToggled] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const [index, setIndex] = useState("z-10");
   classname = classname + " absolute -translate-x-1/2 cursor-pointer " + index;
-  const ref = useRef(null);
+  // const ref = useRef(null);
 
-  useEffect(() => {
-    return hover(ref.current, () => {
-      console.log("on hover start");
-      setIsToggled(true);
-      setIndex("z-50");
+  // useEffect(() => {
+  //   return hover(ref.current, () => {
+  //     console.log("on hover start");
+  //     setIsToggled(true);
+  //     setIndex("z-50");
 
-      return () => {
-        console.log("on hover end");
-        setIsToggled(false);
-        setIndex("z-10");
-      };
-    });
-  }, []);
+  //     return () => {
+  //       console.log("on hover end");
+  //       setIsToggled(false);
+  //       setIndex("z-10");
+  //     };
+  //   });
+  // }, []);
 
   return (
     <AnimatePresence initial={true}>
@@ -45,12 +46,24 @@ function Person({
           <motion.div
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
-            // onClick={() => setIsToggled(!isToggled)}
+            onClick={() => {
+              setIsToggled(!isToggled);
+              setIndex("z-50");
+              console.log(isToggled);
+            }}
+            onHoverStart={() => {
+              setIsHovered(true);
+              setIndex("z-50");
+            }}
+            onHoverEnd={() => {
+              setIsHovered(false);
+              setIndex(isToggled ? "z-50" : "z-10");
+            }}
             // animate={{ scale: isToggled ? 1.5 : 1 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="flex flex-col items-center gap-1">
+            className={`${size} flex flex-col items-center gap-1`}>
             <motion.div
-              ref={ref}
+              // ref={ref}
               transition={{
                 duration: 3,
                 repeat: Infinity,
@@ -64,31 +77,22 @@ function Person({
                 offsetRotate: "0deg",
                 offsetPosition: "center",
               }}
-              className={`${size} relative translate-x-[40%] translate-y-1/3 bg-red-500 p-2 rounded-full shadow-lg`}>
-              {photo ? (
-                <img
-                  src={photo}
-                  alt={person}
-                  className="z-10 w-full h-full object-cover rounded-full"
-                />
-              ) : (
-                <></>
-              )}
+              className={`${size} relative translate-x-[40%] translate-y-1/3 p-1 rounded-full shadow-lg`}>
+              <img
+                src={photo ? photo : "/images/def_M.jpg"}
+                alt={person}
+                className="z-10 size-full object-cover rounded-full"
+              />
               <motion.div
                 animate={
-                  isToggled
-                    ? { scale: 1.5, borderWidth: 100 }
-                    : {
-                        scale: 1,
-                        borderWidth: 5,
-                      }
+                  isHovered || isToggled ? { width: "200%" } : { width: "100%" }
                 }
-                className={`${size} -z-10 absolute top-0 left-0 bg-white border-5 border-red-500 rounded-full`}
+                className={`${size} -z-10 absolute top-0 left-0 bg-red-500 rounded-full`}
               />
             </motion.div>
             <motion.p
-              className="z-20 font-bold"
-              animate={{ color: isToggled ? "black" : "white" }}>
+              className="w-full font-bold z-20 break-word"
+              animate={{ color: isToggled || isHovered ? "black" : "white" }}>
               {person}
             </motion.p>
           </motion.div>
