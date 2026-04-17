@@ -3,6 +3,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import FloatingElement from "./Floating Element";
 
 function Home() {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ function Home() {
       snapshot.forEach((doc) => {
         console.log(doc.data());
       });
-      setPhoto(snapshot.docs[0]?.data().photo || "");
+      setPhoto(snapshot.docs[0]?.data().image || "");
     }
     load();
   }, []);
@@ -26,8 +27,9 @@ function Home() {
           person="xx"
           classname="left-[50%] top-[50%]"
           photo={photo}
-          onClick={() => navigate("/upload")}
+          onClick={() => navigate("/form")}
         />
+        <FloatingElement />
       </div>
     </>
   );
