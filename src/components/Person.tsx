@@ -1,5 +1,5 @@
-import { AnimatePresence, hover, motion, useAnimation } from "motion/react";
-import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, hover, motion } from "motion/react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 function Person({
   person = "",
@@ -19,44 +19,30 @@ function Person({
   const [isHovered, setIsHovered] = useState(false);
   const [index, setIndex] = useState("z-10");
   const longName = person.length > 20;
+  const [distance, setDistance] = useState([0, 0]);
   // console.log(longName, person.length, person);
+  classname = classname + " absolute -translate-x-1/2 cursor-pointer " + index;
+
   const ref = useRef<HTMLDivElement>(null);
-  const controls = useAnimation();
 
-  async function moveTowardCenter() {
-    console.log("moveToCenter called", isHovered, isToggled);
-    if (!ref.current) return;
-    // if (!isToggled) return;
+  const handleImageLoaded = () => {
+    // useLayoutEffect(() => {
+    if (ref.current) {
+      const element = ref.current;
+      requestAnimationFrame(() => {
+        const rect = element.getBoundingClientRect();
+        console.log(person, "Initial Position:", rect.top, rect.left);
+        const cx = window.innerWidth / 2;
+        const cy = window.innerHeight / 2;
 
-    if (!isHovered && !isToggled) {
-      const rect = ref.current.getBoundingClientRect();
+        const ex = rect.left + rect.width / 2;
+        const ey = rect.top + rect.height / 2;
 
-      const cx = window.innerWidth / 2;
-      const cy = window.innerHeight / 2;
-
-      const ex = rect.left + rect.width / 2;
-      const ey = rect.top + rect.height / 2;
-
-      const dx = cx - ex;
-      const dy = cy - ey;
-
-      const factor = 0.4;
-      console.log(dx, dy);
-
-      await controls.start({
-        x: dx * factor,
-        y: dy * factor,
-        transition: { duration: 0.2 },
-      });
-    } else if (!isToggled) {
-      await controls.start({
-        x: 0,
-        y: 0,
-        transition: { duration: 0.2 },
+        setDistance([cx - ex, cy - ey]);
       });
     }
-  }
-  classname = classname + " absolute -translate-x-1/2 cursor-pointer " + index;
+  };
+  // }, []);
 
   // useEffect(() => {
   //   return hover(ref.current, () => {
@@ -80,23 +66,29 @@ function Person({
           ref={ref}
           className={classname}
           // initial={{ opacity: 0, ...initial }}
-          animate={{ opacity: 1, ...animate, ...controls }}
+          animate={{
+            opacity: 1,
+            ...animate,
+            ...(isHovered || isToggled
+              ? { x: distance[0] * 0.4, y: distance[1] * 0.4 }
+              : { x: 0, y: 0 }),
+          }}
           transition={transition}
           // onClick={onClick}
           onClick={() => {
             setIsToggled(!isToggled);
             setIndex("z-50");
-            console.log(isToggled);
+            // console.log(isToggled);
             onClick;
             // moveTowardCenter(!isToggled);
           }}
           onHoverStart={() => {
-            moveTowardCenter();
+            // moveTowardCenter();
             setIsHovered(true);
             setIndex("z-50");
           }}
           onHoverEnd={() => {
-            moveTowardCenter();
+            // moveTowardCenter();
             setIsHovered(false);
             setIndex(isToggled ? "z-50" : "z-10");
           }}
@@ -144,6 +136,7 @@ function Person({
                   src={photo ? photo : "/images/def_M.jpg"}
                   alt={person}
                   className="size-full object-cover rounded-full"
+                  onLoad={handleImageLoaded}
                 />
               </motion.div>
               <motion.p
