@@ -1,4 +1,4 @@
-import { AnimatePresence, hover, motion } from "motion/react";
+import { AnimatePresence, hover, motion, useAnimation } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 
 function Person({
@@ -20,19 +20,55 @@ function Person({
   const [index, setIndex] = useState("z-10");
   const longName = person.length > 20;
   // console.log(longName, person.length, person);
+  const ref = useRef<HTMLDivElement>(null);
+  const controls = useAnimation();
+
+  async function moveTowardCenter() {
+    console.log("moveToCenter called", isHovered, isToggled);
+    if (!ref.current) return;
+    // if (!isToggled) return;
+
+    if (!isHovered && !isToggled) {
+      const rect = ref.current.getBoundingClientRect();
+
+      const cx = window.innerWidth / 2;
+      const cy = window.innerHeight / 2;
+
+      const ex = rect.left + rect.width / 2;
+      const ey = rect.top + rect.height / 2;
+
+      const dx = cx - ex;
+      const dy = cy - ey;
+
+      const factor = 0.4;
+      console.log(dx, dy);
+
+      await controls.start({
+        x: dx * factor,
+        y: dy * factor,
+        transition: { duration: 0.2 },
+      });
+    } else if (!isToggled) {
+      await controls.start({
+        x: 0,
+        y: 0,
+        transition: { duration: 0.2 },
+      });
+    }
+  }
   classname = classname + " absolute -translate-x-1/2 cursor-pointer " + index;
-  // const ref = useRef(null);
 
   // useEffect(() => {
   //   return hover(ref.current, () => {
-  //     console.log("on hover start");
-  //     setIsToggled(true);
-  //     setIndex("z-50");
+  //     setIsHovered(true);
+  //     console.log("on hover start", isHovered, isToggled);
+  //     moveTowardCenter(true);
 
   //     return () => {
-  //       console.log("on hover end");
-  //       setIsToggled(false);
-  //       setIndex("z-10");
+  //       setIsHovered(false);
+  //       console.log("on hover end", isHovered, isToggled);
+  //       moveTowardCenter(false);
+  //       // setIsToggled(false);
   //     };
   //   });
   // }, []);
@@ -41,33 +77,39 @@ function Person({
     <AnimatePresence initial={true}>
       {isVisible ? (
         <motion.div
+          ref={ref}
           className={classname}
-          initial={{ opacity: 0, ...initial }}
-          animate={{ opacity: 1, ...animate }}
+          // initial={{ opacity: 0, ...initial }}
+          animate={{ opacity: 1, ...animate, ...controls }}
           transition={transition}
-          onClick={onClick}
-          exit={exit}>
+          // onClick={onClick}
+          onClick={() => {
+            setIsToggled(!isToggled);
+            setIndex("z-50");
+            console.log(isToggled);
+            onClick;
+            // moveTowardCenter(!isToggled);
+          }}
+          onHoverStart={() => {
+            moveTowardCenter();
+            setIsHovered(true);
+            setIndex("z-50");
+          }}
+          onHoverEnd={() => {
+            moveTowardCenter();
+            setIsHovered(false);
+            setIndex(isToggled ? "z-50" : "z-10");
+          }}
+          exit={exit}
+        >
           <motion.div
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => {
-              setIsToggled(!isToggled);
-              setIndex("z-50");
-              console.log(isToggled);
-            }}
-            onHoverStart={() => {
-              setIsHovered(true);
-              setIndex("z-50");
-            }}
-            onHoverEnd={() => {
-              setIsHovered(false);
-              setIndex(isToggled ? "z-50" : "z-10");
-            }}
             // animate={{ scale: isToggled ? 1.5 : 1 }}
             // transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className={`flex flex-col items-center gap-1`}>
+            className={`flex flex-col items-center gap-1`}
+          >
             <motion.div
-              // ref={ref}
               transition={{
                 duration: 5,
                 repeat: Infinity,
@@ -82,14 +124,17 @@ function Person({
                 offsetRotate: "0deg",
                 offsetPosition: "center",
               }}
-              className={`${size} relative translate-x-[40%] translate-y-1/3 rounded-full shadow-lg`}>
+              className={`${size} relative translate-x-[40%] translate-y-1/3 rounded-full shadow-lg`}
+            >
               <motion.div
                 animate={
                   isHovered || isToggled
                     ? { scale: 2 }
-                    : { scale: 1, borderWidth: 5 }
+                    : { scale: 1, borderWidth: 4 }
                 }
-                className={`${size} overflow-hidden -z-10 absolute top-0 left-0 bg-red-500 border-red-500 rounded-full`}>
+                transition={{ duration: 0.2 }}
+                className={`${size} overflow-hidden -z-10 absolute top-0 left-0 bg-red-500 border-red-500 rounded-full`}
+              >
                 <motion.img
                   animate={
                     isHovered || isToggled
@@ -111,7 +156,8 @@ function Person({
                         width: "120%",
                       }
                     : { width: "100%" }
-                }>
+                }
+              >
                 {person}
               </motion.p>
               <motion.div
@@ -124,7 +170,8 @@ function Person({
                 }
                 animate={
                   isHovered || isToggled ? { opacity: 100 } : { opacity: 0 }
-                }>
+                }
+              >
                 <p className="text-xs">
                   Tubu: <span>{tubu}</span>
                 </p>
