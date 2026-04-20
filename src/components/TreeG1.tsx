@@ -10,7 +10,7 @@ function TreeG1() {
   const [posA, setPosA] = useState<string[]>([]);
   const [offspring, setOffspring] = useState(0);
 
-  console.log(offspring);
+  // console.log(offspring);
 
   useEffect(() => {
     import(`../data/members/${head}.json`)

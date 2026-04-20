@@ -13,9 +13,9 @@ function Home() {
   useEffect(() => {
     async function load() {
       const snapshot = await getDocs(collection(db, "person"));
-      snapshot.forEach((doc) => {
-        console.log(doc.data());
-      });
+      // snapshot.forEach((doc) => {
+      //   console.log(doc.data());
+      // });
       setPhoto(snapshot.docs[0]?.data().image || "");
       setName(snapshot.docs[0]?.data().name || "xx");
     }
