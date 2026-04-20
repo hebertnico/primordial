@@ -1,8 +1,16 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { doc, setDoc, Timestamp } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  setDoc,
+  Timestamp,
+  where,
+} from "firebase/firestore";
 import { db } from "../firebase";
-import type Person from "./Person";
 
 function PersonForm() {
   const [id, setId] = useState("");
@@ -42,6 +50,28 @@ function PersonForm() {
     setLoading(true);
 
     try {
+      const checkId = await getDoc(doc(db, "person", id));
+
+      if (checkId.exists()) {
+        alert("Person ID already exists");
+        setLoading(false);
+        return;
+      }
+      const modifiedName = name
+        .trim()
+        .toLowerCase()
+        .replace(/\b\w/g, (char) => char.toUpperCase());
+      console.log(modifiedName);
+      const checkName = await getDocs(
+        query(collection(db, "person"), where("name", "==", modifiedName)),
+      );
+
+      if (!checkName.empty) {
+        alert("Name already exists");
+        setLoading(false);
+        return;
+      }
+
       let finalImageUrl: string | null = null;
 
       // 🔹 Priority: uploaded file > manual URL > null
@@ -62,7 +92,7 @@ function PersonForm() {
         : null;
 
       const data = {
-        name,
+        name: modifiedName,
         sex,
         tubu: tubuValue,
         monding: mondingValue,
@@ -218,7 +248,7 @@ function PersonForm() {
             whileHover={{ scale: 1.02 }}
             type="submit"
             disabled={loading}
-            className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 rounded-lg transition disabled:opacity-50"
+            className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 rounded-lg transition disabled:opacity-50 cursor-pointer"
           >
             {loading ? "Uploading..." : "Add Member"}
           </motion.button>
