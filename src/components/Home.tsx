@@ -4,6 +4,7 @@ import { db } from "../firebase";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FloatingElement from "./Floating Element";
+import Attempt from "./Attempt";
 
 function Home() {
   const navigate = useNavigate();
@@ -37,6 +38,11 @@ function Home() {
           photo={photo}
           onClick={() => navigate("/LPg1")}
         />
+        <div
+          className="absolute left-[15%] top-10 bg-blue-500 size-24 cursor-pointer"
+          onClick={() => navigate("/LPg1")}
+        />
+        <Attempt />
       </div>
     </>
   );
