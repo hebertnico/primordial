@@ -37,7 +37,7 @@ function TreeG1() {
           <Person
             key={members.G1.id}
             person={members.G1.name}
-            size="lg:size-[10vw] md:size-[15vw] size-[20vw]"
+            size="lg:size-[10vw] md:size-[20vw] size-[20vw]"
             classname="top-[42vh] md:top-[35vh] left-[30%] md:left-[40%]"
           />
         )}
@@ -45,19 +45,21 @@ function TreeG1() {
           <Person
             key={members.SG1.id}
             person={members.SG1.name}
-            size="lg:size-[10vw] md:size-[15vw] size-[20vw]"
+            size="lg:size-[10vw] md:size-[20vw] size-[20vw]"
             classname="top-[42vh] md:top-[35vh] left-[70%] md:left-[60%]"
           />
         )}
         {members.G2 &&
           members.G2.map((person: any) => (
-            <Person
-              key={person.id}
-              person={person.name}
-              size="lg:size-[10vw] md:size-[15vw] size-[20vw]"
-              classname={`${posA[members.G2.indexOf(person)]}`}
-              onClick={() => setOffspring(members.G2.indexOf(person) + 1)}
-            />
+            <div className={`${posA[members.G2.indexOf(person)]}`}>
+              <Person
+                key={person.id}
+                person={person.name}
+                size="lg:size-[10vw] md:size-[20vw] size-[20vw]"
+                // classname={`${posA[members.G2.indexOf(person)]}`}
+                onClick={() => setOffspring(members.G2.indexOf(person) + 1)}
+              />
+            </div>
           ))}
         {offspring > 0 && <Outlet context={members.G2[offspring - 1]} />}
       </div>
