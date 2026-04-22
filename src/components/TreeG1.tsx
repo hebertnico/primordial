@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Person from "./Person";
 import { Outlet, useParams } from "react-router-dom";
 import position from "../data/position.json" with { type: "json" };
@@ -9,6 +9,15 @@ function TreeG1() {
   let { head } = useParams();
   const [posA, setPosA] = useState<string[]>([]);
   const [offspring, setOffspring] = useState(0);
+
+  const zRef = useRef<(HTMLDivElement | null)[]>([]);
+
+  const handleZ = (index = 0) => {
+    if (!zRef.current[index]) return;
+    zRef.current[index].style.zIndex =
+      zRef.current[index]?.style.zIndex === "10" ? "50" : "10";
+    // console.log(zRef.current[index]?.style.zIndex);
+  };
 
   // console.log(offspring);
 
@@ -34,33 +43,56 @@ function TreeG1() {
     <>
       <div className="h-screen relative mx-auto overflow-x-hidden overflow-y-hidden">
         {members.G1 && (
-          <Person
-            key={members.G1.id}
-            person={members.G1.name}
-            size="lg:size-[10vw] md:size-[20vw] size-[20vw]"
-            classname="top-[42vh] md:top-[35vh] left-[30%] md:left-[40%]"
-          />
+          <div
+            // ref={zRef}
+            className="absolute top-[50vh] left-[27vw] sm:left-[37vw] size-[40vw] sm:size-[20vw] -translate-1/2"
+            style={{ zIndex: 10 }}
+            // onClick={handleZ}
+          >
+            <Person
+              key={members.G1.id}
+              person={members.G1.name}
+              // size="lg:size-[10vw] md:size-[20vw] size-[20vw]"
+              // classname="top-[42vh] md:top-[35vh] left-[30%] md:left-[40%]"
+            />
+          </div>
         )}
         {members.SG1 && (
-          <Person
-            key={members.SG1.id}
-            person={members.SG1.name}
-            size="lg:size-[10vw] md:size-[20vw] size-[20vw]"
-            classname="top-[42vh] md:top-[35vh] left-[70%] md:left-[60%]"
-          />
+          <div className="absolute top-[50vh] sm:left-[63vw] left-[73vw] size-[40vw] sm:size-[20vw] -translate-1/2">
+            <Person
+              key={members.SG1.id}
+              person={members.SG1.name}
+              // size="lg:size-[10vw] md:size-[20vw] size-[20vw]"
+              // classname="top-[42vh] md:top-[35vh] left-[70%] md:left-[60%]"
+            />
+          </div>
         )}
         {members.G2 &&
-          members.G2.map((person: any) => (
-            <div className={`${posA[members.G2.indexOf(person)]}`}>
-              <Person
+          members.G2.map((person: any, index: any) => {
+            return (
+              <div
+                ref={(el) => {
+                  zRef.current[index] = el;
+                }}
                 key={person.id}
-                person={person.name}
-                size="lg:size-[10vw] md:size-[20vw] size-[20vw]"
-                // classname={`${posA[members.G2.indexOf(person)]}`}
-                onClick={() => setOffspring(members.G2.indexOf(person) + 1)}
-              />
-            </div>
-          ))}
+                className={`${posA[members.G2.indexOf(person)]} absolute size-40 sm:size-30 -translate-1/2`}
+                style={{ zIndex: 10 }}
+                // onClick={() => {
+                //   handleZ(index);
+                // }}
+                onMouseEnter={() => handleZ(index)}
+                // onMouseLeave={() => {
+                // }}
+              >
+                <Person
+                  person={person.name}
+                  // size="lg:size-[10vw] md:size-[20vw] size-[20vw]"
+                  // classname={`${posA[members.G2.indexOf(person)]}`}
+                  // onClick={() => setOffspring(members.G2.indexOf(person) + 1)}
+                />
+              </div>
+            );
+          })}
         {offspring > 0 && <Outlet context={members.G2[offspring - 1]} />}
       </div>
     </>
