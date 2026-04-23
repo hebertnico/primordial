@@ -17,7 +17,7 @@ function Person({
 }) {
   const [isToggled, setIsToggled] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  const longName = person.length > 22;
+  const longName = person.length > 20;
   const [distance, setDistance] = useState([0, 0]);
   // console.log(longName, person.length, person);
   // classname = classname + " absolute -translate-x-1/2 cursor-pointer ";
@@ -62,7 +62,7 @@ function Person({
       {isVisible ? (
         <motion.div //magnetic center container
           ref={ref}
-          className="relative size-full max-w-[90vw] [--x-factor:1] [--y-factor:0.6] sm:[--x-factor:0.2] sm:[--y-factor:0.6] "
+          className="relative size-full max-w-[90vw] [--x-factor:0.6] [--y-factor:0.6] sm:[--x-factor:0.2] sm:[--y-factor:0.6] "
           // initial={{ opacity: 0, ...initial }}
           animate={{
             opacity: 1,
@@ -76,7 +76,7 @@ function Person({
                 }
               : { x: 0, y: 0 }),
           }}
-          // transition={transition}
+          transition={{ duration: 0.4 }}
           // onClick={onClick}
           onClick={() => {
             // onClick;
@@ -119,11 +119,21 @@ function Person({
                 isHovered || isToggled
                   ? {
                       scale: "var(--activeSize)",
+                      borderTopLeftRadius: "100px",
+                      borderTopRightRadius: "100px",
+                      borderBottomLeftRadius: "100px",
+                      borderBottomRightRadius: "100px",
                     }
-                  : { scale: 1, borderWidth: 0, overflow: "hidden" }
+                  : {
+                      scale: 1,
+                      borderWidth: 0,
+                      overflow: "hidden",
+                      borderTopLeftRadius: "20%",
+                      borderTopRightRadius: "20%",
+                    }
               }
               transition={{ duration: 0.2 }}
-              className="size-full relative flex flex-col items-center bg-red-500 border-red-500 rounded-full shadow-md"
+              className="size-full relative flex flex-col items-center bg-red-500 border-red-500 rounded-b-[20%] shadow-2xl/80"
             >
               <motion.div //text container
                 className={"absolute flex flex-col text-center items-center"}
@@ -131,9 +141,30 @@ function Person({
                 animate={
                   isHovered || isToggled
                     ? { y: longName ? 74 : 80 }
-                    : { y: longName ? 10 : 15 }
+                    : { y: longName ? 0 : 8 }
                 }
               >
+                {/* <svg
+                  height="auto"
+                  width="90%"
+                  viewBox="0 0 200 120"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <defs>
+                    <path id="text-arch" d="M 20 100 A 80 80 0 0 1 180 100" />
+                  </defs>
+                  <text
+                    textAnchor="middle"
+                    style={{
+                      fontSize: "20px",
+                      fill: "white",
+                    }}
+                  >
+                    <textPath href="#text-arch" startOffset="50%">
+                      {person}
+                    </textPath>
+                  </text>
+                </svg> */}
                 <motion.h2 //name
                   className="font-bold wrap-break-word mt-2 [--activeFontSize:80%] md:[--activeFontSize:4vw] [--longSize:65%] md:[--longSize:3.8vw] [--activeTop:-100%] md:[--activeTop:-80%] [--activeWidth:90%] md:[--activeWidth:200%] [--activeLongTop:-120%] md:[--activeLongTop:-80%] [--activeLongWidth:75%] md:[--activeLongWidth:41.8vw]"
                   animate={
@@ -144,7 +175,10 @@ function Person({
                             ? "var(--longSize)"
                             : "var(--activeFontSize)",
                         }
-                      : { width: "70%", fontSize: longName ? "60%" : "75%" }
+                      : {
+                          width: longName ? "67%" : "70%",
+                          fontSize: longName ? "60%" : "65%",
+                        }
                   }
                 >
                   {person}
@@ -168,17 +202,21 @@ function Person({
                 </motion.div>
               </motion.div>
               <motion.div //img container
-                className="absolute left-1/2 flex size-[80%] -translate-x-1/2 items-center justify-center rounded-full [--imgScale:0.8] [--yActive:-30%]"
+                className="absolute left-1/2 flex size-full -translate-x-1/2 items-center justify-center overflow-hidden rounded-t-[20%] [--imgScale:0.8] [--yActive:-30%]"
                 animate={
                   isHovered || isToggled
-                    ? { y: "var(--yActive)", scale: "var(--imgScale)" }
-                    : { y: "40%", scale: 1 }
+                    ? {
+                        y: "var(--yActive)",
+                        scale: "var(--imgScale)",
+                        borderRadius: "100%",
+                      }
+                    : { y: "30%", scale: 1 }
                 }
               >
                 <img
                   src={photo ? photo : "/images/def_M.jpg"}
                   alt={person}
-                  className="size-full object-cover rounded-full"
+                  className="size-full object-cover"
                   onLoad={handleImageLoaded}
                 />
               </motion.div>
