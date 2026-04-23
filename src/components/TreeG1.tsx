@@ -86,7 +86,7 @@ function TreeG1() {
                   zRef.current[index] = el;
                 }}
                 key={person.id}
-                className={`${posA[members.G2.indexOf(person)]} absolute size-[38vw] sm:size-30 -translate-1/2`}
+                className={`${posA[members.G2.indexOf(person)]} absolute size-[32vw] sm:size-30 -translate-1/2`}
                 style={{ zIndex: 10 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.zIndex = "50";
