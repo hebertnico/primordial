@@ -26,18 +26,22 @@ function Home() {
   return (
     <>
       <div className="h-screen relative mx-auto overflow-x-hidden overflow-y-hidden">
-        <Person
-          person={name}
-          classname="left-[50%] top-[50%]"
-          photo={photo}
-          onClick={() => navigate("/form")}
-        />
-        <Person
+        <div
+          className="absolute top-[40vh] left-[50vw] sm:left-[37vw] size-[40vw] sm:size-[20vw] -translate-1/2"
+          style={{ zIndex: 10 }}>
+          <Person
+            person={name}
+            // classname="left-[50%] top-[50%]"
+            // photo={photo}
+            // onClick={() => navigate("/form")}
+          />
+        </div>
+        {/* <Person
           person="lpg1"
           classname="left-[50%] top-[20%]"
           photo={photo}
           onClick={() => navigate("/LPg1")}
-        />
+        /> */}
         <div
           className="absolute left-[15%] top-10 bg-blue-500 size-24 cursor-pointer"
           onClick={() => navigate("/LPg1")}
