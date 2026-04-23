@@ -6,6 +6,7 @@ function Person({
   tubu = "dd Mmm YYYY",
   monding = "",
   photo = "",
+  childnum = null,
   size = "size-25",
   classname = "",
   animate = {},
@@ -107,66 +108,58 @@ function Person({
               offsetRotate: "0deg",
               offsetPosition: "center",
             }}
-            className="absolute translate-1/2 size-full [--activeSize:2] md:[--activeSize:3]"
-          >
-            {/* <motion.div
-              // animate={{ scale: isToggled ? 1.5 : 1 }}
-              // transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className={`flex flex-col items-center gap-1`}
-            > */}
+            className="absolute translate-1/2 size-full [--activeSize:2] md:[--activeSize:3]">
+            {childnum && (
+              <motion.div //child number
+                // animate={{ scale: isToggled ? 1.5 : 1 }}
+                // transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className="absolute flex flex-col justify-center items-center text-center size-[20%] bg-white rounded-full">
+                <p className="text-black font-bold text-sm">{childnum}</p>
+              </motion.div>
+            )}
             <motion.div //circular card, scale up container
               animate={
                 isHovered || isToggled
                   ? {
                       scale: "var(--activeSize)",
-                      borderTopLeftRadius: "100px",
-                      borderTopRightRadius: "100px",
-                      borderBottomLeftRadius: "100px",
-                      borderBottomRightRadius: "100px",
                     }
                   : {
                       scale: 1,
-                      borderWidth: 0,
+                      borderWidth: 3,
                       overflow: "hidden",
-                      borderTopLeftRadius: "20%",
-                      borderTopRightRadius: "20%",
                     }
               }
               transition={{ duration: 0.2 }}
-              className="size-full relative flex flex-col items-center bg-red-500 border-red-500 rounded-b-[20%] shadow-2xl/80"
-            >
+              className="relative size-full flex flex-col items-center bg-red-500 border-red-500 rounded-full shadow-2xl/80">
+              <motion.div //img container
+                className="absolute left-1/2 flex size-full rounded-full bg-black -translate-x-1/2 items-center justify-center overflow-hidden [--imgScale:1.5] [--yActive:-40%]"
+                animate={
+                  isHovered || isToggled
+                    ? {
+                        y: "var(--yActive)",
+                        scale: "calc(var(--imgScale)/var(--activeSize))",
+                        // borderRadius: "100%",
+                      }
+                    : { scale: 1 }
+                }>
+                <img
+                  src={photo ? photo : "/images/def_M.jpg"}
+                  alt={person}
+                  className="size-full object-cover mask-luminance mask-b-from-white mask-b-from-50% mask-b-to-black"
+                  style={{ maskMode: isHovered || isToggled ? "unset" : "" }}
+                  onLoad={handleImageLoaded}
+                />
+              </motion.div>
               <motion.div //text container
                 className={"absolute flex flex-col text-center items-center"}
                 style={{ gap: longName ? 1 : 2 }}
                 animate={
                   isHovered || isToggled
-                    ? { y: longName ? 74 : 80 }
-                    : { y: longName ? 0 : 8 }
-                }
-              >
-                {/* <svg
-                  height="auto"
-                  width="90%"
-                  viewBox="0 0 200 120"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <defs>
-                    <path id="text-arch" d="M 20 100 A 80 80 0 0 1 180 100" />
-                  </defs>
-                  <text
-                    textAnchor="middle"
-                    style={{
-                      fontSize: "20px",
-                      fill: "white",
-                    }}
-                  >
-                    <textPath href="#text-arch" startOffset="50%">
-                      {person}
-                    </textPath>
-                  </text>
-                </svg> */}
+                    ? { top: longName ? "50%" : "50%" }
+                    : { top: longName ? "60%" : "70%" }
+                }>
                 <motion.h2 //name
-                  className="font-bold wrap-break-word mt-2 [--activeFontSize:80%] md:[--activeFontSize:4vw] [--longSize:65%] md:[--longSize:3.8vw] [--activeTop:-100%] md:[--activeTop:-80%] [--activeWidth:90%] md:[--activeWidth:200%] [--activeLongTop:-120%] md:[--activeLongTop:-80%] [--activeLongWidth:75%] md:[--activeLongWidth:41.8vw]"
+                  className="font-bold wrap-break-word [--activeFontSize:70%] md:[--activeFontSize:4vw] [--longSize:65%] md:[--longSize:3.8vw] [--activeTop:-100%] md:[--activeTop:-80%] [--activeWidth:78%] md:[--activeWidth:200%] [--activeLongTop:-120%] md:[--activeLongTop:-80%] [--activeLongWidth:75%] md:[--activeLongWidth:41.8vw]"
                   animate={
                     isHovered || isToggled
                       ? {
@@ -176,52 +169,30 @@ function Person({
                             : "var(--activeFontSize)",
                         }
                       : {
-                          width: longName ? "67%" : "70%",
+                          width: longName ? "60%" : "70%",
                           fontSize: longName ? "60%" : "65%",
                         }
-                  }
-                >
+                  }>
                   {person}
                 </motion.h2>
                 <motion.div //tubu, monding container
                   className={
-                    "flex flex-col text-center w-40 text-[55%] text-white"
+                    "flex flex-col text-center w-40 text-[50%] text-white"
                   }
                   animate={
                     isHovered || isToggled ? { opacity: 100 } : { opacity: 0 }
-                  }
-                >
+                  }>
                   <p>
                     Tubu: <span>{tubu}</span>
                   </p>
                   {monding && (
-                    <p className=" text-[98%]">
+                    <p className=" text-[90%]">
                       Monding: <span>{monding}</span>
                     </p>
                   )}
                 </motion.div>
               </motion.div>
-              <motion.div //img container
-                className="absolute left-1/2 flex size-full -translate-x-1/2 items-center justify-center overflow-hidden rounded-t-[20%] [--imgScale:0.8] [--yActive:-30%]"
-                animate={
-                  isHovered || isToggled
-                    ? {
-                        y: "var(--yActive)",
-                        scale: "var(--imgScale)",
-                        borderRadius: "100%",
-                      }
-                    : { y: "30%", scale: 1 }
-                }
-              >
-                <img
-                  src={photo ? photo : "/images/def_M.jpg"}
-                  alt={person}
-                  className="size-full object-cover"
-                  onLoad={handleImageLoaded}
-                />
-              </motion.div>
             </motion.div>
-            {/* </motion.div> */}
           </motion.div>
         </motion.div>
       ) : null}
