@@ -12,11 +12,22 @@ function TreeG1() {
 
   const zRef = useRef<(HTMLDivElement | null)[]>([]);
 
-  const handleZ = (index = 0) => {
+  const handleZ = (index = 0, toggle = false) => {
     if (!zRef.current[index]) return;
-    zRef.current[index].style.zIndex =
-      zRef.current[index]?.style.zIndex === "10" ? "50" : "10";
-    // console.log(zRef.current[index]?.style.zIndex);
+    if (toggle)
+      zRef.current[index].setAttribute(
+        "data-toggled",
+        zRef.current[index].getAttribute("data-toggled") === "false"
+          ? "true"
+          : "false",
+      );
+    else
+      zRef.current[index].style.zIndex =
+        zRef.current[index].getAttribute("data-toggled") === "true"
+          ? "50"
+          : "10";
+    // zRef.current[index]?.style.zIndex === "10" ? "50" : "10";
+    console.log(zRef.current[index].style.zIndex);
   };
 
   // console.log(offspring);
@@ -75,14 +86,19 @@ function TreeG1() {
                   zRef.current[index] = el;
                 }}
                 key={person.id}
-                className={`${posA[members.G2.indexOf(person)]} absolute size-40 sm:size-30 -translate-1/2`}
+                className={`${posA[members.G2.indexOf(person)]} absolute size-[38vw] sm:size-30 -translate-1/2`}
                 style={{ zIndex: 10 }}
-                // onClick={() => {
-                //   handleZ(index);
-                // }}
-                onMouseEnter={() => handleZ(index)}
-                // onMouseLeave={() => {
-                // }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.zIndex = "50";
+                  console.log(e.currentTarget.style.zIndex);
+                }}
+                onClick={() => {
+                  handleZ(index, true);
+                }}
+                onMouseLeave={() => {
+                  handleZ(index);
+                }}
+                data-toggled="false"
               >
                 <Person
                   person={person.name}
