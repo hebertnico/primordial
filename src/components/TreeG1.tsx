@@ -101,6 +101,7 @@ function TreeG1() {
                 data-toggled="false">
                 <Person
                   person={person.name}
+                  childnum={index + 1}
                   // size="lg:size-[10vw] md:size-[20vw] size-[20vw]"
                   // classname={`${posA[members.G2.indexOf(person)]}`}
                   // onClick={() => setOffspring(members.G2.indexOf(person) + 1)}
