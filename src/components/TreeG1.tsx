@@ -27,7 +27,7 @@ function TreeG1() {
           ? "50"
           : "10";
     // zRef.current[index]?.style.zIndex === "10" ? "50" : "10";
-    console.log(zRef.current[index].style.zIndex);
+    // console.log(zRef.current[index].style.zIndex);
   };
 
   // console.log(offspring);
@@ -90,7 +90,7 @@ function TreeG1() {
                 style={{ zIndex: 10 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.zIndex = "50";
-                  console.log(e.currentTarget.style.zIndex);
+                  // console.log(e.currentTarget.style.zIndex);
                 }}
                 onClick={() => {
                   handleZ(index, true);
@@ -98,8 +98,7 @@ function TreeG1() {
                 onMouseLeave={() => {
                   handleZ(index);
                 }}
-                data-toggled="false"
-              >
+                data-toggled="false">
                 <Person
                   person={person.name}
                   // size="lg:size-[10vw] md:size-[20vw] size-[20vw]"
