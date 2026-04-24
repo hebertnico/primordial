@@ -28,7 +28,8 @@ function Home() {
       <div className="h-screen relative mx-auto overflow-x-hidden overflow-y-hidden">
         <div
           className="absolute top-[40vh] left-[50vw] sm:left-[37vw] size-[40vw] sm:size-[20vw] -translate-1/2"
-          style={{ zIndex: 10 }}>
+          style={{ zIndex: 10 }}
+        >
           <Person
             person={name}
             // classname="left-[50%] top-[50%]"
@@ -45,6 +46,10 @@ function Home() {
         <div
           className="absolute left-[15%] top-10 bg-blue-500 size-24 cursor-pointer"
           onClick={() => navigate("/LPg1")}
+        />
+        <div
+          className="absolute left-[15%] top-10 bg-emerald-500 size-24 cursor-pointer"
+          onClick={() => navigate("/tree/SSs")}
         />
         <Attempt />
       </div>
