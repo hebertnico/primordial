@@ -15,6 +15,7 @@ import { db } from "../firebase";
 function PersonForm() {
   const [id, setId] = useState("");
   const [name, setName] = useState("");
+  const [sibOrder, setSibOrder] = useState("");
   const [sex, setSex] = useState("");
   const [tubu, setTubu] = useState("");
   const [monding, setMonding] = useState("");
@@ -93,6 +94,7 @@ function PersonForm() {
 
       const data = {
         name: modifiedName,
+        sibOrder: parseInt(sibOrder),
         sex,
         tubu: tubuValue,
         monding: mondingValue,
@@ -109,6 +111,7 @@ function PersonForm() {
       // reset
       setId("");
       setName("");
+      setSibOrder("");
       setSex("");
       setTubu("");
       setMonding("");
@@ -152,6 +155,14 @@ function PersonForm() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
+          />
+
+          <input
+            type="number"
+            className="w-full bg-black border border-neutral-700 focus:border-red-500 text-white rounded-lg px-3 py-2 outline-none transition"
+            placeholder="Sibling Order"
+            value={sibOrder}
+            onChange={(e) => setSibOrder(e.target.value)}
           />
 
           <div>
