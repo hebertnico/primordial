@@ -64,14 +64,14 @@
     },
     {
       "position": [
-        "top-[50vh] left-182",
-        "top-[50vh] left-182",
-        "top-[50vh] left-182",
-        "top-[50vh] left-182",
-        "top-[50vh] left-182",
-        "top-[50vh] left-182",
-        "top-[50vh] left-182",
-        "top-[50vh] left-182"
+        "top-[5vh] left-[25vw]",
+        "top-[5vh] left-[75vw]",
+        "top-[12vh] left-[50vw]",
+        "top-[19vh] left-[25vw]",
+        "top-[19vh] left-[75vw]",
+        "top-[26vh] left-[50vw]",
+        "top-[33vh] left-[25vw]",
+        "top-[33vh] left-[75vw]"
       ]
     }
   ]
