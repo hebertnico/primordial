@@ -9,6 +9,7 @@ import Home from "./components/Home";
 import TreeDesc from "./components/TreeDesc";
 import UploadImage from "./UploadImage";
 import PersonForm from "./components/PersonForm";
+import Tree from "./components/Tree";
 
 function App() {
   // const [rg1act, setRg1Act] = useState(false);
@@ -59,6 +60,7 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/upload" element={<UploadImage />} />
       <Route path="/form" element={<PersonForm />} />
+      <Route path="/tree/:head" element={<Tree />} />
       <Route path=":head" element={<TreeG1 />}>
         <Route path=":descendant" element={<TreeDesc />} />
       </Route>
