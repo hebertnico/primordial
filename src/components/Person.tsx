@@ -5,18 +5,13 @@ import { useNavigate } from "react-router-dom";
 function Person({
   id = "",
   person = "",
+  sex = "",
   tubu = "dd Mmm YYYY",
   monding = "",
   photo = "",
   childnum = null,
-  size = "size-25",
-  classname = "",
-  animate = {},
-  transition = {},
-  onClick = () => {},
-  exit = {},
   isVisible = true,
-  initial = {},
+  hasFam = false,
 }) {
   const navigate = useNavigate();
   const [isToggled, setIsToggled] = useState(false);
@@ -111,24 +106,20 @@ function Person({
               offsetRotate: "0deg",
               offsetPosition: "center",
             }}
-            className="absolute translate-1/2 size-full [--activeSize:2] md:[--activeSize:3]"
-          >
+            className="absolute translate-1/2 size-full [--activeSize:2] md:[--activeSize:3]">
             {childnum && (
               <motion.div //child number
                 // animate={{ scale: isToggled ? 1.5 : 1 }}
                 // transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="absolute flex flex-col justify-center items-center text-center size-[20%] bg-white rounded-full"
-              >
+                className="absolute flex flex-col justify-center items-center text-center size-[20%] bg-white rounded-full">
                 <p className="text-black font-bold text-sm">{childnum}</p>
               </motion.div>
             )}
-            {isHovered ||
-              (isToggled && (
-                <div
-                  className="absolute translate-y-45 flex flex-col justify-center items-center text-center size-[30%] bg-white rounded-full"
-                  onClick={() => navigate(`/tree/${id}`)}
-                ></div>
-              ))}
+            {hasFam && (isHovered || isToggled) && (
+              <div
+                className="absolute translate-y-45 flex flex-col justify-center items-center text-center size-[30%] bg-white rounded-full"
+                onClick={() => navigate(`/tree/${id}`)}></div>
+            )}
             <motion.div //circular card, scale up container
               animate={
                 isHovered || isToggled
@@ -142,8 +133,7 @@ function Person({
                     }
               }
               transition={{ duration: 0.2 }}
-              className="relative size-full flex flex-col items-center bg-red-500 border-red-500 rounded-full shadow-2xl/80"
-            >
+              className="relative size-full flex flex-col items-center bg-red-500 border-red-500 rounded-full shadow-2xl/80">
               <motion.div //img container
                 className="absolute left-1/2 flex size-full rounded-full bg-black -translate-x-1/2 items-center justify-center overflow-hidden [--imgScale:1.5] [--yActive:-40%]"
                 animate={
@@ -154,10 +144,15 @@ function Person({
                         // borderRadius: "100%",
                       }
                     : { scale: 1 }
-                }
-              >
+                }>
                 <img
-                  src={photo ? photo : "/images/def_M.jpg"}
+                  src={
+                    photo
+                      ? photo
+                      : sex === "F"
+                        ? "/images/def_F.jpg"
+                        : "/images/def_M.jpg"
+                  }
                   alt={person}
                   className="size-full object-cover mask-luminance mask-b-from-white mask-b-from-50% mask-b-to-black"
                   style={{ maskMode: isHovered || isToggled ? "unset" : "" }}
@@ -171,8 +166,7 @@ function Person({
                   isHovered || isToggled
                     ? { top: longName ? "50%" : "50%" }
                     : { top: longName ? "60%" : "70%" }
-                }
-              >
+                }>
                 <motion.h2 //name
                   className="font-bold wrap-break-word [--activeFontSize:70%] md:[--activeFontSize:4vw] [--longSize:65%] md:[--longSize:3.8vw] [--activeTop:-100%] md:[--activeTop:-80%] [--activeWidth:78%] md:[--activeWidth:200%] [--activeLongTop:-120%] md:[--activeLongTop:-80%] [--activeLongWidth:75%] md:[--activeLongWidth:41.8vw]"
                   animate={
@@ -187,8 +181,7 @@ function Person({
                           width: longName ? "60%" : "70%",
                           fontSize: longName ? "60%" : "65%",
                         }
-                  }
-                >
+                  }>
                   {person}
                 </motion.h2>
                 <motion.div //tubu, monding container
@@ -197,8 +190,7 @@ function Person({
                   }
                   animate={
                     isHovered || isToggled ? { opacity: 100 } : { opacity: 0 }
-                  }
-                >
+                  }>
                   <p>
                     Tubu: <span>{tubu}</span>
                   </p>
