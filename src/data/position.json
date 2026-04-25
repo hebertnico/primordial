@@ -12,10 +12,13 @@
   ],
   "children": [
     {
-      "position": ["top-[50vh] left-182"]
+      "position": ["top-[80vh] left-[50vw]"]
     },
     {
-      "position": ["top-[50vh] left-182", "top-[50vh] left-182"]
+      "position": [
+        "top-[25vh] left-[50vw] size-[40vw] sm:size-30",
+        "top-[75vh] left-[50vw] size-[40vw] sm:size-30"
+      ]
     },
     {
       "position": [
@@ -43,12 +46,12 @@
     },
     {
       "position": [
-        "md:top-20 md:left-100 top-[12.5vh] left-[50vw]",
-        "md:top-40 md:left-45 top-[30vh] left-[23vw]",
-        "md:top-40 md:left-155 top-[30vh] left-[77vw]",
-        "md:top-160 md:left-45 top-[70vh] left-[23vw]",
-        "md:top-160 md:left-155 top-[70vh] left-[77vw]",
-        "md:top-180 md:left-100 top-[87.5vh] left-[50vw]"
+        "md:top-20 md:left-100 top-[12.5vh] left-[50vw] size-[32vw] sm:size-30",
+        "md:top-40 md:left-45 top-[30vh] left-[23vw] size-[32vw] sm:size-30",
+        "md:top-40 md:left-155 top-[30vh] left-[77vw] size-[32vw] sm:size-30",
+        "md:top-160 md:left-45 top-[70vh] left-[23vw] size-[32vw] sm:size-30",
+        "md:top-160 md:left-155 top-[70vh] left-[77vw] size-[32vw] sm:size-30",
+        "md:top-180 md:left-100 top-[87.5vh] left-[50vw] size-[32vw] sm:size-30"
       ]
     },
     {
@@ -64,14 +67,14 @@
     },
     {
       "position": [
-        "top-[5vh] left-[25vw]",
-        "top-[5vh] left-[75vw]",
-        "top-[12vh] left-[50vw]",
-        "top-[19vh] left-[25vw]",
-        "top-[19vh] left-[75vw]",
-        "top-[26vh] left-[50vw]",
-        "top-[33vh] left-[25vw]",
-        "top-[33vh] left-[75vw]"
+        "top-[5vh] left-[25vw] size-[32vw] sm:size-30",
+        "top-[5vh] left-[75vw] size-[32vw] sm:size-30",
+        "top-[12vh] left-[50vw] size-[32vw] sm:size-30",
+        "top-[19vh] left-[25vw] size-[32vw] sm:size-30",
+        "top-[19vh] left-[75vw] size-[32vw] sm:size-30",
+        "top-[26vh] left-[50vw] size-[32vw] sm:size-30",
+        "top-[33vh] left-[25vw] size-[32vw] sm:size-30",
+        "top-[33vh] left-[75vw] size-[32vw] sm:size-30"
       ]
     }
   ]
