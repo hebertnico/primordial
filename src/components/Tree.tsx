@@ -16,9 +16,9 @@ import { db } from "../firebase";
 import { AnimatePresence, motion } from "motion/react";
 
 function Tree() {
-  const [members, setMembers] = useState<Record<string, any>>({});
-  const [famHead, setFamHead] = useState({});
-  const [spouse, setSpouse] = useState([]);
+  const [children, setChildren] = useState<Record<string, any>>({});
+  const [famHead, setFamHead] = useState<Record<string, any>>({});
+  const [spouse, setSpouse] = useState<Record<string, any>>({});
   const [loading, setLoading] = useState(true);
 
   let { head = "" } = useParams();
@@ -29,25 +29,28 @@ function Tree() {
       setLoading(true);
       try {
         const headSnapshot = await getDoc(doc(db, "person", head));
-        console.log(headSnapshot.data());
-        setFamHead({ id: headSnapshot.id, ...headSnapshot.data() });
+        // console.log(headSnapshot.data()?.spouse);
+        setFamHead({
+          id: headSnapshot.id,
+          toggled: false,
+          ...headSnapshot.data(),
+        });
 
         if (headSnapshot.data()?.spouse != null) {
+          // console.log(["def"].push(headSnapshot.data()?.spouse));
           const spouseSnapshot = await getDocs(
             query(
               collection(db, "person"),
-              where(documentId(), "in", [
-                "def",
-                ...headSnapshot.data()?.spouse,
-              ]),
+              where(documentId(), "in", headSnapshot.data()?.spouse),
             ),
           );
           const bufferSpouses: any = [];
           spouseSnapshot.forEach((doc) => {
-            bufferSpouses.push({ id: doc.id, ...doc.data() });
+            // console.log(doc.data());
+            bufferSpouses.push({ id: doc.id, toggled: false, ...doc.data() });
           });
           setSpouse(bufferSpouses);
-          console.log(spouseSnapshot.docs[0]?.data());
+          // console.log(spouseSnapshot.docs[0]?.data());
         }
 
         const childSnapshot = await getDocs(
@@ -57,11 +60,11 @@ function Tree() {
             orderBy("sibOrder", "asc"),
           ),
         );
-        const bufferMembers: any = [];
+        const bufferChildren: any = [];
         childSnapshot.forEach((doc) => {
-          bufferMembers.push({ id: doc.id, ...doc.data() });
+          bufferChildren.push({ id: doc.id, toggled: false, ...doc.data() });
         });
-        setMembers(bufferMembers);
+        setChildren(bufferChildren);
       } catch (error) {
         console.log(error);
       }
@@ -70,68 +73,83 @@ function Tree() {
   }, [head]);
 
   useEffect(() => {
-    console.log(members);
-    if (members.length > 0) {
+    // console.log(children);
+    if (children.length > 0) {
       setLoading(false);
-      setPosA(position.children[members.length - 1]?.position);
+      setPosA(position.children[children.length - 1]?.position);
     }
-  }, [members]);
+  }, [children]);
 
   return (
     <div className="h-screen relative mx-auto overflow-x-hidden overflow-y-hidden">
-      {/* {members.G1 && (
+      {/* <AnimatePresence mode="popLayout"> */}
+      {famHead && (
+        <motion.div
+          className="famhead absolute top-[50vh] left-[27vw] sm:left-[37vw] size-[40vw] sm:size-[20vw] -translate-1/2"
+          style={{ zIndex: famHead.toggled ? 60 : 20 }}
+          animate={{}}
+          transition={{ duration: 1 }}
+          exit={{ opacity: 0 }}
+          whileHover={{ zIndex: 50 }}
+          onClick={() => setFamHead({ ...famHead, toggled: !famHead.toggled })}>
+          <Person key={famHead.id} person={famHead.name} sex={famHead.sex} />
+        </motion.div>
+      )}
+      {spouse && (
+        <motion.div
+          className="absolute top-[50vh] sm:left-[63vw] left-[73vw] size-[40vw] sm:size-[20vw] -translate-1/2"
+          style={{ zIndex: spouse[0]?.toggled ? 60 : 20 }}
+          animate={{}}
+          transition={{ duration: 1 }}
+          exit={{ opacity: 0 }}
+          whileHover={{ zIndex: 50 }}
+          onClick={() =>
+            setSpouse((prev) =>
+              prev.map((s: any, i: any) =>
+                i === 0 ? { ...s, toggled: !s.toggled } : s,
+              ),
+            )
+          }>
           <Person
-          key={members.G1.id}
-            person={members.G1.name}
-            size="lg:size-[10vw] md:size-[15vw] size-[20vw]"
-            classname="top-[42vh] md:top-[35vh] left-[30%] md:left-[40%]"
-            />
-            )}
-            {members.SG1 && (
-              <Person
-              key={members.SG1.id}
-              person={members.SG1.name}
-              size="lg:size-[10vw] md:size-[15vw] size-[20vw]"
-              classname="top-[42vh] md:top-[35vh] left-[70%] md:left-[60%]"
-              />
-              )} */}
+            key={spouse[0]?.id}
+            person={spouse[0]?.name}
+            sex={spouse[0]?.sex}
+          />
+        </motion.div>
+      )}
       <AnimatePresence mode="popLayout">
         {!loading &&
-          members?.map((person: any) => (
+          children?.map((person: any, i: any) => (
             <motion.div
               // ref={(el) => {
               //   zRef.current[index] = el;
               // }}
               key={person.id}
-              className={`${posA[person.sibOrder - 1]} absolute size-[32vw] sm:size-30 -translate-1/2`}
-              style={{ zIndex: 10 }}
+              className={`${posA[person.sibOrder - 1]} absolute -translate-1/2`}
+              style={{ zIndex: person.toggled ? 50 : 10 }}
               // initial={{ x: "50vw", y: "50vh" }}
               animate={{}}
               transition={{ duration: 1 }}
-              // onClick={() => navigate(`/tree/${person.id}`)}
               exit={{ opacity: 0 }}
-              // onMouseEnter={(e) => {
-              //   e.currentTarget.style.zIndex = "50";
-              //   // console.log(e.currentTarget.style.zIndex);
-              // }}
-              // onClick={() => {
-              //   handleZ(index, true);
-              // }}
-              // onMouseLeave={() => {
-              //   handleZ(index);
-              // }}
-              data-toggled="false"
-            >
+              whileHover={{ zIndex: 50 }}
+              onClick={() =>
+                setChildren((prev) =>
+                  prev.map((c: any, idx: any) =>
+                    idx === i ? { ...c, toggled: !c.toggled } : c,
+                  ),
+                )
+              }>
               <Person
                 id={person.id}
                 person={person.name}
                 childnum={person.sibOrder}
-                size="lg:size-[10vw] md:size-[15vw] size-[20vw]"
-                classname={`${posA[members.indexOf(person)]}`}
+                sex={person.sex}
+                hasFam={person.spouse ? true : false}
               />
             </motion.div>
           ))}
       </AnimatePresence>
+      {/* </AnimatePresence> */}
     </div>
   );
 }
