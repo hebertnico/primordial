@@ -12,16 +12,24 @@
   ],
   "children": [
     {
-      "position": ["top-[80vh] left-[50vw]"]
+      "position": ["bottom-20 left-[50vw] size-38 -translate-1/2"]
     },
     {
       "position": [
-        "top-[25vh] left-[50vw] size-[40vw] sm:size-30",
-        "top-[75vh] left-[50vw] size-[40vw] sm:size-30"
+        "top-[25vh] left-[50vw] size-38 sm:size-50 -translate-1/2",
+        "top-[75vh] left-[50vw] size-38 sm:size-50 -translate-1/2"
       ]
     },
     {
       "position": [
+        "top-60 left-[50vw] size-38 -translate-1/2",
+        "bottom-60 size-38 left-[23vw] -translate-x-1/2 translate-y-1/2",
+        "bottom-60 size-38 left-[77vw] -translate-x-1/2 translate-y-1/2"
+      ]
+    },
+    {
+      "position": [
+        "top-[50vh] left-182",
         "top-[50vh] left-182",
         "top-[50vh] left-182",
         "top-[50vh] left-182"
@@ -32,26 +40,18 @@
         "top-[50vh] left-182",
         "top-[50vh] left-182",
         "top-[50vh] left-182",
-        "top-[50vh] left-182"
-      ]
-    },
-    {
-      "position": [
-        "top-[50vh] left-182",
-        "top-[50vh] left-182",
-        "top-[50vh] left-182",
         "top-[50vh] left-182",
         "top-[50vh] left-182"
       ]
     },
     {
       "position": [
-        "md:top-20 md:left-100 top-[12.5vh] left-[50vw] size-[32vw] sm:size-30",
-        "md:top-40 md:left-45 top-[30vh] left-[23vw] size-[32vw] sm:size-30",
-        "md:top-40 md:left-155 top-[30vh] left-[77vw] size-[32vw] sm:size-30",
-        "md:top-160 md:left-45 top-[70vh] left-[23vw] size-[32vw] sm:size-30",
-        "md:top-160 md:left-155 top-[70vh] left-[77vw] size-[32vw] sm:size-30",
-        "md:top-180 md:left-100 top-[87.5vh] left-[50vw] size-[32vw] sm:size-30"
+        "sm:top-30 md:left-100 top-24 left-[50vw] size-38 sm:size-45 -translate-1/2",
+        "sm:top-65 md:left-45 top-60 left-[23vw] size-38 sm:size-45 -translate-1/2",
+        "sm:top-65 md:left-155 top-60 left-[77vw] size-38 sm:size-45 -translate-1/2",
+        "sm:bottom-35 md:left-45 bottom-60 left-[23vw] size-38 sm:size-45 -translate-x-1/2 translate-y-1/2",
+        "sm:bottom-35 md:left-155 bottom-60 left-[77vw] size-38 sm:size-45 -translate-x-1/2 translate-y-1/2",
+        "sm:bottom-30 md:left-100 bottom-24 left-[50vw] size-38 sm:size-45 -translate-x-1/2 translate-y-1/2"
       ]
     },
     {
