@@ -16,14 +16,15 @@ import { db } from "../firebase";
 import { AnimatePresence, motion, scale } from "motion/react";
 import { CircleArrowLeft } from "lucide-react";
 
-function Tree() {
-  const [children, setChildren] = useState<Record<string, any>>({});
+function MainTree() {
+  const [rg1, setRG1] = useState<Record<string, any>>({});
+  const [rg2, setRG2] = useState<Record<string, any>>({});
   const [famHead, setFamHead] = useState<Record<string, any>>({});
   const [spouse, setSpouse] = useState<Record<string, any>>({});
   const [loading, setLoading] = useState(true);
-  const [headKey, setHeadKey] = useState("");
+  // const [headKey, setHeadKey] = useState("");
 
-  let { head = "" } = useParams();
+  // let { head = "" } = useParams();
   const [posA, setPosA] = useState<string[]>([]);
 
   const navigate = useNavigate();
@@ -32,58 +33,58 @@ function Tree() {
     async function load() {
       setLoading(true);
       try {
-        const headSnapshot = await getDoc(doc(db, "person", head));
+        const headSnapshot = await getDoc(doc(db, "person", "RSRP"));
         // console.log(headSnapshot.data()?.spouse);
         setFamHead({
-          id: head,
+          id: "RSRP",
           toggled: false,
           ...headSnapshot.data(),
         });
-        setHeadKey(headSnapshot.id);
+        // setHeadKey(headSnapshot.id);
 
-        if (headSnapshot.data()?.spouse != null) {
-          // console.log(["def"].push(headSnapshot.data()?.spouse));
-          const spouseSnapshot = await getDocs(
-            query(
-              collection(db, "person"),
-              where(documentId(), "in", headSnapshot.data()?.spouse),
-            ),
-          );
-          const bufferSpouses: any = [];
-          spouseSnapshot.forEach((doc) => {
-            // console.log(doc.data());
-            bufferSpouses.push({ id: doc.id, toggled: false, ...doc.data() });
-          });
-          setSpouse(bufferSpouses);
-          // console.log(spouseSnapshot.docs[0]?.data());
-        }
-
-        const childSnapshot = await getDocs(
+        // if (headSnapshot.data()?.spouse != null) {
+        // console.log(["def"].push(headSnapshot.data()?.spouse));
+        const spouseSnapshot = await getDocs(
           query(
             collection(db, "person"),
-            where("parentId", "==", head),
+            where(documentId(), "in", ["SSs", "SNs"]),
+          ),
+        );
+        const bufferSpouses: any = [];
+        spouseSnapshot.forEach((doc) => {
+          // console.log(doc.data());
+          bufferSpouses.push({ id: doc.id, toggled: false, ...doc.data() });
+        });
+        setSpouse(bufferSpouses);
+        // console.log(spouseSnapshot.docs[0]?.data());
+        // }
+
+        const childSnapshot1 = await getDocs(
+          query(
+            collection(db, "person"),
+            where("parentId", "==", "SSs"),
             orderBy("sibOrder", "asc"),
           ),
         );
         const bufferChildren: any = [];
-        childSnapshot.forEach((doc) => {
+        childSnapshot1.forEach((doc) => {
           bufferChildren.push({ id: doc.id, toggled: false, ...doc.data() });
         });
-        setChildren(bufferChildren);
+        // setChildren(bufferChildren);
       } catch (error) {
         console.log(error);
       }
     }
     load();
-  }, [head]);
+  }, []);
 
   useEffect(() => {
     // console.log(children);
-    if (children.length > 0) {
+    if (rg1.length > 0) {
       setLoading(false);
-      setPosA(position.children[children.length - 1]?.position);
+      setPosA(position.children[rg1.length - 1]?.position);
     }
-  }, [children]);
+  }, [rg1]);
 
   return (
     <div className="h-screen relative mx-auto overflow-x-hidden overflow-y-hidden">
@@ -99,7 +100,7 @@ function Tree() {
       {famHead && ( //head
         <motion.div
           layout
-          key={headKey}
+          // key={headKey}
           className="absolute top-[50vh] left-[27vw] sm:left-50 size-38 sm:size-60 -translate-1/2"
           style={{ zIndex: famHead.toggled ? 40 : 20 }}
           animate={{}}
@@ -136,7 +137,7 @@ function Tree() {
       )}
       <AnimatePresence mode="popLayout">
         {!loading &&
-          children?.map((person: any, i: any) => (
+          rg1?.map((person: any, i: any) => (
             <motion.div
               layout
               // ref={(el) => {
@@ -151,7 +152,7 @@ function Tree() {
               exit={{ opacity: 0 }}
               whileHover={{ zIndex: 50 }}
               onClick={() => {
-                setChildren((prev) =>
+                setRG1((prev) =>
                   prev.map((c: any, idx: any) =>
                     idx === i
                       ? { ...c, toggled: !c.toggled }
@@ -176,4 +177,4 @@ function Tree() {
   );
 }
 
-export default Tree;
+export default MainTree;

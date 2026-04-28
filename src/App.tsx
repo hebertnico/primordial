@@ -6,7 +6,6 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import TreeG1 from "./components/TreeG1";
 import Home from "./components/Home";
-import TreeDesc from "./components/TreeDesc";
 import UploadImage from "./UploadImage";
 import PersonForm from "./components/PersonForm";
 import Tree from "./components/Tree";
@@ -61,9 +60,7 @@ function App() {
       <Route path="/upload" element={<UploadImage />} />
       <Route path="/form" element={<PersonForm />} />
       <Route path="/tree/:head" element={<Tree />} />
-      <Route path=":head" element={<TreeG1 />}>
-        <Route path=":descendant" element={<TreeDesc />} />
-      </Route>
+      <Route path=":head" element={<TreeG1 />}></Route>
     </Routes>
     // <div className="h-screen relative mx-auto overflow-x-hidden overflow-y-hidden">
     //   {/* <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16"> */}
