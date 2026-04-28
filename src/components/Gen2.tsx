@@ -27,25 +27,15 @@ function Gen2({ isVisible = false, g2 = "", members = {} as Members }) {
       {/* pasangan */}
       <Person
         person={members.pasangan[0]}
-        classname={`absolute ${members.posP[0]} scale-140`}
-        size="size-[18vh]"
         isVisible={isVisible}
-        animate={{ x: 0 }}
-        initial={{ x: -90 }}
-        exit={{ opacity: 0, x: -90 }}
-        transition={{ duration: 1, ease: "easeInOut" }}
+        // transition={{ duration: 1, ease: "easeInOut" }}
         // animate={rg1act ? { top: 200, left: 1000 } : {}}
       ></Person>
       {members.pasangan.length > 1 && (
         <Person
           person={members.pasangan[1]}
-          classname={`absolute ${members.posP[1]} scale-140`}
-          size="size-[18vh]"
           isVisible={isVisible}
-          animate={{ x: 0 }}
-          initial={{ x: 90 }}
-          exit={{ opacity: 0, x: 90 }}
-          transition={{ duration: 1, ease: "easeInOut" }}
+          // transition={{ duration: 1, ease: "easeInOut" }}
         ></Person>
       )}
 
@@ -55,11 +45,7 @@ function Gen2({ isVisible = false, g2 = "", members = {} as Members }) {
           <Person
             key={person}
             person={person}
-            classname={`absolute ${members.posA[members.anak.indexOf(person)]}`}
-            size="size-[22vh]"
             isVisible={isVisible}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1, ease: "easeInOut" }}
             // animate={rg1act ? { top: 200, left: 1000 } : {}}
           ></Person>
         ))}

@@ -62,25 +62,13 @@ function Gen1({
       {/* pasangan */}
       <Person
         person={members.pasangan[0]}
-        classname={`absolute ${members.posP[0]} scale-140`}
-        size="size-[18vh]"
         isVisible={isVisible && !gen2Visible}
-        animate={{ x: 0 }}
-        initial={{ x: -90 }}
-        exit={{ opacity: 0, x: -90 }}
-        transition={{ duration: 1, ease: "easeInOut" }}
         // animate={rg1act ? { top: 200, left: 1000 } : {}}
       ></Person>
       {members.pasangan.length > 1 && (
         <Person
           person={members.pasangan[1]}
-          classname={`absolute ${members.posP[1]} scale-140`}
-          size="size-[18vh]"
           isVisible={isVisible && !gen2Visible}
-          animate={{ x: 0 }}
-          initial={{ x: 90 }}
-          exit={{ opacity: 0, x: 90 }}
-          transition={{ duration: 1, ease: "easeInOut" }}
         ></Person>
       )}
 
@@ -90,20 +78,8 @@ function Gen1({
           <Person
             key={person}
             person={person}
-            classname={`absolute ${members.posA[members.anak.indexOf(person)]}`}
-            size="size-[22vh]"
             isVisible={isVisible && (!gen2Visible || gen2 === person)}
-            animate={{
-              // ...(!gen2Visible ? { top: 370, left: 1000 } : {}),
-              ...(gen2 === person
-                ? { scale: 1.145, top: "160px", left: 550 }
-                : {}),
-            }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1, ease: "easeInOut" }}
-            onClick={() => {
-              handleGen2Click(person, members.fam);
-            }}
+
             // animate={rg1act ? { top: 200, left: 1000 } : {}}
           ></Person>
         ))}
