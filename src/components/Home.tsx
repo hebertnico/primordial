@@ -48,7 +48,7 @@ function Home() {
           onClick={() => navigate("/LPg1")}
         />
         <div
-          className="absolute left-[15%] top-10 bg-emerald-500 size-24 cursor-pointer"
+          className="absolute left-[40%] top-10 bg-emerald-500 size-24 cursor-pointer"
           onClick={() => navigate("/tree/SSs")}
         />
         <Attempt />
