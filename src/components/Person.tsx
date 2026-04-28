@@ -1,3 +1,9 @@
+import {
+  ChevronDown,
+  ChevronsDown,
+  Circle,
+  CircleChevronDown,
+} from "lucide-react";
 import { AnimatePresence, hover, motion } from "motion/react";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -57,11 +63,11 @@ function Person({
   // }, []);
 
   return (
-    <AnimatePresence initial={true}>
+    <AnimatePresence initial={true} propagate>
       {isVisible ? (
         <motion.div //magnetic center container
           ref={ref}
-          className="relative size-full max-w-[90vw] [--x-factor:0.6] [--y-factor:0.6] sm:[--x-factor:0.2] sm:[--y-factor:0.6] "
+          className="relative size-full max-w-[90vw] [--x-factor:0.6] [--y-factor:0.6] sm:[--x-factor:0.2] sm:[--y-factor:0.2] "
           // initial={{ opacity: 0, ...initial }}
           animate={{
             opacity: 1,
@@ -74,6 +80,10 @@ function Person({
                   y: `calc(${distance[1]}px * var(--y-factor))`,
                 }
               : { x: 0, y: 0 }),
+          }}
+          exit={{
+            x: isToggled ? 0 : distance[0] - 100,
+            y: isToggled ? 0 : distance[1],
           }}
           transition={{ duration: 0.4 }}
           // onClick={onClick}
@@ -106,20 +116,30 @@ function Person({
               offsetRotate: "0deg",
               offsetPosition: "center",
             }}
-            className="absolute translate-1/2 size-full [--activeSize:2] md:[--activeSize:3]">
+            className="absolute translate-1/2 size-full"
+          >
             {childnum && (
               <motion.div //child number
                 // animate={{ scale: isToggled ? 1.5 : 1 }}
                 // transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="absolute flex flex-col justify-center items-center text-center size-[20%] bg-white rounded-full">
+                className="absolute flex flex-col justify-center items-center text-center size-[20%] bg-white rounded-full"
+              >
                 <p className="text-black font-bold text-sm">{childnum}</p>
               </motion.div>
             )}
-            {hasFam && (isHovered || isToggled) && (
-              <div
-                className="absolute translate-y-45 flex flex-col justify-center items-center text-center size-[30%] bg-white rounded-full"
-                onClick={() => navigate(`/tree/${id}`)}></div>
-            )}
+            {hasFam &&
+              (isHovered || isToggled) && ( //navigate button
+                <motion.div
+                  className="absolute translate-y-55 translate-x-10 flex flex-col justify-center items-center text-center size-[50%] bg-white rounded-full"
+                  onClick={() => navigate(`/tree/${id}`)}
+                  whileTap={{ scale: 0.8 }}
+                >
+                  <Circle color="black" size={48}>
+                    <ChevronsDown color="black" size={16} x={4} y={4} />
+                    {/* </CircleChevronDown> */}
+                  </Circle>
+                </motion.div>
+              )}
             <motion.div //circular card, scale up container
               animate={
                 isHovered || isToggled
@@ -133,9 +153,10 @@ function Person({
                     }
               }
               transition={{ duration: 0.2 }}
-              className="relative size-full flex flex-col items-center bg-red-500 border-red-500 rounded-full shadow-2xl/80">
+              className="relative size-full flex flex-col items-center bg-red-500 border-red-500 rounded-full shadow-2xl/80 [--activeSize:2] md:[--activeSize:2]"
+            >
               <motion.div //img container
-                className="absolute left-1/2 flex size-full rounded-full bg-black -translate-x-1/2 items-center justify-center overflow-hidden [--imgScale:1.5] [--yActive:-40%]"
+                className="absolute left-1/2 flex size-full rounded-full bg-black -translate-x-1/2 items-center justify-center overflow-hidden [--imgScale:1.5] sm:[--imgScale:1.2] [--yActive:-40%]"
                 animate={
                   isHovered || isToggled
                     ? {
@@ -144,7 +165,8 @@ function Person({
                         // borderRadius: "100%",
                       }
                     : { scale: 1 }
-                }>
+                }
+              >
                 <img
                   src={
                     photo
@@ -166,9 +188,10 @@ function Person({
                   isHovered || isToggled
                     ? { top: longName ? "50%" : "50%" }
                     : { top: longName ? "60%" : "70%" }
-                }>
+                }
+              >
                 <motion.h2 //name
-                  className="font-bold wrap-break-word [--activeFontSize:70%] md:[--activeFontSize:4vw] [--longSize:65%] md:[--longSize:3.8vw] [--activeTop:-100%] md:[--activeTop:-80%] [--activeWidth:78%] md:[--activeWidth:200%] [--activeLongTop:-120%] md:[--activeLongTop:-80%] [--activeLongWidth:75%] md:[--activeLongWidth:41.8vw]"
+                  className="font-bold wrap-break-word [--activeFontSize:70%] sm:[--activeFontSize:50%] [--longSize:65%] sm:[--longSize:65%] [--activeTop:-100%] md:[--activeTop:-80%] [--activeWidth:78%] md:[--activeWidth:200%] [--activeLongTop:-120%] md:[--activeLongTop:-80%] [--activeLongWidth:75%] md:[--activeLongWidth:41.8vw]"
                   animate={
                     isHovered || isToggled
                       ? {
@@ -181,7 +204,8 @@ function Person({
                           width: longName ? "60%" : "70%",
                           fontSize: longName ? "60%" : "65%",
                         }
-                  }>
+                  }
+                >
                   {person}
                 </motion.h2>
                 <motion.div //tubu, monding container
@@ -190,7 +214,8 @@ function Person({
                   }
                   animate={
                     isHovered || isToggled ? { opacity: 100 } : { opacity: 0 }
-                  }>
+                  }
+                >
                   <p>
                     Tubu: <span>{tubu}</span>
                   </p>
