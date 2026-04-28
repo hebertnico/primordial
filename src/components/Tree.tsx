@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Person from "./Person";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import position from "../data/position.json" with { type: "json" };
 import {
   collection,
@@ -13,16 +13,20 @@ import {
   where,
 } from "firebase/firestore";
 import { db } from "../firebase";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion, scale } from "motion/react";
+import { CircleArrowLeft } from "lucide-react";
 
 function Tree() {
   const [children, setChildren] = useState<Record<string, any>>({});
   const [famHead, setFamHead] = useState<Record<string, any>>({});
   const [spouse, setSpouse] = useState<Record<string, any>>({});
   const [loading, setLoading] = useState(true);
+  const [headKey, setHeadKey] = useState("");
 
   let { head = "" } = useParams();
   const [posA, setPosA] = useState<string[]>([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function load() {
@@ -35,6 +39,7 @@ function Tree() {
           toggled: false,
           ...headSnapshot.data(),
         });
+        setHeadKey(headSnapshot.id);
 
         if (headSnapshot.data()?.spouse != null) {
           // console.log(["def"].push(headSnapshot.data()?.spouse));
@@ -83,22 +88,33 @@ function Tree() {
   return (
     <div className="h-screen relative mx-auto overflow-x-hidden overflow-y-hidden">
       {/* <AnimatePresence mode="popLayout"> */}
-      {famHead && (
+      {/* <div className="absolute flex items-center justify-center left-50 bottom-0 bg-yellow-300 w-1 h-100" /> */}
+      <motion.div //back button
+        className="absolute flex items-center justify-center left-5 top-5 bg-red-500 size-15 cursor-pointer rounded-full"
+        onClick={() => navigate(-1)}
+        whileTap={{ scale: 0.8 }}
+      >
+        <CircleArrowLeft size={45} />
+      </motion.div>
+      {famHead && ( //head
         <motion.div
-          className="famhead absolute top-[50vh] left-[27vw] sm:left-[37vw] size-[40vw] sm:size-[20vw] -translate-1/2"
-          style={{ zIndex: famHead.toggled ? 60 : 20 }}
+          layout
+          key={headKey}
+          className="absolute top-[50vh] left-[27vw] sm:left-50 size-38 sm:size-60 -translate-1/2"
+          style={{ zIndex: famHead.toggled ? 40 : 20 }}
           animate={{}}
           transition={{ duration: 1 }}
           exit={{ opacity: 0 }}
           whileHover={{ zIndex: 50 }}
-          onClick={() => setFamHead({ ...famHead, toggled: !famHead.toggled })}>
+          onClick={() => setFamHead({ ...famHead, toggled: !famHead.toggled })}
+        >
           <Person key={famHead.id} person={famHead.name} sex={famHead.sex} />
         </motion.div>
       )}
-      {spouse && (
+      {spouse && ( //spouse
         <motion.div
-          className="absolute top-[50vh] sm:left-[63vw] left-[73vw] size-[40vw] sm:size-[20vw] -translate-1/2"
-          style={{ zIndex: spouse[0]?.toggled ? 60 : 20 }}
+          className="absolute top-[50vh] left-[73vw] sm:right-50 size-38 sm:size-60 -translate-1/2"
+          style={{ zIndex: spouse[0]?.toggled ? 40 : 20 }}
           animate={{}}
           transition={{ duration: 1 }}
           exit={{ opacity: 0 }}
@@ -109,7 +125,8 @@ function Tree() {
                 i === 0 ? { ...s, toggled: !s.toggled } : s,
               ),
             )
-          }>
+          }
+        >
           <Person
             key={spouse[0]?.id}
             person={spouse[0]?.name}
@@ -121,24 +138,29 @@ function Tree() {
         {!loading &&
           children?.map((person: any, i: any) => (
             <motion.div
+              layout
               // ref={(el) => {
               //   zRef.current[index] = el;
               // }}
               key={person.id}
-              className={`${posA[person.sibOrder - 1]} absolute -translate-1/2`}
+              className={`${posA[person.sibOrder - 1]} absolute`}
               style={{ zIndex: person.toggled ? 50 : 10 }}
               // initial={{ x: "50vw", y: "50vh" }}
               animate={{}}
               transition={{ duration: 1 }}
               exit={{ opacity: 0 }}
               whileHover={{ zIndex: 50 }}
-              onClick={() =>
+              onClick={() => {
                 setChildren((prev) =>
                   prev.map((c: any, idx: any) =>
-                    idx === i ? { ...c, toggled: !c.toggled } : c,
+                    idx === i
+                      ? { ...c, toggled: !c.toggled }
+                      : { ...c, toggled: false },
                   ),
-                )
-              }>
+                );
+                // setHeadKey(person.id);
+              }}
+            >
               <Person
                 id={person.id}
                 person={person.name}
