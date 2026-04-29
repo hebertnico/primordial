@@ -9,6 +9,7 @@ import Home from "./components/Home";
 import UploadImage from "./UploadImage";
 import PersonForm from "./components/PersonForm";
 import Tree from "./components/Tree";
+import MainTree from "./components/MainTree";
 
 function App() {
   // const [rg1act, setRg1Act] = useState(false);
@@ -59,8 +60,9 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/upload" element={<UploadImage />} />
       <Route path="/form" element={<PersonForm />} />
+      <Route path="/RSRP" element={<MainTree />} />
       <Route path="/tree/:head" element={<Tree />} />
-      <Route path=":head" element={<TreeG1 />}></Route>
+      {/* <Route path=":head" element={<TreeG1 />}></Route> */}
     </Routes>
     // <div className="h-screen relative mx-auto overflow-x-hidden overflow-y-hidden">
     //   {/* <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16"> */}

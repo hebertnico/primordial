@@ -34,7 +34,7 @@ function MainTree() {
       setLoading(true);
       try {
         const headSnapshot = await getDoc(doc(db, "person", "RSRP"));
-        // console.log(headSnapshot.data()?.spouse);
+        // console.log(headSnapshot.data());
         setFamHead({
           id: "RSRP",
           toggled: false,
@@ -70,7 +70,21 @@ function MainTree() {
         childSnapshot1.forEach((doc) => {
           bufferChildren.push({ id: doc.id, toggled: false, ...doc.data() });
         });
-        // setChildren(bufferChildren);
+        setRG1(bufferChildren);
+
+        const childSnapshot2 = await getDocs(
+          query(
+            collection(db, "person"),
+            where("parentId", "==", "SNs"),
+            orderBy("sibOrder", "asc"),
+          ),
+        );
+        const bufferChildren2: any = [];
+
+        childSnapshot2.forEach((doc) => {
+          bufferChildren2.push({ id: doc.id, toggled: false, ...doc.data() });
+        });
+        setRG2(bufferChildren2);
       } catch (error) {
         console.log(error);
       }
@@ -79,32 +93,36 @@ function MainTree() {
   }, []);
 
   useEffect(() => {
-    // console.log(children);
+    console.log(famHead, spouse, rg1, rg2);
     if (rg1.length > 0) {
       setLoading(false);
       setPosA(position.children[rg1.length - 1]?.position);
     }
-  }, [rg1]);
+  }, [rg2]);
 
   return (
     <div className="h-screen relative mx-auto overflow-x-hidden overflow-y-hidden">
       {/* <AnimatePresence mode="popLayout"> */}
       {/* <div className="absolute flex items-center justify-center left-50 bottom-0 bg-yellow-300 w-1 h-100" /> */}
-      <motion.div //back button
+      {/* <motion.div //back button
         className="absolute flex items-center justify-center left-5 top-5 bg-red-500 size-15 cursor-pointer rounded-full"
         onClick={() => navigate(-1)}
         whileTap={{ scale: 0.8 }}
       >
         <CircleArrowLeft size={45} />
-      </motion.div>
+      </motion.div> */}
       {famHead && ( //head
         <motion.div
           layout
           // key={headKey}
-          className="absolute top-[50vh] left-[27vw] sm:left-50 size-38 sm:size-60 -translate-1/2"
-          style={{ zIndex: famHead.toggled ? 40 : 20 }}
+          className="absolute top-[50vh] left-[50vw] max-w-100 sm:left-50 sm:size-60 -translate-1/2"
+          style={
+            famHead.toggled
+              ? { zIndex: 50, width: "40vw", height: "40vw" }
+              : { zIndex: 20, width: "40vw", height: "30vw" }
+          }
           animate={{}}
-          transition={{ duration: 1 }}
+          transition={{ duration: 0.2 }}
           exit={{ opacity: 0 }}
           whileHover={{ zIndex: 50 }}
           onClick={() => setFamHead({ ...famHead, toggled: !famHead.toggled })}
@@ -114,8 +132,8 @@ function MainTree() {
       )}
       {spouse && ( //spouse
         <motion.div
-          className="absolute top-[50vh] left-[73vw] sm:right-50 size-38 sm:size-60 -translate-1/2"
-          style={{ zIndex: spouse[0]?.toggled ? 40 : 20 }}
+          className="absolute top-[37vh] left-[50vw] sm:right-50 size-32 sm:size-60 -translate-1/2"
+          style={{ zIndex: spouse[1]?.toggled ? 50 : 10 }}
           animate={{}}
           transition={{ duration: 1 }}
           exit={{ opacity: 0 }}
@@ -123,15 +141,15 @@ function MainTree() {
           onClick={() =>
             setSpouse((prev) =>
               prev.map((s: any, i: any) =>
-                i === 0 ? { ...s, toggled: !s.toggled } : s,
+                i === 1 ? { ...s, toggled: !s.toggled } : s,
               ),
             )
           }
         >
           <Person
-            key={spouse[0]?.id}
-            person={spouse[0]?.name}
-            sex={spouse[0]?.sex}
+            key={spouse[1]?.id}
+            person={spouse[1]?.name}
+            sex={spouse[1]?.sex}
           />
         </motion.div>
       )}

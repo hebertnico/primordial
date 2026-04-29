@@ -67,14 +67,14 @@
     },
     {
       "position": [
-        "top-[5vh] left-[25vw] size-[32vw] sm:size-30",
-        "top-[5vh] left-[75vw] size-[32vw] sm:size-30",
-        "top-[12vh] left-[50vw] size-[32vw] sm:size-30",
-        "top-[19vh] left-[25vw] size-[32vw] sm:size-30",
-        "top-[19vh] left-[75vw] size-[32vw] sm:size-30",
-        "top-[26vh] left-[50vw] size-[32vw] sm:size-30",
-        "top-[33vh] left-[25vw] size-[32vw] sm:size-30",
-        "top-[33vh] left-[75vw] size-[32vw] sm:size-30"
+        "top-15 left-[20vw] w-30 h-25 sm:size-30 -translate-1/2",
+        "top-15 left-[80vw] w-30 h-25 sm:size-30 -translate-1/2",
+        "top-23 left-[50vw] w-30 h-25 sm:size-30 -translate-1/2" ,
+        "top-39 left-[20vw] w-30 h-25 sm:size-30 -translate-1/2",
+        "top-39 left-[80vw] w-30 h-25 sm:size-30 -translate-1/2",
+        "top-47 left-[50vw] w-32 h-25 sm:size-30 -translate-1/2",
+        "top-63 left-[25vw] w-32 h-25 sm:size-30 -translate-1/2",
+        "top-63 left-[75vw] w-32 h-25 sm:size-30 -translate-1/2"
       ]
     }
   ]

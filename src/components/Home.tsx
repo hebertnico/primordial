@@ -49,7 +49,7 @@ function Home() {
         />
         <div
           className="absolute left-[40%] top-10 bg-emerald-500 size-24 cursor-pointer"
-          onClick={() => navigate("/tree/SSs")}
+          onClick={() => navigate("/RSRP")}
         />
         <Attempt />
       </div>
