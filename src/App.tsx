@@ -10,6 +10,7 @@ import UploadImage from "./UploadImage";
 import PersonForm from "./pages/PersonForm";
 import Tree from "./pages/Tree";
 import MainTree from "./pages/MainTree";
+import EditForm from "./pages/EditForm";
 
 function App() {
   // const [rg1act, setRg1Act] = useState(false);
@@ -62,6 +63,7 @@ function App() {
       <Route path="/form" element={<PersonForm />} />
       <Route path="/RSRP" element={<MainTree />} />
       <Route path="/tree/:head" element={<Tree />} />
+      <Route path="/edit/:id" element={<EditForm />} />
       {/* <Route path=":head" element={<TreeG1 />}></Route> */}
     </Routes>
     // <div className="h-screen relative mx-auto overflow-x-hidden overflow-y-hidden">
