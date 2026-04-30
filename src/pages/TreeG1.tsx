@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import Person from "./Person";
+import Person from "../components/Person";
 import { Outlet, useParams } from "react-router-dom";
 import position from "../data/position.json" with { type: "json" };
 
@@ -98,7 +98,8 @@ function TreeG1() {
                 onMouseLeave={() => {
                   handleZ(index);
                 }}
-                data-toggled="false">
+                data-toggled="false"
+              >
                 <Person
                   person={person.name}
                   childnum={index + 1}

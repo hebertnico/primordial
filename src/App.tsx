@@ -4,12 +4,12 @@ import "./App.css";
 // import RG2 from "./components/RG2";
 // import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import TreeG1 from "./components/TreeG1";
-import Home from "./components/Home";
+import TreeG1 from "./pages/TreeG1";
+import Home from "./pages/Home";
 import UploadImage from "./UploadImage";
-import PersonForm from "./components/PersonForm";
-import Tree from "./components/Tree";
-import MainTree from "./components/MainTree";
+import PersonForm from "./pages/PersonForm";
+import Tree from "./pages/Tree";
+import MainTree from "./pages/MainTree";
 
 function App() {
   // const [rg1act, setRg1Act] = useState(false);

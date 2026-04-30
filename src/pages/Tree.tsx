@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Person from "./Person";
+import Person from "../components/Person";
 import { useNavigate, useParams } from "react-router-dom";
 import position from "../data/position.json" with { type: "json" };
 import {

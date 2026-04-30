@@ -1,10 +1,10 @@
-import Person from "./Person";
+import Person from "../components/Person";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import FloatingElement from "./Floating Element";
-import Attempt from "./Attempt";
+// import FloatingElement from "./Floating Element";
+// import Attempt from "./Attempt";
 
 function Home() {
   const navigate = useNavigate();
@@ -51,7 +51,7 @@ function Home() {
           className="absolute left-[40%] top-10 bg-emerald-500 size-24 cursor-pointer"
           onClick={() => navigate("/RSRP")}
         />
-        <Attempt />
+        {/* <Attempt /> */}
       </div>
     </>
   );
