@@ -172,8 +172,8 @@ function Person({
                     photo
                       ? photo
                       : sex === "F"
-                        ? "/images/def_F.jpg"
-                        : "/images/def_M.jpg"
+                        ? "/images/def_F.webp"
+                        : "/images/def_M.webp"
                   }
                   alt={person}
                   className="size-full object-cover mask-luminance mask-b-from-white mask-b-from-50% mask-b-to-black"
