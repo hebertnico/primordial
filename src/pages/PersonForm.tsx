@@ -11,6 +11,7 @@ import {
   where,
 } from "firebase/firestore";
 import { db } from "../firebase";
+import ImageCropper from "../components/ImageCropper";
 
 function PersonForm() {
   const [id, setId] = useState("");
@@ -23,12 +24,16 @@ function PersonForm() {
   const [parentId, setParentId] = useState("");
   const [imageUrl, setImageUrl] = useState(""); // manual URL
 
-  const [file, setFile] = useState<File | null>(null); // upload file
+  const [rawFile, setRawFile] = useState<File | null>(null);
+  const [croppedFile, setCroppedFile] = useState<Blob | null>(null);
 
   const [loading, setLoading] = useState(false);
 
+  function transformImage(url: string) {
+    return url.replace("/upload/", "/upload/f_auto,q_auto,w_300,h_300,c_fill/");
+  }
   // 🔥 Upload to Cloudinary
-  async function uploadImage(file: File) {
+  async function uploadImage(file: Blob) {
     const formData = new FormData();
     formData.append("file", file);
     formData.append("upload_preset", "ml_default"); // 👈 change this
@@ -42,7 +47,8 @@ function PersonForm() {
     );
 
     const data = await res.json();
-    return data.secure_url;
+    const finalUrl = transformImage(data.secure_url);
+    return finalUrl;
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -76,8 +82,8 @@ function PersonForm() {
       let finalImageUrl: string | null = null;
 
       // 🔹 Priority: uploaded file > manual URL > null
-      if (file) {
-        finalImageUrl = await uploadImage(file);
+      if (croppedFile) {
+        finalImageUrl = await uploadImage(croppedFile);
       } else if (imageUrl) {
         finalImageUrl = imageUrl;
       }
@@ -118,7 +124,8 @@ function PersonForm() {
       setSpouse("");
       setParentId("");
       setImageUrl("");
-      setFile(null);
+      setRawFile(null);
+      setCroppedFile(null);
     } catch (err) {
       console.error(err);
       alert("Error adding node");
@@ -236,9 +243,19 @@ function PersonForm() {
               type="file"
               accept="image/*"
               className="w-full mt-1 text-sm text-gray-300 file:bg-red-600 file:text-white file:border-0 file:px-3 file:py-1 file:rounded-md file:cursor-pointer hover:file:bg-red-700"
-              onChange={(e) => setFile(e.target.files?.[0] || null)}
+              onChange={(e) => setRawFile(e.target.files?.[0] || null)}
             />
           </div>
+
+          {rawFile && (
+            <ImageCropper
+              file={rawFile}
+              onCropDone={(file) => {
+                setCroppedFile(file);
+                setRawFile(null);
+              }}
+            />
+          )}
 
           {/* URL */}
           <div>

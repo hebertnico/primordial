@@ -108,7 +108,12 @@ function Tree() {
           whileHover={{ zIndex: 50 }}
           onClick={() => setFamHead({ ...famHead, toggled: !famHead.toggled })}
         >
-          <Person key={famHead.id} person={famHead.name} sex={famHead.sex} />
+          <Person
+            key={famHead.id}
+            person={famHead.name}
+            sex={famHead.sex}
+            photo={famHead.image}
+          />
         </motion.div>
       )}
       {spouse && ( //spouse
@@ -131,6 +136,7 @@ function Tree() {
             key={spouse[0]?.id}
             person={spouse[0]?.name}
             sex={spouse[0]?.sex}
+            photo={spouse[0]?.image}
           />
         </motion.div>
       )}
@@ -166,6 +172,7 @@ function Tree() {
                 person={person.name}
                 childnum={person.sibOrder}
                 sex={person.sex}
+                photo={person.image}
                 hasFam={person.spouse ? true : false}
               />
             </motion.div>
