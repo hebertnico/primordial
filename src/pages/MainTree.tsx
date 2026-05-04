@@ -26,8 +26,7 @@ function MainTree() {
 
   // let { head = "" } = useParams();
   const [posA, setPosA] = useState<string[]>([]);
-
-  const navigate = useNavigate();
+  const [posB, setPosB] = useState<string[]>([]);
 
   useEffect(() => {
     async function load() {
@@ -93,12 +92,13 @@ function MainTree() {
   }, []);
 
   useEffect(() => {
-    console.log(famHead, spouse, rg1, rg2);
-    if (rg1.length > 0) {
+    // console.log(famHead, spouse, rg1, rg2);
+    if (rg1.length > 0 && rg2.length > 0) {
+      setPosA(position.children[8]?.position);
+      setPosB(position.children[9]?.position);
       setLoading(false);
-      setPosA(position.children[rg1.length - 1]?.position);
     }
-  }, [rg2]);
+  }, [rg1, rg2]);
 
   return (
     <div className="h-screen relative mx-auto overflow-x-hidden overflow-y-hidden">
@@ -131,30 +131,55 @@ function MainTree() {
         </motion.div>
       )}
       {spouse && ( //spouse
-        <motion.div
-          className="absolute top-[37vh] left-[50vw] sm:right-50 size-32 sm:size-60 -translate-1/2"
-          style={{ zIndex: spouse[1]?.toggled ? 50 : 10 }}
-          animate={{}}
-          transition={{ duration: 1 }}
-          exit={{ opacity: 0 }}
-          whileHover={{ zIndex: 50 }}
-          onClick={() =>
-            setSpouse((prev) =>
-              prev.map((s: any, i: any) =>
-                i === 1 ? { ...s, toggled: !s.toggled } : s,
-              ),
-            )
-          }
-        >
-          <Person
-            key={spouse[1]?.id}
-            person={spouse[1]?.name}
-            sex={spouse[1]?.sex}
-          />
-        </motion.div>
+        <div>
+          <motion.div
+            className="absolute top-[37vh] left-[50vw] sm:right-50 size-32 sm:size-60 -translate-1/2"
+            style={{ zIndex: spouse[1]?.toggled ? 50 : 10 }}
+            animate={{}}
+            initial={{ x: 0, y: 0 }}
+            transition={{ duration: 1 }}
+            exit={{ opacity: 0 }}
+            whileHover={{ zIndex: 50 }}
+            onClick={() =>
+              setSpouse((prev) =>
+                prev.map((s: any, i: any) =>
+                  i === 1 ? { ...s, toggled: !s.toggled } : s,
+                ),
+              )
+            }
+          >
+            <Person
+              key={spouse[1]?.id}
+              person={spouse[1]?.name}
+              sex={spouse[1]?.sex}
+            />
+          </motion.div>
+          <motion.div
+            className="absolute bottom-[37vh] left-[50vw] sm:right-50 size-32 sm:size-60 -translate-x-1/2 translate-y-1/2"
+            style={{ zIndex: spouse[0]?.toggled ? 50 : 10 }}
+            // initial={{x:0, y:0}}
+            animate={{}}
+            transition={{ duration: 1 }}
+            exit={{ opacity: 0 }}
+            whileHover={{ zIndex: 50 }}
+            onClick={() =>
+              setSpouse((prev) =>
+                prev.map((s: any, i: any) =>
+                  i === 0 ? { ...s, toggled: !s.toggled } : s,
+                ),
+              )
+            }
+          >
+            <Person
+              key={spouse[0]?.id}
+              person={spouse[0]?.name}
+              sex={spouse[0]?.sex}
+            />
+          </motion.div>
+        </div>
       )}
       <AnimatePresence mode="popLayout">
-        {!loading &&
+        {!loading && //rg1
           rg1?.map((person: any, i: any) => (
             <motion.div
               layout
@@ -163,6 +188,41 @@ function MainTree() {
               // }}
               key={person.id}
               className={`${posA[person.sibOrder - 1]} absolute`}
+              style={{ zIndex: person.toggled ? 50 : 10 }}
+              // initial={{ x: 0, y: 0 }}
+              animate={{}}
+              transition={{ duration: 1 }}
+              exit={{ opacity: 0 }}
+              whileHover={{ zIndex: 50 }}
+              onClick={() => {
+                setRG1((prev) =>
+                  prev.map((c: any, idx: any) =>
+                    idx === i
+                      ? { ...c, toggled: !c.toggled }
+                      : { ...c, toggled: false },
+                  ),
+                );
+                // setHeadKey(person.id);
+              }}
+            >
+              <Person
+                id={person.id}
+                person={person.name}
+                childnum={person.sibOrder}
+                sex={person.sex}
+                hasFam={person.spouse ? true : false}
+              />
+            </motion.div>
+          ))}
+        {!loading && //rg2
+          rg2?.map((person: any, i: any) => (
+            <motion.div
+              layout
+              // ref={(el) => {
+              //   zRef.current[index] = el;
+              // }}
+              key={person.id}
+              className={`${posB[person.sibOrder - 1]} absolute`}
               style={{ zIndex: person.toggled ? 50 : 10 }}
               // initial={{ x: "50vw", y: "50vh" }}
               animate={{}}
