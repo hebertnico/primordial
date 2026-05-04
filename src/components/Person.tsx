@@ -78,6 +78,7 @@ function Person({
                   // y: distance[1] * 0.6,
                   x: `calc(${distance[0]}px * var(--x-factor))`,
                   y: `calc(${distance[1]}px * var(--y-factor))`,
+                  height: ref.current?.clientWidth,
                 }
               : { x: 0, y: 0 }),
           }}
@@ -130,7 +131,7 @@ function Person({
             {hasFam &&
               (isHovered || isToggled) && ( //navigate button
                 <motion.div
-                  className="absolute translate-y-55 translate-x-10 flex flex-col justify-center items-center text-center size-[50%] bg-white rounded-full"
+                  className="absolute -bottom-full translate-x-[50%] flex flex-col justify-center items-center text-center size-[50%] bg-white rounded-full"
                   onClick={() => navigate(`/tree/${id}`)}
                   whileTap={{ scale: 0.8 }}
                 >
