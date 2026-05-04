@@ -28,6 +28,7 @@
       ]
     },
     {
+      "num" : 4,
       "position": [
         "top-[50vh] left-182",
         "top-[50vh] left-182",
@@ -36,6 +37,7 @@
       ]
     },
     {
+      "num" : 5,
       "position": [
         "top-[50vh] left-182",
         "top-[50vh] left-182",
@@ -45,6 +47,7 @@
       ]
     },
     {
+      "num" : 6,
       "position": [
         "sm:top-30 md:left-100 top-24 left-[50vw] size-38 sm:size-45 -translate-1/2",
         "sm:top-65 md:left-45 top-60 left-[23vw] size-38 sm:size-45 -translate-1/2",
@@ -55,6 +58,7 @@
       ]
     },
     {
+      "num" : 7,
       "position": [
         "top-[50vh] left-182",
         "top-[50vh] left-182",
@@ -66,8 +70,36 @@
       ]
     },
     {
+      "num" : 8,
+      "position": [
+        "top-25 left-[50vw] size-34 sm:size-30 -translate-1/2",
+        "top-50 left-[20vw] size-34 sm:size-30 -translate-1/2",
+        "top-50 left-[80vw] size-34 sm:size-30 -translate-1/2" ,
+        "top-75 left-[50vw] size-34 sm:size-30 -translate-1/2",
+        "bottom-75 left-[50vw] size-34 sm:size-30 translate-y-1/2 -translate-x-1/2",
+        "bottom-50 left-[20vw] size-34 sm:size-30 translate-y-1/2 -translate-x-1/2",
+        "bottom-50 left-[80vw] size-34 sm:size-30 translate-y-1/2 -translate-x-1/2",
+        "bottom-25 left-[50vw] size-34 sm:size-30 translate-y-1/2 -translate-x-1/2"
+      ]
+    },
+    {
+      "group" : "RG1",
       "position": [
         "top-15 left-[20vw] w-30 h-25 sm:size-30 -translate-1/2",
+        "top-15 left-[80vw] w-30 h-25 sm:size-30 -translate-1/2",
+        "top-23 left-[50vw] w-30 h-25 sm:size-30 -translate-1/2" ,
+        "top-39 left-[20vw] w-30 h-25 sm:size-30 -translate-1/2",
+        "top-39 left-[80vw] w-30 h-25 sm:size-30 -translate-1/2",
+        "top-47 left-[50vw] w-32 h-25 sm:size-30 -translate-1/2",
+        "top-63 left-[25vw] w-32 h-25 sm:size-30 -translate-1/2",
+        "top-63 left-[75vw] w-32 h-25 sm:size-30 -translate-1/2"
+      ]
+    },
+    {
+      "group" : "RG2",
+      "position": [
+        "bottom-90 left-[20vw] w-30 h-25 sm:size-30 -translate-x-1/2 translate-y-1/2",
+        "bottom-90 left-[20vw] w-30 h-25 sm:size-30 -translate-x-1/2 translate-y-1/2",
         "top-15 left-[80vw] w-30 h-25 sm:size-30 -translate-1/2",
         "top-23 left-[50vw] w-30 h-25 sm:size-30 -translate-1/2" ,
         "top-39 left-[20vw] w-30 h-25 sm:size-30 -translate-1/2",
