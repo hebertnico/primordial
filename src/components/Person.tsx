@@ -67,7 +67,7 @@ function Person({
       {isVisible ? (
         <motion.div //magnetic center container
           ref={ref}
-          className="relative size-full max-w-[90vw] [--x-factor:0.6] [--y-factor:0.6] sm:[--x-factor:0.2] sm:[--y-factor:0.2] "
+          className="relative w-full h-full max-w-[90vw] [--x-factor:0.6] [--y-factor:0.6] sm:[--x-factor:0.2] sm:[--y-factor:0.2] "
           // initial={{ opacity: 0, ...initial }}
           animate={{
             opacity: 1,
@@ -80,7 +80,7 @@ function Person({
                   y: `calc(${distance[1]}px * var(--y-factor))`,
                   height: ref.current?.clientWidth,
                 }
-              : { x: 0, y: 0 }),
+              : { x: 0, y: 0, height: "100%" }),
           }}
           exit={{
             x: isToggled ? 0 : distance[0] - 100,
@@ -153,7 +153,7 @@ function Person({
                       overflow: "hidden",
                     }
               }
-              transition={{ duration: 0.2 }}
+              transition={{ duration: 0.4 }}
               className="relative size-full flex flex-col items-center bg-red-500 border-red-500 rounded-full shadow-2xl/80 [--activeSize:2] md:[--activeSize:2]"
             >
               <motion.div //img container

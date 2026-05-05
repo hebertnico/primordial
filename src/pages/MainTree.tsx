@@ -111,74 +111,79 @@ function MainTree() {
       >
         <CircleArrowLeft size={45} />
       </motion.div> */}
-      {famHead && ( //head
-        <motion.div
-          layout
-          // key={headKey}
-          className="absolute top-[50vh] left-[50vw] max-w-100 sm:left-50 sm:size-60 -translate-1/2"
-          style={
-            famHead.toggled
-              ? { zIndex: 50, width: "40vw", height: "40vw" }
-              : { zIndex: 20, width: "40vw", height: "30vw" }
-          }
-          animate={{}}
-          transition={{ duration: 0.2 }}
-          exit={{ opacity: 0 }}
-          whileHover={{ zIndex: 50 }}
-          onClick={() => setFamHead({ ...famHead, toggled: !famHead.toggled })}
-        >
-          <Person key={famHead.id} person={famHead.name} sex={famHead.sex} />
-        </motion.div>
-      )}
-      {spouse && ( //spouse
-        <div>
-          <motion.div
-            className="absolute top-[37vh] left-[50vw] sm:right-50 size-32 sm:size-60 -translate-1/2"
-            style={{ zIndex: spouse[1]?.toggled ? 50 : 10 }}
-            animate={{}}
-            initial={{ x: 0, y: 0 }}
-            transition={{ duration: 1 }}
-            exit={{ opacity: 0 }}
-            whileHover={{ zIndex: 50 }}
-            onClick={() =>
-              setSpouse((prev) =>
-                prev.map((s: any, i: any) =>
-                  i === 1 ? { ...s, toggled: !s.toggled } : s,
-                ),
-              )
-            }
-          >
-            <Person
-              key={spouse[1]?.id}
-              person={spouse[1]?.name}
-              sex={spouse[1]?.sex}
-            />
-          </motion.div>
-          <motion.div
-            className="absolute bottom-[37vh] left-[50vw] sm:right-50 size-32 sm:size-60 -translate-x-1/2 translate-y-1/2"
-            style={{ zIndex: spouse[0]?.toggled ? 50 : 10 }}
-            // initial={{x:0, y:0}}
-            animate={{}}
-            transition={{ duration: 1 }}
-            exit={{ opacity: 0 }}
-            whileHover={{ zIndex: 50 }}
-            onClick={() =>
-              setSpouse((prev) =>
-                prev.map((s: any, i: any) =>
-                  i === 0 ? { ...s, toggled: !s.toggled } : s,
-                ),
-              )
-            }
-          >
-            <Person
-              key={spouse[0]?.id}
-              person={spouse[0]?.name}
-              sex={spouse[0]?.sex}
-            />
-          </motion.div>
-        </div>
-      )}
       <AnimatePresence mode="popLayout">
+        {famHead && ( //head
+          <motion.div
+            layout
+            // key={headKey}
+            className="absolute top-[50vh] left-[50vw] w-[40vw] h-[30vw] max-w-100 sm:left-50 sm:size-60 -translate-1/2"
+            style={famHead.toggled ? { zIndex: 50 } : { zIndex: 20 }}
+            animate={{}}
+            transition={{ duration: 0.2 }}
+            exit={{ opacity: 0 }}
+            whileHover={{ zIndex: 50 }}
+            onClick={() =>
+              setFamHead({ ...famHead, toggled: !famHead.toggled })
+            }
+          >
+            <Person
+              key={famHead.id}
+              person={famHead.name}
+              sex={famHead.sex}
+              photo={famHead.image}
+            />
+          </motion.div>
+        )}
+        {spouse && ( //spouse
+          <div>
+            <motion.div
+              className="absolute top-[37vh] left-[50vw] sm:right-50 size-32 sm:size-60 -translate-1/2"
+              style={{ zIndex: spouse[1]?.toggled ? 50 : 10 }}
+              animate={{}}
+              initial={{ x: 0, y: 0 }}
+              transition={{ duration: 1 }}
+              exit={{ opacity: 0 }}
+              whileHover={{ zIndex: 50 }}
+              onClick={() =>
+                setSpouse((prev) =>
+                  prev.map((s: any, i: any) =>
+                    i === 1 ? { ...s, toggled: !s.toggled } : s,
+                  ),
+                )
+              }
+            >
+              <Person
+                key={spouse[1]?.id}
+                person={spouse[1]?.name}
+                sex={spouse[1]?.sex}
+                photo={spouse[1]?.image}
+              />
+            </motion.div>
+            <motion.div
+              className="absolute bottom-[37vh] left-[50vw] sm:right-50 size-32 sm:size-60 -translate-x-1/2 translate-y-1/2"
+              style={{ zIndex: spouse[0]?.toggled ? 50 : 10 }}
+              // initial={{x:0, y:0}}
+              animate={{}}
+              transition={{ duration: 1 }}
+              exit={{ opacity: 0 }}
+              whileHover={{ zIndex: 50 }}
+              onClick={() =>
+                setSpouse((prev) =>
+                  prev.map((s: any, i: any) =>
+                    i === 0 ? { ...s, toggled: !s.toggled } : s,
+                  ),
+                )
+              }
+            >
+              <Person
+                key={spouse[0]?.id}
+                person={spouse[0]?.name}
+                sex={spouse[0]?.sex}
+                photo={spouse[0]?.image}
+              />
+            </motion.div>
+          </div>
+        )}
         {!loading && //rg1
           rg1?.map((person: any, i: any) => (
             <motion.div
@@ -210,6 +215,7 @@ function MainTree() {
                 person={person.name}
                 childnum={person.sibOrder}
                 sex={person.sex}
+                photo={person.image}
                 hasFam={person.spouse ? true : false}
               />
             </motion.div>
@@ -230,7 +236,7 @@ function MainTree() {
               exit={{ opacity: 0 }}
               whileHover={{ zIndex: 50 }}
               onClick={() => {
-                setRG1((prev) =>
+                setRG2((prev) =>
                   prev.map((c: any, idx: any) =>
                     idx === i
                       ? { ...c, toggled: !c.toggled }
@@ -245,6 +251,7 @@ function MainTree() {
                 person={person.name}
                 childnum={person.sibOrder}
                 sex={person.sex}
+                photo={person.image}
                 hasFam={person.spouse ? true : false}
               />
             </motion.div>
