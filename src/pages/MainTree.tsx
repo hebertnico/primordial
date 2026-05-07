@@ -10,11 +10,11 @@ import {
   getDocs,
   orderBy,
   query,
+  Timestamp,
   where,
 } from "firebase/firestore";
 import { db } from "../firebase";
 import { AnimatePresence, motion, scale } from "motion/react";
-import { CircleArrowLeft } from "lucide-react";
 
 function MainTree() {
   const [rg1, setRG1] = useState<Record<string, any>>({});
@@ -37,6 +37,7 @@ function MainTree() {
         setFamHead({
           id: "RSRP",
           toggled: false,
+
           ...headSnapshot.data(),
         });
         // setHeadKey(headSnapshot.id);
@@ -52,7 +53,19 @@ function MainTree() {
         const bufferSpouses: any = [];
         spouseSnapshot.forEach((doc) => {
           // console.log(doc.data());
-          bufferSpouses.push({ id: doc.id, toggled: false, ...doc.data() });
+          bufferSpouses.push({
+            id: doc.id,
+            toggled: false,
+            ...doc.data(),
+          });
+          bufferSpouses[bufferSpouses.length - 1].tubu = doc
+            .data()
+            .tubu?.toDate()
+            .toLocaleDateString("id-ID", { dateStyle: "medium" });
+          bufferSpouses[bufferSpouses.length - 1].monding = doc
+            .data()
+            .monding?.toDate()
+            .toLocaleDateString("id-ID", { dateStyle: "medium" });
         });
         setSpouse(bufferSpouses);
         // console.log(spouseSnapshot.docs[0]?.data());
@@ -67,7 +80,19 @@ function MainTree() {
         );
         const bufferChildren: any = [];
         childSnapshot1.forEach((doc) => {
-          bufferChildren.push({ id: doc.id, toggled: false, ...doc.data() });
+          bufferChildren.push({
+            id: doc.id,
+            toggled: false,
+            ...doc.data(),
+          });
+          bufferChildren[bufferChildren.length - 1].tubu = doc
+            .data()
+            .tubu?.toDate()
+            .toLocaleDateString("id-ID", { dateStyle: "medium" });
+          bufferChildren[bufferChildren.length - 1].monding = doc
+            .data()
+            .monding?.toDate()
+            .toLocaleDateString("id-ID", { dateStyle: "medium" });
         });
         setRG1(bufferChildren);
 
@@ -81,7 +106,19 @@ function MainTree() {
         const bufferChildren2: any = [];
 
         childSnapshot2.forEach((doc) => {
-          bufferChildren2.push({ id: doc.id, toggled: false, ...doc.data() });
+          bufferChildren2.push({
+            id: doc.id,
+            toggled: false,
+            ...doc.data(),
+          });
+          bufferChildren2[bufferChildren2.length - 1].tubu = doc
+            .data()
+            .tubu?.toDate()
+            .toLocaleDateString("id-ID", { dateStyle: "medium" });
+          bufferChildren2[bufferChildren2.length - 1].monding = doc
+            .data()
+            .monding?.toDate()
+            .toLocaleDateString("id-ID", { dateStyle: "medium" });
         });
         setRG2(bufferChildren2);
       } catch (error) {
@@ -92,8 +129,8 @@ function MainTree() {
   }, []);
 
   useEffect(() => {
-    // console.log(famHead, spouse, rg1, rg2);
     if (rg1.length > 0 && rg2.length > 0) {
+      // console.log(rg2);
       setPosA(position.children[8]?.position);
       setPosB(position.children[9]?.position);
       setLoading(false);
@@ -111,152 +148,162 @@ function MainTree() {
       >
         <CircleArrowLeft size={45} />
       </motion.div> */}
-      <AnimatePresence mode="popLayout">
-        {famHead && ( //head
+      {/* <AnimatePresence mode="popLayout"> */}
+      {famHead && ( //head
+        <motion.div
+          key={famHead.id}
+          className="absolute top-[50vh] left-[50vw] w-[40vw] h-[30vw] max-w-100 sm:left-50 sm:size-60 -translate-1/2"
+          style={famHead.toggled ? { zIndex: 50 } : { zIndex: 20 }}
+          animate={{}}
+          transition={{ duration: 0.2 }}
+          exit={{ opacity: 0 }}
+          whileHover={{ zIndex: 50 }}
+          onClick={() => setFamHead({ ...famHead, toggled: !famHead.toggled })}
+        >
+          <Person
+            person={famHead.name}
+            sex={famHead.sex}
+            photo={famHead.image}
+            tubu={famHead.tubu?.toDate().toLocaleDateString("id-ID", {
+              dateStyle: "medium",
+            })}
+            monding={famHead.monding
+              ?.toDate()
+              .toLocaleDateString("id-ID", { dateStyle: "medium" })}
+          />
+        </motion.div>
+      )}
+      {spouse && ( //spouse
+        <div>
           <motion.div
-            layout
-            // key={headKey}
-            className="absolute top-[50vh] left-[50vw] w-[40vw] h-[30vw] max-w-100 sm:left-50 sm:size-60 -translate-1/2"
-            style={famHead.toggled ? { zIndex: 50 } : { zIndex: 20 }}
+            key={spouse[1]?.id}
+            className="absolute top-[37vh] left-[50vw] sm:right-50 size-32 sm:size-60 -translate-1/2"
+            style={{ zIndex: spouse[1]?.toggled ? 50 : 10 }}
             animate={{}}
-            transition={{ duration: 0.2 }}
+            initial={{ x: 0, y: 0 }}
+            transition={{ duration: 1 }}
             exit={{ opacity: 0 }}
             whileHover={{ zIndex: 50 }}
             onClick={() =>
-              setFamHead({ ...famHead, toggled: !famHead.toggled })
+              setSpouse((prev) =>
+                prev.map((s: any, i: any) =>
+                  i === 1 ? { ...s, toggled: !s.toggled } : s,
+                ),
+              )
             }
           >
             <Person
-              key={famHead.id}
-              person={famHead.name}
-              sex={famHead.sex}
-              photo={famHead.image}
+              person={spouse[1]?.name}
+              sex={spouse[1]?.sex}
+              photo={spouse[1]?.image}
+              // tubu={spouse[1]?.tubu}
+              // monding={spouse[1]?.monding}
             />
           </motion.div>
-        )}
-        {spouse && ( //spouse
-          <div>
-            <motion.div
-              className="absolute top-[37vh] left-[50vw] sm:right-50 size-32 sm:size-60 -translate-1/2"
-              style={{ zIndex: spouse[1]?.toggled ? 50 : 10 }}
-              animate={{}}
-              initial={{ x: 0, y: 0 }}
-              transition={{ duration: 1 }}
-              exit={{ opacity: 0 }}
-              whileHover={{ zIndex: 50 }}
-              onClick={() =>
-                setSpouse((prev) =>
-                  prev.map((s: any, i: any) =>
-                    i === 1 ? { ...s, toggled: !s.toggled } : s,
-                  ),
-                )
-              }
-            >
-              <Person
-                key={spouse[1]?.id}
-                person={spouse[1]?.name}
-                sex={spouse[1]?.sex}
-                photo={spouse[1]?.image}
-              />
-            </motion.div>
-            <motion.div
-              className="absolute bottom-[37vh] left-[50vw] sm:right-50 size-32 sm:size-60 -translate-x-1/2 translate-y-1/2"
-              style={{ zIndex: spouse[0]?.toggled ? 50 : 10 }}
-              // initial={{x:0, y:0}}
-              animate={{}}
-              transition={{ duration: 1 }}
-              exit={{ opacity: 0 }}
-              whileHover={{ zIndex: 50 }}
-              onClick={() =>
-                setSpouse((prev) =>
-                  prev.map((s: any, i: any) =>
-                    i === 0 ? { ...s, toggled: !s.toggled } : s,
-                  ),
-                )
-              }
-            >
-              <Person
-                key={spouse[0]?.id}
-                person={spouse[0]?.name}
-                sex={spouse[0]?.sex}
-                photo={spouse[0]?.image}
-              />
-            </motion.div>
-          </div>
-        )}
-        {!loading && //rg1
-          rg1?.map((person: any, i: any) => (
-            <motion.div
-              layout
-              // ref={(el) => {
-              //   zRef.current[index] = el;
-              // }}
-              key={person.id}
-              className={`${posA[person.sibOrder - 1]} absolute`}
-              style={{ zIndex: person.toggled ? 50 : 10 }}
-              // initial={{ x: 0, y: 0 }}
-              animate={{}}
-              transition={{ duration: 1 }}
-              exit={{ opacity: 0 }}
-              whileHover={{ zIndex: 50 }}
-              onClick={() => {
-                setRG1((prev) =>
-                  prev.map((c: any, idx: any) =>
-                    idx === i
-                      ? { ...c, toggled: !c.toggled }
-                      : { ...c, toggled: false },
-                  ),
-                );
-                // setHeadKey(person.id);
-              }}
-            >
-              <Person
-                id={person.id}
-                person={person.name}
-                childnum={person.sibOrder}
-                sex={person.sex}
-                photo={person.image}
-                hasFam={person.spouse ? true : false}
-              />
-            </motion.div>
-          ))}
-        {!loading && //rg2
-          rg2?.map((person: any, i: any) => (
-            <motion.div
-              layout
-              // ref={(el) => {
-              //   zRef.current[index] = el;
-              // }}
-              key={person.id}
-              className={`${posB[person.sibOrder - 1]} absolute`}
-              style={{ zIndex: person.toggled ? 50 : 10 }}
-              // initial={{ x: "50vw", y: "50vh" }}
-              animate={{}}
-              transition={{ duration: 1 }}
-              exit={{ opacity: 0 }}
-              whileHover={{ zIndex: 50 }}
-              onClick={() => {
-                setRG2((prev) =>
-                  prev.map((c: any, idx: any) =>
-                    idx === i
-                      ? { ...c, toggled: !c.toggled }
-                      : { ...c, toggled: false },
-                  ),
-                );
-                // setHeadKey(person.id);
-              }}
-            >
-              <Person
-                id={person.id}
-                person={person.name}
-                childnum={person.sibOrder}
-                sex={person.sex}
-                photo={person.image}
-                hasFam={person.spouse ? true : false}
-              />
-            </motion.div>
-          ))}
-      </AnimatePresence>
+          <motion.div
+            key={spouse[0]?.id}
+            className="absolute bottom-[37vh] left-[50vw] sm:right-50 size-32 sm:size-60 -translate-x-1/2 translate-y-1/2"
+            style={{ zIndex: spouse[0]?.toggled ? 50 : 10 }}
+            // initial={{x:0, y:0}}
+            animate={{}}
+            transition={{ duration: 1 }}
+            exit={{ opacity: 0 }}
+            whileHover={{ zIndex: 50 }}
+            onClick={() =>
+              setSpouse((prev) =>
+                prev.map((s: any, i: any) =>
+                  i === 0 ? { ...s, toggled: !s.toggled } : s,
+                ),
+              )
+            }
+          >
+            <Person
+              person={spouse[0]?.name}
+              sex={spouse[0]?.sex}
+              photo={spouse[0]?.image}
+              tubu={spouse[0]?.tubu}
+              // monding={spouse[0]?.monding}
+            />
+          </motion.div>
+        </div>
+      )}
+      {!loading && //rg1
+        rg1?.map((person: any, i: any) => (
+          <motion.div
+            layout
+            // ref={(el) => {
+            //   zRef.current[index] = el;
+            // }}
+            key={person.id}
+            className={`${posA[person.sibOrder - 1]} absolute`}
+            style={{ zIndex: person.toggled ? 50 : 10 }}
+            // initial={{ x: 0, y: 0 }}
+            animate={{}}
+            transition={{ duration: 1 }}
+            exit={{ opacity: 0 }}
+            whileHover={{ zIndex: 50 }}
+            onClick={() => {
+              setRG1((prev) =>
+                prev.map((c: any, idx: any) =>
+                  idx === i
+                    ? { ...c, toggled: !c.toggled }
+                    : { ...c, toggled: false },
+                ),
+              );
+              // setHeadKey(person.id);
+            }}
+          >
+            <Person
+              id={person.id}
+              person={person.name}
+              childnum={person.sibOrder}
+              sex={person.sex}
+              tubu={person.tubu}
+              monding={person.monding}
+              photo={person.image}
+              hasFam={person.spouse ? true : false}
+            />
+          </motion.div>
+        ))}
+      {!loading && //rg2
+        rg2?.map((person: any, i: any) => (
+          <motion.div
+            layout
+            // ref={(el) => {
+            //   zRef.current[index] = el;
+            // }}
+            key={person.id}
+            className={`${posB[person.sibOrder - 1]} absolute`}
+            style={{ zIndex: person.toggled ? 50 : 10 }}
+            // initial={{ x: "50vw", y: "50vh" }}
+            animate={{}}
+            transition={{ duration: 1 }}
+            exit={{ opacity: 0 }}
+            whileHover={{ zIndex: 50 }}
+            onClick={() => {
+              setRG2((prev) =>
+                prev.map((c: any, idx: any) =>
+                  idx === i
+                    ? { ...c, toggled: !c.toggled }
+                    : { ...c, toggled: false },
+                ),
+              );
+              // setHeadKey(person.id);
+            }}
+          >
+            <Person
+              id={person.id}
+              person={person.name}
+              childnum={person.sibOrder}
+              sex={person.sex}
+              tubu={person.tubu}
+              monding={person.monding}
+              photo={person.image}
+              hasFam={person.spouse ? true : false}
+            />
+          </motion.div>
+        ))}
+      {/* </AnimatePresence> */}
       {/* </AnimatePresence> */}
     </div>
   );

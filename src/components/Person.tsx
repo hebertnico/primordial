@@ -12,7 +12,7 @@ function Person({
   id = "",
   person = "",
   sex = "",
-  tubu = "dd Mmm YYYY",
+  tubu = "",
   monding = "",
   photo = "",
   childnum = null,
@@ -24,6 +24,8 @@ function Person({
   const [isHovered, setIsHovered] = useState(false);
   const longName = person.length > 20;
   const [distance, setDistance] = useState([0, 0]);
+
+  tubu = (tubu ?? "") === "" ? "dd Mmm YYYY" : tubu;
   // console.log(longName, person.length, person);
   // classname = classname + " absolute -translate-x-1/2 cursor-pointer ";
 

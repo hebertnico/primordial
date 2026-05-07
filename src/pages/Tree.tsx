@@ -21,7 +21,7 @@ function Tree() {
   const [famHead, setFamHead] = useState<Record<string, any>>({});
   const [spouse, setSpouse] = useState<Record<string, any>>({});
   const [loading, setLoading] = useState(true);
-  const [headKey, setHeadKey] = useState("");
+  // const [headKey, setHeadKey] = useState("");
 
   let { head = "" } = useParams();
   const [posA, setPosA] = useState<string[]>([]);
@@ -39,7 +39,7 @@ function Tree() {
           toggled: false,
           ...headSnapshot.data(),
         });
-        setHeadKey(headSnapshot.id);
+        // setHeadKey(headSnapshot.id);
 
         if (headSnapshot.data()?.spouse != null) {
           // console.log(["def"].push(headSnapshot.data()?.spouse));
@@ -53,6 +53,14 @@ function Tree() {
           spouseSnapshot.forEach((doc) => {
             // console.log(doc.data());
             bufferSpouses.push({ id: doc.id, toggled: false, ...doc.data() });
+            bufferSpouses[bufferSpouses.length - 1].tubu = doc
+              .data()
+              .tubu?.toDate()
+              .toLocaleDateString("id-ID", { dateStyle: "medium" });
+            bufferSpouses[bufferSpouses.length - 1].monding = doc
+              .data()
+              .monding?.toDate()
+              .toLocaleDateString("id-ID", { dateStyle: "medium" });
           });
           setSpouse(bufferSpouses);
           // console.log(spouseSnapshot.docs[0]?.data());
@@ -68,6 +76,14 @@ function Tree() {
         const bufferChildren: any = [];
         childSnapshot.forEach((doc) => {
           bufferChildren.push({ id: doc.id, toggled: false, ...doc.data() });
+          bufferChildren[bufferChildren.length - 1].tubu = doc
+            .data()
+            .tubu?.toDate()
+            .toLocaleDateString("id-ID", { dateStyle: "medium" });
+          bufferChildren[bufferChildren.length - 1].monding = doc
+            .data()
+            .monding?.toDate()
+            .toLocaleDateString("id-ID", { dateStyle: "medium" });
         });
         setChildren(bufferChildren);
       } catch (error) {
@@ -99,7 +115,7 @@ function Tree() {
       {famHead && ( //head
         <motion.div
           layout
-          key={headKey}
+          key={head}
           className="absolute top-[50vh] left-[27vw] sm:left-50 size-38 sm:size-60 -translate-1/2"
           style={{ zIndex: famHead.toggled ? 40 : 20 }}
           animate={{}}
@@ -109,15 +125,21 @@ function Tree() {
           onClick={() => setFamHead({ ...famHead, toggled: !famHead.toggled })}
         >
           <Person
-            key={famHead.id}
             person={famHead.name}
             sex={famHead.sex}
             photo={famHead.image}
+            tubu={famHead.tubu?.toDate().toLocaleDateString("id-ID", {
+              dateStyle: "medium",
+            })}
+            monding={famHead.monding
+              ?.toDate()
+              .toLocaleDateString("id-ID", { dateStyle: "medium" })}
           />
         </motion.div>
       )}
       {spouse && ( //spouse
         <motion.div
+          key={spouse[0]?.id}
           className="absolute top-[50vh] left-[73vw] sm:right-50 size-38 sm:size-60 -translate-1/2"
           style={{ zIndex: spouse[0]?.toggled ? 40 : 20 }}
           animate={{}}
@@ -133,10 +155,11 @@ function Tree() {
           }
         >
           <Person
-            key={spouse[0]?.id}
             person={spouse[0]?.name}
             sex={spouse[0]?.sex}
             photo={spouse[0]?.image}
+            tubu={spouse[0]?.tubu}
+            monding={spouse[0]?.monding}
           />
         </motion.div>
       )}
@@ -173,6 +196,8 @@ function Tree() {
                 childnum={person.sibOrder}
                 sex={person.sex}
                 photo={person.image}
+                tubu={person.tubu}
+                monding={person.monding}
                 hasFam={person.spouse ? true : false}
               />
             </motion.div>
