@@ -3,6 +3,7 @@ import {
   ChevronsDown,
   Circle,
   CircleChevronDown,
+  Pencil,
 } from "lucide-react";
 import { AnimatePresence, hover, motion } from "motion/react";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
@@ -119,7 +120,7 @@ function Person({
               offsetRotate: "0deg",
               offsetPosition: "center",
             }}
-            className="absolute translate-1/2 size-full"
+            className="absolute translate-1/2 size-full flex flex-col gap-2"
           >
             {childnum && (
               <motion.div //child number
@@ -130,19 +131,6 @@ function Person({
                 <p className="text-black font-bold text-sm">{childnum}</p>
               </motion.div>
             )}
-            {hasFam &&
-              (isHovered || isToggled) && ( //navigate button
-                <motion.div
-                  className="absolute -bottom-full translate-x-[50%] flex flex-col justify-center items-center text-center size-[50%] bg-white rounded-full"
-                  onClick={() => navigate(`/tree/${id}`)}
-                  whileTap={{ scale: 0.8 }}
-                >
-                  <Circle color="black" size={48}>
-                    <ChevronsDown color="black" size={16} x={4} y={4} />
-                    {/* </CircleChevronDown> */}
-                  </Circle>
-                </motion.div>
-              )}
             <motion.div //circular card, scale up container
               animate={
                 isHovered || isToggled
@@ -156,7 +144,7 @@ function Person({
                     }
               }
               transition={{ duration: 0.4 }}
-              className="relative size-full flex flex-col items-center bg-red-500 border-red-500 rounded-full shadow-2xl/80 [--activeSize:2] md:[--activeSize:2]"
+              className="relative size-full flex flex-col z-20 items-center bg-red-500 border-red-500 rounded-full shadow-2xl/80 [--activeSize:2] md:[--activeSize:2]"
             >
               <motion.div //img container
                 className="absolute left-1/2 flex size-full rounded-full bg-black -translate-x-1/2 items-center justify-center overflow-hidden [--imgScale:1.5] sm:[--imgScale:1.2] [--yActive:-40%]"
@@ -230,6 +218,30 @@ function Person({
                 </motion.div>
               </motion.div>
             </motion.div>
+
+            {(isHovered || isToggled) && (
+              <div className="absolute flex justify-center gap-3 -bottom-full left-[50%] -translate-x-1/2">
+                {hasFam && (
+                  <motion.div //navigate button
+                    className="flex flex-col justify-center items-center text-center size-20 bg-white rounded-full"
+                    onClick={() => navigate(`/tree/${id}`)}
+                    whileTap={{ scale: 0.8 }}
+                  >
+                    <Circle color="black" size={48}>
+                      <ChevronsDown color="black" size={16} x={4} y={4} />
+                      {/* </CircleChevronDown> */}
+                    </Circle>
+                  </motion.div>
+                )}
+                <motion.div //edit button
+                  className=" flex flex-col justify-center items-center text-center size-20 bg-white rounded-full"
+                  onClick={() => navigate(`/edit/${id}`)}
+                  whileTap={{ scale: 0.8 }}
+                >
+                  <Pencil color="black" size={42} />
+                </motion.div>
+              </div>
+            )}
           </motion.div>
         </motion.div>
       ) : null}
