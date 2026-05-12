@@ -5,8 +5,8 @@ import {
   CircleChevronDown,
   Pencil,
 } from "lucide-react";
-import { AnimatePresence, hover, motion } from "motion/react";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Person({
@@ -126,9 +126,9 @@ function Person({
               <motion.div //child number
                 // animate={{ scale: isToggled ? 1.5 : 1 }}
                 // transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="absolute flex flex-col justify-center items-center text-center size-[20%] bg-white rounded-full"
+                className="absolute flex flex-col justify-center items-center text-center size-[20%] bg-my-cream rounded-full"
               >
-                <p className="text-black font-bold text-sm">{childnum}</p>
+                <p className="text-my-black font-bold text-sm">{childnum}</p>
               </motion.div>
             )}
             <motion.div //circular card, scale up container
@@ -144,10 +144,10 @@ function Person({
                     }
               }
               transition={{ duration: 0.4 }}
-              className="relative size-full flex flex-col z-20 items-center bg-red-500 border-red-500 rounded-full shadow-2xl/80 [--activeSize:2] md:[--activeSize:2]"
+              className="relative size-full flex flex-col z-20 items-center bg-my-red border-my-red rounded-full shadow-2xl/80 [--activeSize:2] md:[--activeSize:2]"
             >
               <motion.div //img container
-                className="absolute left-1/2 flex size-full rounded-full bg-black -translate-x-1/2 items-center justify-center overflow-hidden [--imgScale:1.5] sm:[--imgScale:1.2] [--yActive:-40%]"
+                className="absolute left-1/2 flex size-full rounded-full bg-my-black -translate-x-1/2 items-center justify-center overflow-hidden [--imgScale:1.5] sm:[--imgScale:1.2] [--yActive:-40%]"
                 animate={
                   isHovered || isToggled
                     ? {
@@ -200,9 +200,7 @@ function Person({
                   {person}
                 </motion.h2>
                 <motion.div //tubu, monding container
-                  className={
-                    "flex flex-col text-center w-40 text-[50%] text-white"
-                  }
+                  className={"flex flex-col text-center w-40 text-[50%]"}
                   animate={
                     isHovered || isToggled ? { opacity: 100 } : { opacity: 0 }
                   }
@@ -223,22 +221,27 @@ function Person({
               <div className="absolute flex justify-center gap-3 -bottom-full left-[50%] -translate-x-1/2">
                 {hasFam && (
                   <motion.div //navigate button
-                    className="flex flex-col justify-center items-center text-center size-20 bg-white rounded-full"
+                    className="flex flex-col justify-center items-center text-center size-20 bg-my-white rounded-full"
                     onClick={() => navigate(`/tree/${id}`)}
                     whileTap={{ scale: 0.8 }}
                   >
-                    <Circle color="black" size={48}>
-                      <ChevronsDown color="black" size={16} x={4} y={4} />
+                    <Circle color="var(--color-my-black)" size={48}>
+                      <ChevronsDown
+                        color="var(--color-my-black)"
+                        size={16}
+                        x={4}
+                        y={4}
+                      />
                       {/* </CircleChevronDown> */}
                     </Circle>
                   </motion.div>
                 )}
                 <motion.div //edit button
-                  className=" flex flex-col justify-center items-center text-center size-20 bg-white rounded-full"
+                  className=" flex flex-col justify-center items-center text-center size-20 bg-my-white rounded-full"
                   onClick={() => navigate(`/edit/${id}`)}
                   whileTap={{ scale: 0.8 }}
                 >
-                  <Pencil color="black" size={42} />
+                  <Pencil color="var(--color-my-black)" size={42} />
                 </motion.div>
               </div>
             )}

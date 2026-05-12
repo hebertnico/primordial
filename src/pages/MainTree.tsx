@@ -138,7 +138,7 @@ function MainTree() {
   }, [rg1, rg2]);
 
   return (
-    <div className="h-screen relative mx-auto overflow-x-hidden overflow-y-hidden">
+    <div className="min-h-screen relative m-auto overflow-x-hidden overflow-y-hidden">
       {/* <AnimatePresence mode="popLayout"> */}
       {/* <div className="absolute flex items-center justify-center left-50 bottom-0 bg-yellow-300 w-1 h-100" /> */}
       {/* <motion.div //back button

@@ -1,4 +1,11 @@
 @import "tailwindcss";
+
+@theme {
+  --color-my-red: #c50022;
+  --color-my-white: #efeee8;
+  --color-my-cream: #d3ccc7;
+  --color-my-black: #2c2f36;
+}
 /* 
  @layer base{ 
   :root {
@@ -60,8 +67,8 @@
   text-align: center;
   /* border-inline: 1px solid var(--border); */
   min-height: 100svh;
-  background-color: black;
-  color: white;
+  background-color: var(--color-my-red);
+  color:var(--color-my-white);
   /* display: flex;
   flex-direction: column;
   box-sizing: border-box; */

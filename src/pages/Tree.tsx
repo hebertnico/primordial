@@ -102,15 +102,15 @@ function Tree() {
   }, [children]);
 
   return (
-    <div className="h-screen relative mx-auto overflow-x-hidden overflow-y-hidden">
+    <div className="min-h-screen relative mx-auto overflow-x-hidden overflow-y-hidden">
       {/* <AnimatePresence mode="popLayout"> */}
       {/* <div className="absolute flex items-center justify-center left-50 bottom-0 bg-yellow-300 w-1 h-100" /> */}
       <motion.div //back button
-        className="absolute flex items-center justify-center left-5 top-5 bg-red-500 size-15 cursor-pointer rounded-full"
+        className="absolute flex items-center justify-center left-5 top-5 bg-my-cream size-15 cursor-pointer rounded-full shadow-2xl/80"
         onClick={() => navigate(-1)}
         whileTap={{ scale: 0.8 }}
       >
-        <CircleArrowLeft size={45} />
+        <CircleArrowLeft size={45} color="var(--color-my-black)" />
       </motion.div>
       {famHead && ( //head
         <motion.div
