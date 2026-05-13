@@ -153,7 +153,7 @@ function EditForm() {
         )}
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Input style reusable */}
-
+          <label className="text-sm text-my-white align-self-start">Name</label>
           <input
             className="w-full bg-black border border-neutral-700 focus:border-red-500 text-white rounded-lg px-3 py-2 outline-none transition"
             placeholder="Name"
