@@ -1,13 +1,13 @@
 import { motion } from "motion/react";
 
-export default function Parallax({ w = 5, cn = "", style = {} }) {
+export default function Parallax({ w = 10, cn = "", style = {} }) {
   return (
     <motion.div className={cn} style={style}>
       <svg
-        className="h-full"
         aria-hidden="true"
         viewBox="0 0 10 600"
-        style={{ width: w }}
+        style={{ width: w, height: w * 60 }}
+        preserveAspectRatio="none"
       >
         <defs>
           <pattern
@@ -31,12 +31,13 @@ export default function Parallax({ w = 5, cn = "", style = {} }) {
                   y="0"
                   width="10"
                   height="3"
-                  fill="var(--color-my-cream)"
+                  fill="var(--color-my-black)"
+                  opacity="40%"
                 />
               </pattern>
             </defs>
             <rect y="-0" width="10" height="136" fill="url(#rectPattern)" />
-            <g fill="currentColor">
+            <g fill="var(--color-my-black)" opacity="40%">
               <polygon points="0,136 2.5,136 10,156 7.5,156" />
               <polygon points="0,156 2.5,156 10,136 7.5,136" />
             </g>
