@@ -8,10 +8,32 @@ import Parallax from "../components/Parallax";
 // import FloatingElement from "./Floating Element";
 // import Attempt from "./Attempt";
 
-const LOREM_IPSUM =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
-const LOREM_IPSUM2 =
-  "Consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet";
+const LOREM_IPSUM = "Horas ma di hita saluhutna.";
+const LOREM_IPSUM2 = "Salam untuk kita semuanya.";
+const BL2 =
+  "Di hamu ompung, tulang nantulang, amangboru namboru, amangtua/uda inangtua/uda, lae dohot ito, anggi dohot akang";
+const IL2 =
+  "Kepada kakek nenek, om tante, saudara-saudara sepantaran, adik dan kakak";
+const BL3 = "Sude na di hita pomparan ni Ompunta Raja Guna";
+const IL3 = "Kepada kita semua keluarga besar Omopung Raja Guna";
+const BL4 =
+  "On pe tarombo nang tarbahen sian marmeammeam alani halongangan tu sistim panuratan pinompar halak batak on.";
+const IL4 =
+  "Berikut pohon keluarga yang dibuat dari keisengan karena kekaguman pada sistem pencatatan keturunan orang Batak.";
+const BL5 =
+  "Molo diparateatehon, songon na pomaparan raja di Inggris (alai ninna hita halak batak on sude gellengni raja)";
+const IL5 =
+  "Kalau diperhatikan, seperti keluarga kerajaan di Inggris (tapi ya katanya kita orang Batak semua keturunan raja)";
+
+const UBL1 = "Sititi ma sigompa";
+const UBL2 = "Golang-golang pangarahutna";
+const UBL3 = "Boti ma tarombo na tarpatupa";
+const UBL4 = "Pangido maap anggo adong hasalaan panuratanna";
+
+const UIL1 = "Pahat penyadap getah kemenyan";
+const UIL2 = "Gelang-gelang besi jadi pengikatnya";
+const UIL3 = "Demikianlah pohon keluarga yang tersedia";
+const UIL4 = "Mohon maaf jika ada kesalahan penulisannya";
 
 const Letter = ({
   char,
@@ -66,13 +88,16 @@ const Section2 = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start 0.8", "start 0.3"],
+    offset: ["start 0.7", "start 0.3"],
   });
 
   const words = LOREM_IPSUM.split(" ");
   const words2 = LOREM_IPSUM2.split(" ");
   return (
-    <section className="relative flex flex-col h-[200vh] py-20 px-8  bg-my-cream text-my-black gap-5">
+    <section
+      ref={ref}
+      className="relative flex flex-col h-[200vh] py-20 px-8  bg-my-cream text-my-black gap-1"
+    >
       <div className="max-w-5xl mx-auto">
         <div className="flex flex-wrap text-2xl font-bold leading-tight">
           {words.map((word, i) => {
@@ -90,7 +115,7 @@ const Section2 = () => {
         </div>
       </div>
       <div className="max-w-5xl mx-auto">
-        <div className="flex flex-wrap text-2xl font-bold leading-tight">
+        <div className="flex flex-wrap text-xl font-bold leading-tight opacity-60">
           {words2.map((word, i) => {
             const start = i / words2.length;
             const end = (i + 1) / words2.length;
@@ -129,14 +154,11 @@ function Home() {
         ref={containerRef}
         className="relative h-screen md:h-[150vh] flex items-center justify-center"
       >
-        <div className="absolute top-[20vh] left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
+        <div className="fixed top-[20vh] left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             className="text-4xl"
-            style={{
-              translateY: useTransform(smoothProgress, [0, 1], [0, 900]),
-            }}
           >
             TRMB
           </motion.h1>
@@ -144,9 +166,6 @@ function Home() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             className="text-3xl"
-            style={{
-              translateY: useTransform(smoothProgress, [0, 1], [0, 900]),
-            }}
           >
             Pomparan ni
           </motion.h2>
@@ -155,13 +174,13 @@ function Home() {
           <Parallax
             w={20}
             style={{
-              translateY: useTransform(scrollYProgress, [0, 1], [0, 400]),
+              translateY: useTransform(smoothProgress, [0, 1], [0, 400]),
             }}
           />
           <Parallax
             w={20}
             style={{
-              translateY: useTransform(scrollYProgress, [0, 1], [0, -400]),
+              translateY: useTransform(smoothProgress, [0, 1], [0, -400]),
             }}
           />
         </div>
@@ -169,13 +188,13 @@ function Home() {
           <Parallax
             w={20}
             style={{
-              translateY: useTransform(scrollYProgress, [0, 1], [0, -400]),
+              translateY: useTransform(smoothProgress, [0, 1], [0, -400]),
             }}
           />
           <Parallax
             w={20}
             style={{
-              translateY: useTransform(scrollYProgress, [0, 1], [0, 400]),
+              translateY: useTransform(smoothProgress, [0, 1], [0, 400]),
             }}
           />
         </div>
