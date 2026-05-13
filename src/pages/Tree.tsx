@@ -125,6 +125,7 @@ function Tree() {
           onClick={() => setFamHead({ ...famHead, toggled: !famHead.toggled })}
         >
           <Person
+            id={famHead.id}
             person={famHead.name}
             sex={famHead.sex}
             photo={famHead.image}
@@ -155,6 +156,7 @@ function Tree() {
           }
         >
           <Person
+            id={spouse[0]?.id}
             person={spouse[0]?.name}
             sex={spouse[0]?.sex}
             photo={spouse[0]?.image}
