@@ -17,15 +17,21 @@ const Navbar = () => {
               <Home color="var(--color-my-black)" size={20} />
             </Link>
           </div>
-          <div className=" items-center space-x-8">
-            {/* <Link to="/" className="text-sm font-medium hover:text-brand-accent transition-colors">SHOP ALL</Link> */}
-
+          <div className=" items-center space-x-8 text-my-black">
             <Link
               to="/RSRP"
               className="text-sm font-bold text-brand-accent hover:text-brand-black transition-colors"
             >
               Tarombo
             </Link>
+            <a
+              href="https://docs.google.com/spreadsheets/d/1roswam1CDkIhQUekKV4G5cOD3yGppVK2ob2HQO4DEo0/edit?gid=935785084#gid=935785084"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-bold hover:text-brand-accent transition-colors"
+            >
+              Tambah
+            </a>
             {/* <Link to="/cupcakes" className="text-sm font-bold text-brand-accent hover:text-brand-black transition-colors">CUPCAKES</Link>
             <Link to="/typing-effect" className="text-sm font-bold text-brand-accent hover:text-brand-black transition-colors">TYPING EFFECT</Link>
             <Link to="/category/T-Shirts" className="text-sm font-medium hover:text-brand-accent transition-colors">T-SHIRTS</Link>
