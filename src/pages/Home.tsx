@@ -5,6 +5,8 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, useScroll, useSpring, useTransform } from "motion/react";
 import Parallax from "../components/Parallax";
+import { useNodeStore } from "../store/nodeStore";
+import { getNode } from "../utils/treeHelpers";
 // import FloatingElement from "./Floating Element";
 // import Attempt from "./Attempt";
 

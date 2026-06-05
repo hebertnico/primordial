@@ -2,23 +2,14 @@ import { useEffect, useState } from "react";
 import Person from "../components/Person";
 import { useNavigate, useParams } from "react-router-dom";
 import position from "../data/position.json" with { type: "json" };
-import {
-  collection,
-  doc,
-  documentId,
-  getDoc,
-  getDocs,
-  orderBy,
-  query,
-  where,
-} from "firebase/firestore";
-import { db } from "../firebase";
 import { AnimatePresence, motion, scale } from "motion/react";
 import { CircleArrowLeft } from "lucide-react";
+import { useNodeStore } from "../store/nodeStore";
+import { getChildren, getNode } from "../utils/treeHelpers";
 
 function Tree() {
-  const [children, setChildren] = useState<Record<string, any>>({});
-  const [famHead, setFamHead] = useState<Record<string, any>>({});
+  // const [children, setChildren] = useState<Record<string, any>>({});
+  // const [famHead, setFamHead] = useState<Record<string, any>>({});
   const [spouse, setSpouse] = useState<Record<string, any>>({});
   const [loading, setLoading] = useState(true);
   // const [headKey, setHeadKey] = useState("");
@@ -28,64 +19,69 @@ function Tree() {
 
   const navigate = useNavigate();
 
+  const nodes = useNodeStore((s) => s.nodes);
+  const childrenMap = useNodeStore((s) => s.childrenMap);
+
+  const children = getChildren(nodes, childrenMap, head);
+  const famHead = nodes[head];
+
   useEffect(() => {
     async function load() {
       setLoading(true);
       try {
-        const headSnapshot = await getDoc(doc(db, "person", head));
-        // console.log(headSnapshot.data()?.spouse);
-        setFamHead({
-          id: head,
-          toggled: false,
-          ...headSnapshot.data(),
-        });
+        // setSpouse(nodes[head].spouse)
+        // const headSnapshot = await getDoc(doc(db, "person", head));
+        // // console.log(headSnapshot.data()?.spouse);
+        // setFamHead({
+        //   id: head,
+        //   toggled: false,
+        //   ...headSnapshot.data(),
+        // });
         // setHeadKey(headSnapshot.id);
-
-        if (headSnapshot.data()?.spouse != null) {
-          // console.log(["def"].push(headSnapshot.data()?.spouse));
-          const spouseSnapshot = await getDocs(
-            query(
-              collection(db, "person"),
-              where(documentId(), "in", headSnapshot.data()?.spouse),
-            ),
-          );
-          const bufferSpouses: any = [];
-          spouseSnapshot.forEach((doc) => {
-            // console.log(doc.data());
-            bufferSpouses.push({ id: doc.id, toggled: false, ...doc.data() });
-            bufferSpouses[bufferSpouses.length - 1].tubu = doc
-              .data()
-              .tubu?.toDate()
-              .toLocaleDateString("id-ID", { dateStyle: "medium" });
-            bufferSpouses[bufferSpouses.length - 1].monding = doc
-              .data()
-              .monding?.toDate()
-              .toLocaleDateString("id-ID", { dateStyle: "medium" });
-          });
-          setSpouse(bufferSpouses);
-          // console.log(spouseSnapshot.docs[0]?.data());
-        }
-
-        const childSnapshot = await getDocs(
-          query(
-            collection(db, "person"),
-            where("parentId", "==", head),
-            orderBy("sibOrder", "asc"),
-          ),
-        );
-        const bufferChildren: any = [];
-        childSnapshot.forEach((doc) => {
-          bufferChildren.push({ id: doc.id, toggled: false, ...doc.data() });
-          bufferChildren[bufferChildren.length - 1].tubu = doc
-            .data()
-            .tubu?.toDate()
-            .toLocaleDateString("id-ID", { dateStyle: "medium" });
-          bufferChildren[bufferChildren.length - 1].monding = doc
-            .data()
-            .monding?.toDate()
-            .toLocaleDateString("id-ID", { dateStyle: "medium" });
-        });
-        setChildren(bufferChildren);
+        // if (headSnapshot.data()?.spouse != null) {
+        //   // console.log(["def"].push(headSnapshot.data()?.spouse));
+        //   const spouseSnapshot = await getDocs(
+        //     query(
+        //       collection(db, "person"),
+        //       where(documentId(), "in", headSnapshot.data()?.spouse),
+        //     ),
+        //   );
+        //   const bufferSpouses: any = [];
+        //   spouseSnapshot.forEach((doc) => {
+        //     // console.log(doc.data());
+        //     bufferSpouses.push({ id: doc.id, toggled: false, ...doc.data() });
+        //     bufferSpouses[bufferSpouses.length - 1].tubu = doc
+        //       .data()
+        //       .tubu?.toDate()
+        //       .toLocaleDateString("id-ID", { dateStyle: "medium" });
+        //     bufferSpouses[bufferSpouses.length - 1].monding = doc
+        //       .data()
+        //       .monding?.toDate()
+        //       .toLocaleDateString("id-ID", { dateStyle: "medium" });
+        //   });
+        //   setSpouse(bufferSpouses);
+        //   // console.log(spouseSnapshot.docs[0]?.data());
+        // }
+        // const childSnapshot = await getDocs(
+        //   query(
+        //     collection(db, "person"),
+        //     where("parentId", "==", head),
+        //     orderBy("sibOrder", "asc"),
+        //   ),
+        // );
+        // const bufferChildren: any = [];
+        // childSnapshot.forEach((doc) => {
+        //   bufferChildren.push({ id: doc.id, toggled: false, ...doc.data() });
+        //   bufferChildren[bufferChildren.length - 1].tubu = doc
+        //     .data()
+        //     .tubu?.toDate()
+        //     .toLocaleDateString("id-ID", { dateStyle: "medium" });
+        //   bufferChildren[bufferChildren.length - 1].monding = doc
+        //     .data()
+        //     .monding?.toDate()
+        //     .toLocaleDateString("id-ID", { dateStyle: "medium" });
+        // });
+        // setChildren(bufferChildren);
       } catch (error) {
         console.log(error);
       }

@@ -6,8 +6,28 @@ import Tree from "./pages/Tree";
 import MainTree from "./pages/MainTree";
 import EditForm from "./pages/EditForm";
 import Navbar from "./components/Navbar";
+import { useNodeStore } from "./store/nodeStore";
+import { useEffect } from "react";
+import { loadTree } from "./utils/loadTree";
+import { buildChildrenMap } from "./utils/buildChildrenMap";
 
 function App() {
+  const setTree = useNodeStore((s) => s.setTree);
+
+  useEffect(() => {
+    async function init() {
+      const nodes = await loadTree();
+
+      const childrenMap = buildChildrenMap(nodes);
+
+      setTree(nodes, childrenMap);
+
+      console.log("Tree loaded:", Object.keys(nodes).length);
+    }
+
+    init();
+  }, [setTree]);
+
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
