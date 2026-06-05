@@ -44,6 +44,19 @@ function EditForm() {
     setLoading(false);
   }, [id]);
 
+  useEffect(() => {
+    setName(person?.name);
+    setSibOrder(person?.sibOrder);
+    if (person?.tubu != null) {
+      const dateTubu = new Date(person.tubu.seconds * 1000);
+      setTubu(dateTubu.toISOString().split("T")[0]);
+    }
+    if (person?.monding != null) {
+      const dateMonding = new Date(person.monding.seconds * 1000);
+      setMonding(dateMonding.toISOString().split("T")[0]);
+    }
+  }, [person]);
+
   function transformImage(url: string) {
     return url.replace("/upload/", "/upload/f_auto,q_auto,w_300,h_300,c_fill/");
   }
@@ -76,13 +89,18 @@ function EditForm() {
         .trim()
         .toLowerCase()
         .replace(/\b\w/g, (char) => char.toUpperCase());
-      console.log(modifiedName);
+      // console.log(modifiedName);
       const checkName = await getDocs(
         query(collection(db, "person"), where("name", "==", modifiedName)),
       );
+      const bufferPerson: any = [];
+      checkName.forEach((doc) => {
+        bufferPerson.push({ id: doc.id, ...doc.data() });
+      });
 
-      if (!checkName.empty) {
+      if (!checkName.empty && bufferPerson[0].id != id) {
         alert("Name already exists");
+        console.log(bufferPerson[0].id);
         setLoading(false);
         return;
       }
@@ -157,30 +175,37 @@ function EditForm() {
           <input
             className="w-full bg-black border border-neutral-700 focus:border-red-500 text-white rounded-lg px-3 py-2 outline-none transition"
             placeholder="Name"
-            value={person.name}
+            value={name ?? ""}
             onChange={(e) => setName(e.target.value)}
             required
           />
 
+          <label className="text-sm text-my-white align-self-start">
+            Sibling Order
+          </label>
           <input
             type="number"
             className="w-full bg-black border border-neutral-700 focus:border-red-500 text-white rounded-lg px-3 py-2 outline-none transition"
             placeholder="Sibling Order"
-            value={person.sibOrder}
+            value={sibOrder ?? ""}
             onChange={(e) => setSibOrder(e.target.value)}
           />
 
+          <label className="text-sm text-my-white align-self-start">Tubu</label>
           <input
             type="date"
             className="w-full bg-black border border-neutral-700 focus:border-red-500 text-white rounded-lg px-3 py-2 outline-none transition"
-            value={person.tubu}
+            value={tubu}
             onChange={(e) => setTubu(e.target.value)}
           />
 
+          <label className="text-sm text-my-white align-self-start">
+            Monding
+          </label>
           <input
             type="date"
             className="w-full bg-black border border-neutral-700 focus:border-red-500 text-white rounded-lg px-3 py-2 outline-none transition"
-            value={person.monding}
+            value={monding}
             onChange={(e) => setMonding(e.target.value)}
           />
 
@@ -215,7 +240,7 @@ function EditForm() {
             disabled={loading}
             className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 rounded-lg transition disabled:opacity-50 cursor-pointer"
           >
-            {loading ? "Uploading..." : "Add Member"}
+            {loading ? "Uploading..." : "Submit"}
           </motion.button>
         </form>
       </motion.div>
