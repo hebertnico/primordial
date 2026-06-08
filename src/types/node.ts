@@ -5,7 +5,7 @@ export interface NodeData {
   parentId: string | null;
   image: string | null;
   sibOrder: number;
-  tubu: Date | null;
-  monding: Date | null;
+  tubu: string | null;
+  monding: string | null;
   spouse: string[] | null;
 }

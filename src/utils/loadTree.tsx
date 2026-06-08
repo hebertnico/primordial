@@ -11,9 +11,12 @@ export async function loadTree() {
     result[doc.id] = {
       id: doc.id,
       ...doc.data(),
-      tubu: doc.data().tubu && new Date(doc.data().tubu.seconds * 1000),
+      tubu:
+        doc.data().tubu &&
+        new Date(doc.data().tubu.seconds * 1000).toISOString(),
       monding:
-        doc.data().monding && new Date(doc.data().monding.seconds * 1000),
+        doc.data().monding &&
+        new Date(doc.data().monding.seconds * 1000).toISOString(),
     };
   });
 

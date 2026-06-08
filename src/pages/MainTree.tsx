@@ -6,6 +6,8 @@ import { AnimatePresence, motion, scale } from "motion/react";
 import { useNodeStore } from "../store/nodeStore";
 import { getChildren, getSpouses } from "../utils/treeHelpers";
 
+let posA: string[] = [];
+let posB: string[] = [];
 function MainTree() {
   const [loading, setLoading] = useState(true);
   const [activeId, setActiveId] = useState<string>("");
@@ -19,13 +21,17 @@ function MainTree() {
   const rg2 = getChildren(nodes, childrenMap, "SNs");
 
   // let { head = "" } = useParams();
-  const [posA, setPosA] = useState<string[]>([]);
-  const [posB, setPosB] = useState<string[]>([]);
+  // const [posA, setPosA] = useState<string[]>([]);
+  // const [posB, setPosB] = useState<string[]>([]);
+
+  // const dtb = new Date(famHead.tubu ?? "");
 
   useEffect(() => {
     if (rg1.length > 0 && rg2.length > 0) {
-      setPosA(position.children[8]?.position);
-      setPosB(position.children[9]?.position);
+      // setPosA(position.children[8]?.position);
+      // setPosB(position.children[9]?.position);
+      posA = position.children[8]?.position;
+      posB = position.children[9]?.position;
       setLoading(false);
     }
   }, []);
@@ -54,12 +60,15 @@ function MainTree() {
             person={famHead.name}
             sex={famHead.sex}
             photo={famHead.image ?? ""}
-            tubu={famHead.tubu?.toLocaleDateString("id-ID", {
+            tubu={new Date(famHead.tubu ?? "").toLocaleDateString("id-ID", {
               dateStyle: "medium",
             })}
-            monding={famHead.monding?.toLocaleDateString("id-ID", {
-              dateStyle: "medium",
-            })}
+            monding={new Date(famHead.monding ?? "").toLocaleDateString(
+              "id-ID",
+              {
+                dateStyle: "medium",
+              },
+            )}
             isActive={famHead.id === activeId ? true : false}
           />
         </motion.div>
@@ -86,12 +95,15 @@ function MainTree() {
               person={spouse[1]?.name}
               sex={spouse[1]?.sex}
               photo={spouse[1]?.image ?? ""}
-              tubu={spouse[1].tubu?.toLocaleDateString("id-ID", {
+              tubu={new Date(spouse[1].tubu ?? "").toLocaleDateString("id-ID", {
                 dateStyle: "medium",
               })}
-              monding={spouse[1].monding?.toLocaleDateString("id-ID", {
-                dateStyle: "medium",
-              })}
+              monding={new Date(spouse[1].monding ?? "").toLocaleDateString(
+                "id-ID",
+                {
+                  dateStyle: "medium",
+                },
+              )}
               isActive={spouse[1].id === activeId ? true : false}
             />
           </motion.div>
@@ -115,12 +127,15 @@ function MainTree() {
               person={spouse[0]?.name}
               sex={spouse[0]?.sex}
               photo={spouse[0]?.image ?? ""}
-              tubu={spouse[0].tubu?.toLocaleDateString("id-ID", {
+              tubu={new Date(spouse[0].tubu ?? "").toLocaleDateString("id-ID", {
                 dateStyle: "medium",
               })}
-              monding={spouse[0].monding?.toLocaleDateString("id-ID", {
-                dateStyle: "medium",
-              })}
+              monding={new Date(spouse[0].monding ?? "").toLocaleDateString(
+                "id-ID",
+                {
+                  dateStyle: "medium",
+                },
+              )}
               isActive={spouse[0].id === activeId ? true : false}
             />
           </motion.div>
@@ -151,12 +166,15 @@ function MainTree() {
               childnum={person.sibOrder}
               sex={person.sex}
               photo={person.image}
-              tubu={person.tubu?.toLocaleDateString("id-ID", {
+              tubu={new Date(person.tubu ?? "").toLocaleDateString("id-ID", {
                 dateStyle: "medium",
               })}
-              monding={person.monding?.toLocaleDateString("id-ID", {
-                dateStyle: "medium",
-              })}
+              monding={new Date(person.monding ?? "").toLocaleDateString(
+                "id-ID",
+                {
+                  dateStyle: "medium",
+                },
+              )}
               hasFam={person.spouse ? true : false}
               isActive={person.id === activeId ? true : false}
             />
@@ -187,12 +205,15 @@ function MainTree() {
               childnum={person.sibOrder}
               sex={person.sex}
               photo={person.image}
-              tubu={person.tubu?.toLocaleDateString("id-ID", {
+              tubu={new Date(person.tubu ?? "").toLocaleDateString("id-ID", {
                 dateStyle: "medium",
               })}
-              monding={person.monding?.toLocaleDateString("id-ID", {
-                dateStyle: "medium",
-              })}
+              monding={new Date(person.monding ?? "").toLocaleDateString(
+                "id-ID",
+                {
+                  dateStyle: "medium",
+                },
+              )}
               hasFam={person.spouse ? true : false}
               isActive={person.id === activeId ? true : false}
             />

@@ -28,7 +28,7 @@ function Tree() {
       setPosA(position.children[children.length - 1]?.position);
       setLoading(false);
     }
-  }, []);
+  }, [head]);
 
   return (
     <div className="min-h-screen relative mx-auto overflow-x-hidden overflow-y-hidden">
@@ -60,12 +60,15 @@ function Tree() {
             person={famHead.name}
             sex={famHead.sex}
             photo={famHead.image ?? ""}
-            tubu={famHead.tubu?.toLocaleDateString("id-ID", {
+            tubu={new Date(famHead.tubu ?? "").toLocaleDateString("id-ID", {
               dateStyle: "medium",
             })}
-            monding={famHead.monding?.toLocaleDateString("id-ID", {
-              dateStyle: "medium",
-            })}
+            monding={new Date(famHead.monding ?? "").toLocaleDateString(
+              "id-ID",
+              {
+                dateStyle: "medium",
+              },
+            )}
             isActive={famHead.id === activeId ? true : false}
           />
         </motion.div>
@@ -90,12 +93,15 @@ function Tree() {
             person={spouse[0]?.name}
             sex={spouse[0]?.sex}
             photo={spouse[0]?.image ?? ""}
-            tubu={spouse[0].tubu?.toLocaleDateString("id-ID", {
+            tubu={new Date(spouse[0].tubu ?? "").toLocaleDateString("id-ID", {
               dateStyle: "medium",
             })}
-            monding={spouse[0].monding?.toLocaleDateString("id-ID", {
-              dateStyle: "medium",
-            })}
+            monding={new Date(spouse[0].monding ?? "").toLocaleDateString(
+              "id-ID",
+              {
+                dateStyle: "medium",
+              },
+            )}
             isActive={spouse[0].id === activeId ? true : false}
           />
         </motion.div>
@@ -128,12 +134,15 @@ function Tree() {
                 childnum={person.sibOrder}
                 sex={person.sex}
                 photo={person.image}
-                tubu={person.tubu?.toLocaleDateString("id-ID", {
+                tubu={new Date(person.tubu ?? "").toLocaleDateString("id-ID", {
                   dateStyle: "medium",
                 })}
-                monding={person.monding?.toLocaleDateString("id-ID", {
-                  dateStyle: "medium",
-                })}
+                monding={new Date(person.monding ?? "").toLocaleDateString(
+                  "id-ID",
+                  {
+                    dateStyle: "medium",
+                  },
+                )}
                 hasFam={person.spouse ? true : false}
                 isActive={person.id === activeId ? true : false}
               />
