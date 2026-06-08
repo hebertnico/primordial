@@ -13,49 +13,38 @@ import {
 import { db } from "../firebase";
 import ImageCropper from "../components/ImageCropper";
 import { useParams } from "react-router-dom";
+import { useNodeStore } from "../store/nodeStore";
 
 function EditForm() {
   let { id = "" } = useParams();
-  const [person, setPerson] = useState<Record<string, any>>({});
+
+  const nodes = useNodeStore((s) => s.nodes);
+  const person = nodes[id];
+  // const [person, setPerson] = useState<Record<string, any>>({});
   const [name, setName] = useState("");
-  const [sibOrder, setSibOrder] = useState("");
+  const [sibOrder, setSibOrder] = useState(0);
   const [tubu, setTubu] = useState("");
   const [monding, setMonding] = useState("");
 
   const [rawFile, setRawFile] = useState<File | null>(null);
   const [croppedFile, setCroppedFile] = useState<Blob | null>(null);
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    async function load() {
-      setLoading(true);
-      try {
-        const headSnapshot = await getDoc(doc(db, "person", id));
-        setPerson({
-          id: id,
-          ...headSnapshot.data(),
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    load();
-    setLoading(false);
-  }, [id]);
+  const updateNode = useNodeStore((s) => s.updateNode);
 
   useEffect(() => {
     setName(person?.name);
     setSibOrder(person?.sibOrder);
     if (person?.tubu != null) {
-      const dateTubu = new Date(person.tubu.seconds * 1000);
-      setTubu(dateTubu.toISOString().split("T")[0]);
+      // const dateTubu = new Date(person.tubu.seconds * 1000);
+      setTubu(person.tubu.split("T")[0]);
     }
     if (person?.monding != null) {
-      const dateMonding = new Date(person.monding.seconds * 1000);
-      setMonding(dateMonding.toISOString().split("T")[0]);
+      // const dateMonding = new Date(person.monding.seconds * 1000);
+      setMonding(person.monding.split("T")[0]);
     }
-  }, [person]);
+  }, [id]);
 
   function transformImage(url: string) {
     return url.replace("/upload/", "/upload/f_auto,q_auto,w_300,h_300,c_fill/");
@@ -122,7 +111,7 @@ function EditForm() {
 
       const data = {
         name: modifiedName,
-        sibOrder: parseInt(sibOrder),
+        sibOrder: sibOrder,
         sex: person.sex,
         tubu: tubuValue,
         monding: mondingValue,
@@ -132,6 +121,13 @@ function EditForm() {
       };
 
       console.log("Saving person:", data);
+      updateNode(id, {
+        name: modifiedName,
+        sibOrder: sibOrder,
+        tubu: tubu ?? null,
+        monding: monding ?? null,
+        image: finalImageUrl,
+      });
       await setDoc(doc(db, "person", id), data);
 
       alert("Data berhasil diubah");
@@ -148,13 +144,13 @@ function EditForm() {
         <h2 className="text-2xl font-bold text-white mb-6 text-center tracking-wide">
           Ubah Data
         </h2>
-        {!loading && (
-          <div //circular card, scale up container
-            className="relative size-40 mx-auto flex flex-col mb-4 items-center bg-red-500 border-red-500 rounded-full shadow-2xl/80"
+        <div //circular card, scale up container
+          className="relative size-40 mx-auto flex flex-col mb-4 items-center border-4 border-my-red rounded-full shadow-2xl/80"
+        >
+          <div //img container
+            className="absolute left-1/2 flex size-full rounded-full bg-my-black -translate-x-1/2 items-center justify-center overflow-hidden"
           >
-            <div //img container
-              className="absolute left-1/2 flex size-full rounded-full bg-black -translate-x-1/2 items-center justify-center overflow-hidden"
-            >
+            {!loading && (
               <img
                 src={
                   person.image
@@ -166,9 +162,9 @@ function EditForm() {
                 alt={person.name}
                 className="size-full object-cover"
               />
-            </div>
+            )}
           </div>
-        )}
+        </div>
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Input style reusable */}
           <label className="text-sm text-my-white align-self-start">Name</label>
@@ -187,8 +183,8 @@ function EditForm() {
             type="number"
             className="w-full bg-black border border-neutral-700 focus:border-red-500 text-white rounded-lg px-3 py-2 outline-none transition"
             placeholder="Sibling Order"
-            value={sibOrder ?? ""}
-            onChange={(e) => setSibOrder(e.target.value)}
+            value={sibOrder ?? 0}
+            onChange={(e) => setSibOrder(parseInt(e.target.value))}
           />
 
           <label className="text-sm text-my-white align-self-start">Tubu</label>
