@@ -18,10 +18,11 @@ function Person({
   photo = "",
   childnum = null,
   isVisible = true,
+  isActive = false,
   hasFam = false,
 }) {
   const navigate = useNavigate();
-  const [isToggled, setIsToggled] = useState(false);
+  // const [isActive, setisActive] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const longName = person.length > 20;
   const [distance, setDistance] = useState([0, 0]);
@@ -53,14 +54,14 @@ function Person({
   // useEffect(() => {
   //   return hover(ref.current, () => {
   //     setIsHovered(true);
-  //     console.log("on hover start", isHovered, isToggled);
+  //     console.log("on hover start", isHovered, isActive);
   //     moveTowardCenter(true);
 
   //     return () => {
   //       setIsHovered(false);
-  //       console.log("on hover end", isHovered, isToggled);
+  //       console.log("on hover end", isHovered, isActive);
   //       moveTowardCenter(false);
-  //       // setIsToggled(false);
+  //       // setisActive(false);
   //     };
   //   });
   // }, []);
@@ -75,7 +76,7 @@ function Person({
           animate={{
             opacity: 1,
             // ...animate,
-            ...(isHovered || isToggled
+            ...(isHovered || isActive
               ? {
                   // x: distance[0] * 1,
                   // y: distance[1] * 0.6,
@@ -86,15 +87,10 @@ function Person({
               : { x: 0, y: 0, height: "100%" }),
           }}
           exit={{
-            x: isToggled ? 0 : distance[0] - 100,
-            y: isToggled ? 0 : distance[1],
+            x: isActive ? 0 : distance[0] - 100,
+            y: isActive ? 0 : distance[1],
           }}
           transition={{ duration: 0.4 }}
-          // onClick={onClick}
-          onClick={() => {
-            // onClick;
-            setIsToggled(!isToggled);
-          }}
           onHoverStart={() => {
             setIsHovered(true);
           }}
@@ -124,7 +120,7 @@ function Person({
           >
             {childnum && (
               <motion.div //child number
-                // animate={{ scale: isToggled ? 1.5 : 1 }}
+                // animate={{ scale: isActive ? 1.5 : 1 }}
                 // transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 className="absolute flex flex-col justify-center items-center text-center size-[20%] bg-my-cream rounded-full"
               >
@@ -133,7 +129,7 @@ function Person({
             )}
             <motion.div //circular card, scale up container
               animate={
-                isHovered || isToggled
+                isHovered || isActive
                   ? {
                       scale: "var(--activeSize)",
                     }
@@ -149,7 +145,7 @@ function Person({
               <motion.div //img container
                 className="absolute left-1/2 flex size-full rounded-full bg-my-black -translate-x-1/2 items-center justify-center overflow-hidden [--imgScale:1.5] sm:[--imgScale:1.2] [--yActive:-40%]"
                 animate={
-                  isHovered || isToggled
+                  isHovered || isActive
                     ? {
                         y: "var(--yActive)",
                         scale: "calc(var(--imgScale)/var(--activeSize))",
@@ -168,7 +164,7 @@ function Person({
                   }
                   alt={person}
                   className="size-full object-cover mask-luminance mask-b-from-white mask-b-from-50% mask-b-to-black"
-                  style={{ maskMode: isHovered || isToggled ? "unset" : "" }}
+                  style={{ maskMode: isHovered || isActive ? "unset" : "" }}
                   onLoad={handleImageLoaded}
                 />
               </motion.div>
@@ -176,7 +172,7 @@ function Person({
                 className={"absolute flex flex-col text-center items-center"}
                 style={{ gap: longName ? 1 : 2 }}
                 animate={
-                  isHovered || isToggled
+                  isHovered || isActive
                     ? { top: longName ? "50%" : "50%" }
                     : { top: longName ? "60%" : "70%" }
                 }
@@ -184,7 +180,7 @@ function Person({
                 <motion.h2 //name
                   className="font-bold wrap-break-word [--activeFontSize:70%] sm:[--activeFontSize:50%] [--longSize:65%] sm:[--longSize:65%] [--activeTop:-100%] md:[--activeTop:-80%] [--activeWidth:78%] md:[--activeWidth:200%] [--activeLongTop:-120%] md:[--activeLongTop:-80%] [--activeLongWidth:75%] md:[--activeLongWidth:41.8vw]"
                   animate={
-                    isHovered || isToggled
+                    isHovered || isActive
                       ? {
                           width: longName ? "75%" : "var(--activeWidth)",
                           fontSize: longName
@@ -202,7 +198,7 @@ function Person({
                 <motion.div //tubu, monding container
                   className={"flex flex-col text-center w-40 text-[50%]"}
                   animate={
-                    isHovered || isToggled ? { opacity: 100 } : { opacity: 0 }
+                    isHovered || isActive ? { opacity: 100 } : { opacity: 0 }
                   }
                 >
                   <p>
@@ -217,7 +213,7 @@ function Person({
               </motion.div>
             </motion.div>
 
-            {(isHovered || isToggled) && (
+            {(isHovered || isActive) && (
               <div className="absolute flex justify-center gap-3 -bottom-full left-[50%] -translate-x-1/2">
                 {hasFam && (
                   <motion.div //navigate button
