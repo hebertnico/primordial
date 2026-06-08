@@ -11,7 +11,8 @@ interface NodeStore {
 
   setTree: (
     nodes: Record<string, NodeData>,
-    childrenMap: Record<string, string[]>
+    childrenMap: Record<string, string[]>,
+    version: number
   ) => void;
 
   addNode: (
@@ -22,6 +23,8 @@ interface NodeStore {
     id: string,
     updates: Partial<NodeData>
   )=> void;
+
+  treeVersion: number;
 }
 
 export const useNodeStore = create<NodeStore>()(
@@ -29,12 +32,14 @@ export const useNodeStore = create<NodeStore>()(
     nodes: {},
     childrenMap: {},
     loaded:false,
+    treeVersion:0,
 
-    setTree: (nodes, childrenMap) =>
+    setTree: (nodes, childrenMap, version) =>
       set({
         nodes,
         childrenMap,
         loaded: true,
+        treeVersion: version
       }),
 
     addNode: (node) =>
@@ -71,9 +76,10 @@ export const useNodeStore = create<NodeStore>()(
           },
         },
       })),
+
   }),
     {
       name: "tree-cache",
-      version:3
+      version:4
     })
 );

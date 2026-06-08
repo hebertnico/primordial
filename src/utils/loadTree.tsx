@@ -3,6 +3,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 
 export async function loadTree() {
+  console.log("Fetching tree from db ...");
   const snapshot = await getDocs(collection(db, "person"));
 
   const result: Record<string, any> = {};

@@ -10,17 +10,27 @@ import { useNodeStore } from "./store/nodeStore";
 import { useEffect } from "react";
 import { loadTree } from "./utils/loadTree";
 import { buildChildrenMap } from "./utils/buildChildrenMap";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "./firebase";
 
 function App() {
   const setTree = useNodeStore((s) => s.setTree);
 
   useEffect(() => {
     async function init() {
+      const state = useNodeStore.getState();
+      const metaCache = await getDoc(doc(db, "metadata", "cache"));
+
+      if (metaCache.data()?.version === state.treeVersion) {
+        console.log("using cached tree");
+        return;
+      }
+
       const nodes = await loadTree();
 
       const childrenMap = buildChildrenMap(nodes);
 
-      setTree(nodes, childrenMap);
+      setTree(nodes, childrenMap, metaCache.data()?.version);
 
       console.log("Tree loaded:", Object.keys(nodes).length);
     }
