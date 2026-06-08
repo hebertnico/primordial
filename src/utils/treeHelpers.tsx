@@ -15,3 +15,9 @@ export function getChildren(
     .map((childId) => nodes[childId])
     .sort((a, b) => a.sibOrder - b.sibOrder);
 }
+
+export function getSpouses(nodes: Record<string, NodeData>, id: string) {
+  const spouseIds = nodes[id].spouse ?? [];
+
+  return spouseIds.map((spouseId) => nodes[spouseId]);
+}
