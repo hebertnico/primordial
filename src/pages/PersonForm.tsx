@@ -12,6 +12,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase";
 import ImageCropper from "../components/ImageCropper";
+import { useNodeStore } from "../store/nodeStore";
 
 function PersonForm() {
   const [id, setId] = useState("");
@@ -28,6 +29,8 @@ function PersonForm() {
   const [croppedFile, setCroppedFile] = useState<Blob | null>(null);
 
   const [loading, setLoading] = useState(false);
+
+  const addNode = useNodeStore((s) => s.addNode);
 
   function transformImage(url: string) {
     return url.replace("/upload/", "/upload/f_auto,q_auto,w_300,h_300,c_fill/");
@@ -110,6 +113,17 @@ function PersonForm() {
       };
 
       console.log("Saving person:", data);
+      addNode({
+        id,
+        name: modifiedName,
+        sibOrder: parseInt(sibOrder),
+        sex,
+        tubu: tubu ?? null,
+        monding: monding ?? null,
+        spouse: spouseArray,
+        parentId: parentId || null,
+        image: finalImageUrl,
+      });
       await setDoc(doc(db, "person", id), data);
 
       alert("Person added!");
