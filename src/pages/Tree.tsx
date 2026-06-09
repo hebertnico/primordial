@@ -60,15 +60,20 @@ function Tree() {
             person={famHead.name}
             sex={famHead.sex}
             photo={famHead.image ?? ""}
-            tubu={new Date(famHead.tubu ?? "").toLocaleDateString("id-ID", {
-              dateStyle: "medium",
-            })}
-            monding={new Date(famHead.monding ?? "").toLocaleDateString(
-              "id-ID",
-              {
-                dateStyle: "medium",
-              },
-            )}
+            tubu={
+              famHead.tubu
+                ? new Date(famHead.tubu).toLocaleDateString("id-ID", {
+                    dateStyle: "medium",
+                  })
+                : ""
+            }
+            monding={
+              famHead.monding
+                ? new Date(famHead.monding).toLocaleDateString("id-ID", {
+                    dateStyle: "medium",
+                  })
+                : ""
+            }
             isActive={famHead.id === activeId ? true : false}
           />
         </motion.div>
@@ -93,15 +98,20 @@ function Tree() {
             person={spouse[0]?.name}
             sex={spouse[0]?.sex}
             photo={spouse[0]?.image ?? ""}
-            tubu={new Date(spouse[0].tubu ?? "").toLocaleDateString("id-ID", {
-              dateStyle: "medium",
-            })}
-            monding={new Date(spouse[0].monding ?? "").toLocaleDateString(
-              "id-ID",
-              {
-                dateStyle: "medium",
-              },
-            )}
+            tubu={
+              spouse[0].tubu
+                ? new Date(spouse[0].tubu).toLocaleDateString("id-ID", {
+                    dateStyle: "medium",
+                  })
+                : ""
+            }
+            monding={
+              spouse[0].monding
+                ? new Date(spouse[0].monding).toLocaleDateString("id-ID", {
+                    dateStyle: "medium",
+                  })
+                : ""
+            }
             isActive={spouse[0].id === activeId ? true : false}
           />
         </motion.div>
@@ -134,15 +144,20 @@ function Tree() {
                 childnum={person.sibOrder}
                 sex={person.sex}
                 photo={person.image}
-                tubu={new Date(person.tubu ?? "").toLocaleDateString("id-ID", {
-                  dateStyle: "medium",
-                })}
-                monding={new Date(person.monding ?? "").toLocaleDateString(
-                  "id-ID",
-                  {
-                    dateStyle: "medium",
-                  },
-                )}
+                tubu={
+                  person.tubu
+                    ? new Date(person.tubu).toLocaleDateString("id-ID", {
+                        dateStyle: "medium",
+                      })
+                    : ""
+                }
+                monding={
+                  person.tubu
+                    ? new Date(person.monding).toLocaleDateString("id-ID", {
+                        dateStyle: "medium",
+                      })
+                    : ""
+                }
                 hasFam={person.spouse ? true : false}
                 isActive={person.id === activeId ? true : false}
               />
