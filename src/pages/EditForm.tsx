@@ -144,9 +144,7 @@ function EditForm() {
         <h2 className="text-2xl font-bold text-white mb-6 text-center tracking-wide">
           Ubah Data
         </h2>
-        <div //circular card, scale up container
-          className="relative size-40 mx-auto flex flex-col mb-4 items-center border-4 border-my-red rounded-full shadow-2xl/80"
-        >
+        <div className="relative size-40 mx-auto flex flex-col mb-4 items-center border-4 border-my-red rounded-full shadow-2xl/80">
           <div //img container
             className="absolute left-1/2 flex size-full rounded-full bg-my-black -translate-x-1/2 items-center justify-center overflow-hidden"
           >
@@ -177,7 +175,7 @@ function EditForm() {
           />
 
           <label className="text-sm text-my-white align-self-start">
-            Sibling Order
+            Anak ke-
           </label>
           <input
             type="number"
@@ -207,10 +205,11 @@ function EditForm() {
 
           {/* Upload */}
           <div>
-            <label className="text-sm text-gray-400">
-              Upload Image (optional)
+            <label className="text-sm text-white" htmlFor="fotoHu">
+              Upload Photo
             </label>
             <input
+              id="fotoHu"
               type="file"
               accept="image/*"
               className="w-full mt-1 text-sm text-gray-300 file:bg-red-600 file:text-white file:border-0 file:px-3 file:py-1 file:rounded-md file:cursor-pointer hover:file:bg-red-700"
@@ -223,21 +222,31 @@ function EditForm() {
               file={rawFile}
               onCropDone={(file) => {
                 setCroppedFile(file);
-                setRawFile(null);
+                // setRawFile(null);
               }}
             />
           )}
 
           {/* Button */}
-          <motion.button
-            whileTap={{ scale: 0.95 }}
-            whileHover={{ scale: 1.02 }}
-            type="submit"
-            disabled={loading}
-            className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 rounded-lg transition disabled:opacity-50 cursor-pointer"
+          <span
+            onClick={() => {
+              console.log(rawFile);
+              rawFile != null &&
+                alert(
+                  `Upload gambarnya dulu, ${person.sex === "M" ? "amang" : "inang"}`,
+                );
+            }}
           >
-            {loading ? "Uploading..." : "Submit"}
-          </motion.button>
+            <motion.button
+              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.02 }}
+              type="submit"
+              disabled={loading || rawFile != null}
+              className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 rounded-lg transition disabled:opacity-50 cursor-pointer disabled:pointer-events-none"
+            >
+              {loading ? "Uploading..." : "Submit"}
+            </motion.button>
+          </span>
         </form>
       </motion.div>
     </div>

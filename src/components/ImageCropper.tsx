@@ -39,10 +39,11 @@ function ImageCropper({ file, onCropDone }: Props) {
       </div>
 
       <button
+        type="button"
         className=" w-50 h-10 z-50 bg-red-600 hover:bg-red-700 text-white font-semibold py-1 rounded-lg transition disabled:opacity-50 cursor-pointer"
         onClick={handleDone}
       >
-        Done
+        Upload
       </button>
     </div>
   );
