@@ -29,6 +29,7 @@ function Tree() {
       setPosA(position.children[children.length - 1]?.position);
       setLoading(false);
     }
+    setActiveId("");
   }, [head]);
 
   return (
@@ -50,7 +51,7 @@ function Tree() {
             layoutId={head}
             onLayoutAnimationComplete={() => setExpandId(head)}
             key={famHead.id}
-            className="absolute top-[50vh] left-[27vw] sm:left-50 size-38 sm:size-60 -translate-1/2"
+            className="absolute top-[50vh] left-[27vw] sm:left-[40vw] sm:top-[46vh] size-38 sm:size-40 -translate-1/2"
             style={{ zIndex: famHead.id === activeId ? 40 : 20 }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -91,7 +92,7 @@ function Tree() {
         {spouse && ( //spouse
           <motion.div
             key={spouse[0]?.id}
-            className="absolute top-[50vh] left-[73vw] sm:right-50 size-38 sm:size-60 -translate-1/2"
+            className="absolute top-[50vh] left-[73vw] sm:left-[60vw] sm:top-[46vh] size-38 sm:size-40 -translate-1/2"
             style={{ zIndex: spouse[0].id === activeId ? 40 : 20 }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

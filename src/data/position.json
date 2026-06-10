@@ -49,12 +49,12 @@
     {
       "num" : 6,
       "position": [
-        "sm:top-30 md:left-100 top-24 left-[50vw] size-38 sm:size-45 -translate-1/2",
-        "sm:top-65 md:left-45 top-60 left-[23vw] size-38 sm:size-45 -translate-1/2",
-        "sm:top-65 md:left-155 top-60 left-[77vw] size-38 sm:size-45 -translate-1/2",
-        "sm:bottom-35 md:left-45 bottom-60 left-[23vw] size-38 sm:size-45 -translate-x-1/2 translate-y-1/2",
-        "sm:bottom-35 md:left-155 bottom-60 left-[77vw] size-38 sm:size-45 -translate-x-1/2 translate-y-1/2",
-        "sm:bottom-30 md:left-100 bottom-24 left-[50vw] size-38 sm:size-45 -translate-x-1/2 translate-y-1/2"
+        "sm:top-20 sm:left-[30vw] top-24 left-[50vw] size-38 sm:size-38 -translate-1/2",
+        "sm:top-[46vh] sm:left-[15vw] top-60 left-[23vw] size-38 sm:size-38 -translate-1/2",
+        "sm:top-110 sm:left-[30vw] top-60 left-[77vw] size-38 sm:size-38 -translate-1/2",
+        "sm:bottom-115 sm:left-[70vw] bottom-60 left-[23vw] size-38 sm:size-38 -translate-x-1/2 translate-y-1/2",
+        "sm:bottom-[54vh] sm:left-[85vw] bottom-60 left-[77vw] size-38 sm:size-38 -translate-x-1/2 translate-y-1/2",
+        "sm:bottom-30 sm:left-[70vw] bottom-24 left-[50vw] size-38 sm:size-38 -translate-x-1/2 translate-y-1/2"
       ]
     },
     {
@@ -85,28 +85,28 @@
     {
       "group" : "RG1",
       "position": [
-        "top-15 left-[20vw] w-30 h-25 sm:size-30 -translate-1/2",
-        "top-15 left-[80vw] w-30 h-25 sm:size-30 -translate-1/2",
-        "top-23 left-[50vw] w-30 h-25 sm:size-30 -translate-1/2" ,
-        "top-39 left-[20vw] w-30 h-25 sm:size-30 -translate-1/2",
-        "top-39 left-[80vw] w-30 h-25 sm:size-30 -translate-1/2",
-        "top-47 left-[50vw] w-32 h-25 sm:size-30 -translate-1/2",
-        "top-63 left-[25vw] w-32 h-25 sm:size-30 -translate-1/2",
-        "top-63 left-[75vw] w-32 h-25 sm:size-30 -translate-1/2"
+        "top-17 left-[18vw] size-32 sm:left-[40vw] sm:top-26 sm:size-30 -translate-1/2",
+        "top-17 left-[80vw] size-32 sm:left-[28vw] sm:top-17 sm:size-30 -translate-1/2",
+        "top-23 left-[50vw] size-32 sm:left-[16vw] sm:top-26 sm:size-30 -translate-1/2" ,
+        "top-45 left-[19vw] size-32 sm:left-[8vw] sm:top-50 sm:size-30 -translate-1/2",
+        "top-45 left-[80vw] size-32 sm:left-[8vw] sm:top-82 sm:size-30 -translate-1/2",
+        "top-51 left-[50vw] size-32 sm:left-[16vw] sm:top-106 sm:size-30 -translate-1/2",
+        "top-75 left-[20vw] size-32 sm:left-[28vw] sm:top-115 sm:size-30 -translate-1/2",
+        "top-75 left-[80vw] size-32 sm:left-[40vw] sm:top-106 sm:size-30 -translate-1/2"
       ]
     },
     {
       "group" : "RG2",
       "position": [
-        "bottom-90 left-[20vw] w-30 h-25 sm:size-30 -translate-x-1/2 translate-y-1/2",
-        "bottom-90 left-[20vw] w-30 h-25 sm:size-30 -translate-x-1/2 translate-y-1/2",
-        "top-15 left-[80vw] w-30 h-25 sm:size-30 -translate-1/2",
-        "top-23 left-[50vw] w-30 h-25 sm:size-30 -translate-1/2" ,
-        "top-39 left-[20vw] w-30 h-25 sm:size-30 -translate-1/2",
-        "top-39 left-[80vw] w-30 h-25 sm:size-30 -translate-1/2",
-        "top-47 left-[50vw] w-32 h-25 sm:size-30 -translate-1/2",
-        "top-63 left-[25vw] w-32 h-25 sm:size-30 -translate-1/2",
-        "top-63 left-[75vw] w-32 h-25 sm:size-30 -translate-1/2"
+        "top-80 left-[20vw] size-32 sm:top-26 sm:left-[60vw] sm:size-28 -translate-1/2",
+        "top-90 left-[20vw] size-32 sm:top-17 sm:left-[70vw] sm:size-28 -translate-1/2",
+        "top-15 left-[80vw] size-32 sm:top-21 sm:left-[81vw] sm:size-28 -translate-1/2",
+        "top-23 left-[50vw] size-32 sm:top-38 sm:left-[88vw] sm:size-28 -translate-1/2" ,
+        "top-39 left-[20vw] size-32 sm:top-[46vh] sm:left-[93vw] sm:size-28 -translate-1/2",
+        "top-39 left-[80vw] size-32 sm:top-88 sm:left-[88vw] sm:size-28 -translate-1/2",
+        "top-47 left-[50vw] size-32 sm:top-105 sm:left-[81vw] sm:size-28 -translate-1/2",
+        "top-63 left-[25vw] size-32 sm:top-112 sm:left-[71vw] sm:size-28 -translate-1/2",
+        "top-63 left-[75vw] size-32 sm:top-103 sm:left-[60vw] sm:size-28 -translate-1/2"
       ]
     }
   ]

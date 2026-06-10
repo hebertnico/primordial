@@ -64,7 +64,7 @@ function Person({
       // layoutId={id}
       ref={ref}
       // onLayoutAnimationComplete={() => measure()}
-      className="relative w-full h-full max-w-[90vw] [--x-factor:0.6] [--y-factor:0.6] sm:[--x-factor:0.2] sm:[--y-factor:0.2] "
+      className="relative w-full h-full [--x-factor:0.6] [--y-factor:0.6] sm:[--x-factor:0.2] sm:[--y-factor:0.6] "
       // initial={{
       //   x: distance[0] - 100,
       //   y: -distance[1],
@@ -86,7 +86,7 @@ function Person({
       //   x: isActive ? 0 : distance[0] - 100,
       //   y: isActive ? 0 : -distance[1],
       // }}
-      transition={{ duration: 0.4 }}
+      transition={{ duration: 0.6 }}
       onHoverStart={() => {
         setIsHovered(true);
       }}
@@ -136,7 +136,7 @@ function Person({
                 }
           }
           transition={{ duration: 0.4 }}
-          className="relative size-full flex flex-col z-20 items-center bg-my-red border-my-red rounded-full shadow-2xl/80 [--activeSize:2] md:[--activeSize:2]"
+          className="relative size-full flex flex-col z-20 items-center bg-my-red border-my-red rounded-full shadow-2xl/80 [--activeSize:2] sm:[--activeSize:1.7]"
         >
           <motion.div //img container
             className="absolute left-1/2 flex size-full rounded-full bg-my-black -translate-x-1/2 items-center justify-center overflow-hidden [--imgScale:1.5] sm:[--imgScale:1.2] [--yActive:-40%]"
@@ -211,14 +211,17 @@ function Person({
         </motion.div>
 
         {(isHovered || isActive) && (
-          <div className="absolute flex justify-center gap-3 -bottom-full left-[50%] -translate-x-1/2">
+          <div className="absolute flex justify-center gap-3 -bottom-full sm:-bottom-20 sm:z-20 left-[50%] -translate-x-1/2 cursor-pointer">
             {hasFam && (
               <motion.div //navigate button
-                className="flex flex-col justify-center items-center text-center size-20 bg-my-white rounded-full"
+                className="flex flex-col justify-center items-center text-center size-20 sm:size-12 bg-my-white rounded-full"
                 onClick={() => navigate(`/tree/${id}`)}
                 whileTap={{ scale: 0.8 }}
               >
-                <Circle color="var(--color-my-black)" size={48}>
+                <Circle
+                  color="var(--color-my-black)"
+                  className="size-12 sm:size-8"
+                >
                   <ChevronsDown
                     color="var(--color-my-black)"
                     size={16}
@@ -230,11 +233,14 @@ function Person({
               </motion.div>
             )}
             <motion.div //edit button
-              className=" flex flex-col justify-center items-center text-center size-20 bg-my-white rounded-full"
+              className=" flex flex-col justify-center items-center text-center size-20 sm:size-12 bg-my-white rounded-full"
               onClick={() => navigate(`/edit/${id}`)}
               whileTap={{ scale: 0.8 }}
             >
-              <Pencil color="var(--color-my-black)" size={42} />
+              <Pencil
+                color="var(--color-my-black)"
+                className="size-12 sm:size-8"
+              />
             </motion.div>
           </div>
         )}
