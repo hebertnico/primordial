@@ -23,7 +23,7 @@ function Person({
   niain = false,
 }) {
   const navigate = useNavigate();
-  // const [isActive, setisActive] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const longName = person.length > 20;
   const [distance, setDistance] = useState([0, 0]);
@@ -42,6 +42,8 @@ function Person({
       // console.log(person, "Initial Position:", rect.top, rect.left);
       const cx = window.innerWidth / 2;
       const cy = window.innerHeight / 2;
+
+      setIsDesktop(cx >= 470);
 
       const ex = rect.left + rect.width / 2;
       const ey = rect.top + rect.height / 2;
@@ -103,7 +105,7 @@ function Person({
           delay: Math.random() * -10,
         }}
         initial={{ offsetDistance: "0%" }}
-        animate={{ offsetDistance: "100%" }}
+        animate={isDesktop ? { offsetDistance: "100%" } : {}}
         style={{
           offsetPath: `path("M 9 11 C 14 7 12 3 8 3 C 4 3 1 3 2 7 C 3 11 5 14 9 11"
               )`,
