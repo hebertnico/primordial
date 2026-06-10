@@ -45,7 +45,7 @@ function MainTree() {
         {famHead && ( //head
           <motion.div
             key={famHead.id}
-            className="absolute top-[50vh] left-[50vw] w-[40vw] h-[30vw] max-w-100 sm:left-50 sm:size-60 -translate-1/2"
+            className="absolute top-[50vh] left-[50vw] w-[40vw] h-[30vw] max-w-100 sm:left-50 sm:size-30 -translate-1/2"
             style={{ zIndex: famHead.id === activeId ? 40 : 10 }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -85,7 +85,7 @@ function MainTree() {
           <div>
             <motion.div
               key={spouse[0]?.id}
-              className="absolute top-[37vh] left-[50vw] sm:right-50 size-32 sm:size-60 -translate-1/2"
+              className="absolute top-[37vh] left-[50vw] sm:right-50 size-32 sm:size-30 -translate-1/2"
               style={{ zIndex: spouse[0].id === activeId ? 40 : 10 }}
               initial={{ x: 0, y: 0, opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -122,7 +122,7 @@ function MainTree() {
             </motion.div>
             <motion.div
               key={spouse[1]?.id}
-              className="absolute bottom-[37vh] left-[50vw] sm:right-50 size-32 sm:size-60 -translate-x-1/2 translate-y-1/2"
+              className="absolute bottom-[37vh] left-[50vw] sm:right-50 size-32 sm:size-30 -translate-x-1/2 translate-y-1/2"
               style={{ zIndex: spouse[1].id === activeId ? 40 : 10 }}
               initial={{ x: 0, y: 0, opacity: 0 }}
               animate={{ opacity: 1 }}
