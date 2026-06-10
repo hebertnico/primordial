@@ -261,7 +261,7 @@ function PersonForm() {
             />
           </div>
 
-          {rawFile && (
+          {rawFile != null ? (
             <ImageCropper
               file={rawFile}
               onCropDone={(file) => {
@@ -269,28 +269,28 @@ function PersonForm() {
                 setRawFile(null);
               }}
             />
+          ) : (
+            //URL
+            <div>
+              <label className="text-sm text-gray-400">
+                Or Image URL (optional)
+              </label>
+              <input
+                className="w-full bg-black border border-neutral-700 focus:border-red-500 text-white rounded-lg px-3 py-2 outline-none transition mt-1"
+                placeholder="https://..."
+                value={imageUrl}
+                onChange={(e) => setImageUrl(e.target.value)}
+              />
+            </div>
           )}
-
-          {/* URL */}
-          <div>
-            <label className="text-sm text-gray-400">
-              Or Image URL (optional)
-            </label>
-            <input
-              className="w-full bg-black border border-neutral-700 focus:border-red-500 text-white rounded-lg px-3 py-2 outline-none transition mt-1"
-              placeholder="https://..."
-              value={imageUrl}
-              onChange={(e) => setImageUrl(e.target.value)}
-            />
-          </div>
 
           {/* Button */}
           <motion.button
             whileTap={{ scale: 0.95 }}
             whileHover={{ scale: 1.02 }}
             type="submit"
-            disabled={loading}
-            className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 rounded-lg transition disabled:opacity-50 cursor-pointer"
+            disabled={loading || rawFile != null}
+            className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 rounded-lg transition disabled:opacity-50 cursor-pointer disabled:pointer-events-none"
           >
             {loading ? "Uploading..." : "Add Member"}
           </motion.button>
