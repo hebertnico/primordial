@@ -11,6 +11,7 @@ let posB: string[] = [];
 function MainTree() {
   const [loading, setLoading] = useState(true);
   const [activeId, setActiveId] = useState<string>("");
+  const [expandId, setExpandId] = useState<string>("");
 
   const nodes = useNodeStore((s) => s.nodes);
   const childrenMap = useNodeStore((s) => s.childrenMap);
@@ -46,7 +47,7 @@ function MainTree() {
           <motion.div
             key={famHead.id}
             className="absolute top-[50vh] left-[50vw] w-[40vw] h-[30vw] max-w-100 sm:left-50 sm:size-30 -translate-1/2"
-            style={{ zIndex: famHead.id === activeId ? 40 : 10 }}
+            style={{ zIndex: famHead.id === activeId ? 40 : 20 }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.4 }}
@@ -163,6 +164,7 @@ function MainTree() {
           rg1?.map((person: any) => (
             <motion.div
               layoutId={person.id}
+              onLayoutAnimationComplete={() => setExpandId("RSRP")}
               // ref={(el) => {
               //   zRef.current[index] = el;
               // }}
@@ -182,6 +184,7 @@ function MainTree() {
             >
               <Person
                 id={person.id}
+                expanded={expandId}
                 person={person.name}
                 childnum={person.sibOrder}
                 sex={person.sex}
@@ -209,6 +212,7 @@ function MainTree() {
           rg2?.map((person: any) => (
             <motion.div
               layoutId={person.id}
+              onLayoutAnimationComplete={() => setExpandId("RSRP")}
               // ref={(el) => {
               //   zRef.current[index] = el;
               // }}
@@ -228,6 +232,7 @@ function MainTree() {
             >
               <Person
                 id={person.id}
+                expanded={expandId}
                 person={person.name}
                 childnum={person.sibOrder}
                 sex={person.sex}
