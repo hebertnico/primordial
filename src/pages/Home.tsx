@@ -10,22 +10,22 @@ import { getNode } from "../utils/treeHelpers";
 // import FloatingElement from "./Floating Element";
 // import Attempt from "./Attempt";
 
-const LOREM_IPSUM = "Horas ma di hita saluhutna.";
-const LOREM_IPSUM2 = "Salam untuk kita semuanya.";
-const BL2 =
-  "Di hamu ompung, tulang nantulang, amangboru namboru, amangtua/uda inangtua/uda, lae dohot ito, anggi dohot akang";
-const IL2 =
-  "Kepada kakek nenek, om tante, saudara-saudara sepantaran, adik dan kakak";
-const BL3 = "Sude na di hita pomparan ni Ompunta Raja Guna";
-const IL3 = "Kepada kita semua keluarga besar Omopung Raja Guna";
-const BL4 =
-  "On pe tarombo nang tarbahen sian marmeammeam alani halongangan tu sistim panuratan pinompar halak batak on.";
-const IL4 =
-  "Berikut pohon keluarga yang dibuat dari keisengan karena kekaguman pada sistem pencatatan keturunan orang Batak.";
-const BL5 =
-  "Molo diparateatehon, songon na pomaparan raja di Inggris (alai ninna hita halak batak on sude gellengni raja)";
-const IL5 =
-  "Kalau diperhatikan, seperti keluarga kerajaan di Inggris (tapi ya katanya kita orang Batak semua keturunan raja)";
+// const LOREM_IPSUM = "Horas ma di hita saluhutna.";
+// const LOREM_IPSUM2 = "Salam untuk kita semuanya.";
+const LB = [
+  "Horas ma di hita saluhutna.",
+  "Di hamu ompung, tulang nantulang, amangboru namboru, amangtua/uda inangtua/uda, lae dohot ito, anggi dohot akang",
+  "Sude na di hita pomparan ni Ompunta Raja Guna",
+  "On pe tarombo nang tarbahen sian marmeammeam alani halongangan tu sistim panuratan pinompar halak batak on.",
+  "Alana molo diparateatehon, songon na pomparan raja di Inggris (alai ninna hita halak batak on sude gellengni raja)",
+];
+const LI = [
+  "Salam untuk kita semuanya.",
+  "Kepada kakek nenek, om tante, saudara-saudara sepantaran, adik dan kakak",
+  "Kepada kita semua keluarga besar Ompung Raja Guna",
+  "Berikut pohon keluarga yang dibuat dari keisengan karena kekaguman pada sistem pencatatan keturunan orang Batak.",
+  "Karena kalau diperhatikan, seperti keluarga kerajaan di Inggris (tapi ya katanya kita orang Batak semua keturunan raja)",
+];
 
 const UBL1 = "Sititi ma sigompa";
 const UBL2 = "Golang-golang pangarahutna";
@@ -86,28 +86,37 @@ const Word = ({
   );
 };
 
-const Section2 = () => {
+const Sentence = ({
+  line,
+  idx,
+  len,
+}: {
+  line: string;
+  idx: number;
+  len: number;
+}) => {
   const ref = useRef<HTMLDivElement>(null);
+  const endLine = len <= 60 ? 0.7 - len / 250 : 0.82 - len / 250;
+  // const endLine = len <= 30 ? (0.22 * len) / 10 : (0.5 * len) / 100;
+  console.log(len);
+  console.log(endLine);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start 0.7", "start 0.3"],
+    offset: ["start 0.7", `start ${endLine}`],
   });
+  const wordsB = line.split(" ");
+  const wordsI = LI[idx].split(" ");
 
-  const words = LOREM_IPSUM.split(" ");
-  const words2 = LOREM_IPSUM2.split(" ");
   return (
-    <section
-      ref={ref}
-      className="relative flex flex-col h-[200vh] py-20 px-8  bg-my-cream text-my-black gap-1"
-    >
-      <div className="max-w-5xl mx-auto">
-        <div className="flex flex-wrap text-2xl font-bold leading-tight">
-          {words.map((word, i) => {
-            const start = i / words.length;
-            const end = (i + 1) / words.length;
+    <div className="mb-20 mt-1">
+      <div className="max-w-5xl mx-auto" ref={ref}>
+        <div className="flex flex-wrap text-2xl font-bold leading-tight justify-center">
+          {wordsB.map((word, i) => {
+            const start = i / wordsB.length;
+            const end = (i + 1) / wordsB.length;
             return (
               <Word
-                key={i}
+                key={idx * i + i + "B"}
                 word={word}
                 progress={scrollYProgress}
                 range={[start, end]}
@@ -117,13 +126,13 @@ const Section2 = () => {
         </div>
       </div>
       <div className="max-w-5xl mx-auto">
-        <div className="flex flex-wrap text-xl font-bold leading-tight opacity-60">
-          {words2.map((word, i) => {
-            const start = i / words2.length;
-            const end = (i + 1) / words2.length;
+        <div className="flex flex-wrap text-xl font-bold leading-tight opacity-60 justify-center">
+          {wordsI.map((word, i) => {
+            const start = i / wordsI.length;
+            const end = (i + 1) / wordsI.length;
             return (
               <Word
-                key={i}
+                key={idx * i + i + "I"}
                 word={word}
                 progress={scrollYProgress}
                 range={[start, end]}
@@ -132,6 +141,18 @@ const Section2 = () => {
           })}
         </div>
       </div>
+    </div>
+  );
+};
+const Section2 = () => {
+  return (
+    <section className="relative flex flex-col h-[200vh] py-20 px-8  bg-my-cream text-my-black gap-1">
+      {LB.map((line, idx) => {
+        const sentenceLength = line.length;
+        return (
+          <Sentence key={idx} line={line} idx={idx} len={sentenceLength} />
+        );
+      })}
     </section>
   );
 };
@@ -145,8 +166,8 @@ function Home() {
   });
 
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 10,
+    stiffness: 200,
+    damping: 30,
     restDelta: 0.001,
   });
 
