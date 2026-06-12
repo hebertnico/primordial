@@ -64,7 +64,7 @@ function Person({
       // layoutId={id}
       ref={ref}
       // onLayoutAnimationComplete={() => measure()}
-      className="relative w-full h-full [--x-factor:0.6] [--y-factor:0.6] sm:[--x-factor:0.2] sm:[--y-factor:0.6] "
+      className="relative w-full h-full [--x-factor:0.6] [--y-factor:0.6] sm:[--x-factor:0.2] sm:[--y-factor:0.8] "
       // initial={{
       //   x: distance[0] - 100,
       //   y: -distance[1],
