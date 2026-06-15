@@ -12,6 +12,7 @@ import { loadTree } from "./utils/loadTree";
 import { buildChildrenMap } from "./utils/buildChildrenMap";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "./firebase";
+import SpecialTree from "./pages/SpecialTree";
 
 function App() {
   const setTree = useNodeStore((s) => s.setTree);
@@ -48,6 +49,7 @@ function App() {
           <Route path="/form" element={<PersonForm />} />
           <Route path="/RSRP" element={<MainTree />} />
           <Route path="/tree/:head" element={<Tree />} />
+          <Route path="/tree2/:head" element={<SpecialTree />} />
           <Route path="/edit/:id" element={<EditForm />} />
           {/* <Route path=":head" element={<TreeG1 />}></Route> */}
         </Routes>

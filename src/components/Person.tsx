@@ -19,7 +19,7 @@ function Person({
   childnum = null,
   expanded = "",
   isActive = false,
-  hasFam = false,
+  hasFam = 0,
   niain = false,
 }) {
   const navigate = useNavigate();
@@ -212,10 +212,14 @@ function Person({
 
         {(isHovered || isActive) && (
           <div className="absolute flex justify-center gap-3 -bottom-full sm:-bottom-20 sm:z-20 left-[50%] -translate-x-1/2 cursor-pointer">
-            {hasFam && (
+            {hasFam > 0 && (
               <motion.div //navigate button
                 className="flex flex-col justify-center items-center text-center size-20 sm:size-12 bg-my-white rounded-full"
-                onClick={() => navigate(`/tree/${id}`)}
+                onClick={() =>
+                  hasFam > 1
+                    ? navigate(`/tree2/${id}`)
+                    : navigate(`/tree/${id}`)
+                }
                 whileTap={{ scale: 0.8 }}
               >
                 <Circle

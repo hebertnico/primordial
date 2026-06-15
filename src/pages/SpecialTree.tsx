@@ -5,31 +5,34 @@ import position from "../data/position.json" with { type: "json" };
 import { AnimatePresence, motion, scale } from "motion/react";
 import { useNodeStore } from "../store/nodeStore";
 import { getChildren, getSpouses } from "../utils/treeHelpers";
+import { useParams } from "react-router-dom";
 
-// let posA: string[] = [];
-// let posB: string[] = [];
-function MainTree() {
+function SpecialTree() {
   const [loading, setLoading] = useState(true);
   const [activeId, setActiveId] = useState<string>("");
   const [expandId, setExpandId] = useState<string>("");
 
+  let { head = "" } = useParams();
   const nodes = useNodeStore((s) => s.nodes);
   const childrenMap = useNodeStore((s) => s.childrenMap);
 
-  const famHead = nodes["RSRP"];
-  const spouse = getSpouses(nodes, "RSRP");
-  const rg1 = getChildren(nodes, childrenMap, "SSs");
-  const rg2 = getChildren(nodes, childrenMap, "SNs");
+  const famHead = nodes[head];
+  const spouse = getSpouses(nodes, head);
+  const fam1 = getChildren(nodes, childrenMap, spouse[0].id);
+  const fam2 = getChildren(nodes, childrenMap, spouse[1].id);
 
   const [posA, setPosA] = useState<string[]>([]);
   const [posB, setPosB] = useState<string[]>([]);
 
   useEffect(() => {
-    if (rg1.length > 0 && rg2.length > 0) {
-      setPosA(position.children[8]?.position);
-      setPosB(position.children[9]?.position);
-      // posA = position.children[8]?.position;
-      // posB = position.children[9]?.position;
+    if (fam1.length == 2 && fam2.length == 7) {
+      setPosA(position.children[10]?.position);
+      setPosB(position.children[11]?.position);
+      setLoading(false);
+    }
+    if (fam1.length == 7 && fam2.length == 2) {
+      setPosA(position.children[11]?.position);
+      setPosB(position.children[10]?.position);
       setLoading(false);
     }
   }, []);
@@ -157,8 +160,8 @@ function MainTree() {
             </motion.div>
           </div>
         )}
-        {!loading && //rg1
-          rg1?.map((person: any) => (
+        {!loading && //fam1
+          fam1?.map((person: any) => (
             <motion.div
               layoutId={person.id}
               onLayoutAnimationComplete={() => setExpandId("RSRP")}
@@ -205,8 +208,8 @@ function MainTree() {
               />
             </motion.div>
           ))}
-        {!loading && //rg2
-          rg2?.map((person: any) => (
+        {!loading && //fam2
+          fam2?.map((person: any) => (
             <motion.div
               layoutId={person.id}
               onLayoutAnimationComplete={() => setExpandId("RSRP")}
@@ -271,4 +274,4 @@ function MainTree() {
   );
 }
 
-export default MainTree;
+export default SpecialTree;

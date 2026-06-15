@@ -174,7 +174,7 @@ function Tree() {
                       })
                     : ""
                 }
-                hasFam={person.spouse ? true : false}
+                hasFam={person.spouse?.length}
                 isActive={person.id === activeId ? true : false}
               />
             </motion.div>
