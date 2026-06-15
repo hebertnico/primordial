@@ -79,8 +79,7 @@ const Sentence = ({
   const ref = useRef<HTMLDivElement>(null);
   const endLine = len <= 60 ? 0.7 - len / 250 : 0.82 - len / 250;
   // const endLine = len <= 30 ? (0.22 * len) / 10 : (0.5 * len) / 100;
-  console.log(len);
-  console.log(endLine);
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start 0.7", `start ${endLine}`],
