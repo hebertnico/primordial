@@ -7,155 +7,14 @@ import { motion, useScroll, useSpring, useTransform } from "motion/react";
 import Parallax from "../components/Parallax";
 import { useNodeStore } from "../store/nodeStore";
 import { getNode } from "../utils/treeHelpers";
+import Section2 from "../components/Section2";
+import Section3 from "../components/Section3";
+import Section4 from "../components/Section4";
 // import FloatingElement from "./Floating Element";
 // import Attempt from "./Attempt";
 
 // const LOREM_IPSUM = "Horas ma di hita saluhutna.";
 // const LOREM_IPSUM2 = "Salam untuk kita semuanya.";
-const LB = [
-  "Horas ma di hita saluhutna.",
-  "Di hamu ompung, tulang nantulang, amangboru namboru, amangtua/uda inangtua/uda, lae dohot ito, anggi dohot akang",
-  "Sude na di hita pomparan ni Ompunta Raja Guna",
-  "On pe tarombo nang tarbahen sian marmeammeam alani halongangan tu sistim panuratan pinompar halak batak on.",
-  "Alana molo diparateatehon, songon na pomparan raja di Inggris (alai ninna hita halak batak on sude gellengni raja)",
-];
-const LI = [
-  "Salam untuk kita semuanya.",
-  "Kepada kakek nenek, om tante, saudara-saudara sepantaran, adik dan kakak",
-  "Kepada kita semua keluarga besar Ompung Raja Guna",
-  "Berikut pohon keluarga yang dibuat dari keisengan karena kekaguman pada sistem pencatatan keturunan orang Batak.",
-  "Karena kalau diperhatikan, seperti keluarga kerajaan di Inggris (tapi ya katanya kita orang Batak semua keturunan raja)",
-];
-
-const UBL1 = "Sititi ma sigompa";
-const UBL2 = "Golang-golang pangarahutna";
-const UBL3 = "Boti ma tarombo na tarpatupa";
-const UBL4 = "Pangido maap anggo adong hasalaan panuratanna";
-
-const UIL1 = "Pahat penyadap getah kemenyan";
-const UIL2 = "Gelang-gelang besi jadi pengikatnya";
-const UIL3 = "Demikianlah pohon keluarga yang tersedia";
-const UIL4 = "Mohon maaf jika ada kesalahan penulisannya";
-
-const Letter = ({
-  char,
-  progress,
-  range,
-}: {
-  char: string;
-  progress: any;
-  range: [number, number];
-}) => {
-  const opacity = useTransform(progress, range, [0, 1]);
-
-  return (
-    <motion.span style={{ opacity }} className="inline-block">
-      {char === " " ? "\u00A0" : char}
-    </motion.span>
-  );
-};
-
-const Word = ({
-  word,
-  progress,
-  range,
-}: {
-  word: string;
-  progress: any;
-  range: [number, number];
-}) => {
-  const characters = word.split("");
-  const amount = range[1] - range[0];
-  const step = amount / characters.length;
-
-  return (
-    <span className="relative inline-block mr-3">
-      {characters.map((char, i) => {
-        const start = range[0] + i * step;
-        const end = range[0] + (i + 1) * step;
-        return (
-          <Letter
-            key={i}
-            char={char}
-            progress={progress}
-            range={[start, end]}
-          />
-        );
-      })}
-    </span>
-  );
-};
-
-const Sentence = ({
-  line,
-  idx,
-  len,
-}: {
-  line: string;
-  idx: number;
-  len: number;
-}) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const endLine = len <= 60 ? 0.7 - len / 250 : 0.82 - len / 250;
-  // const endLine = len <= 30 ? (0.22 * len) / 10 : (0.5 * len) / 100;
-  console.log(len);
-  console.log(endLine);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start 0.7", `start ${endLine}`],
-  });
-  const wordsB = line.split(" ");
-  const wordsI = LI[idx].split(" ");
-
-  return (
-    <div className="mb-20 mt-1">
-      <div className="max-w-5xl mx-auto" ref={ref}>
-        <div className="flex flex-wrap text-2xl font-bold leading-tight justify-center">
-          {wordsB.map((word, i) => {
-            const start = i / wordsB.length;
-            const end = (i + 1) / wordsB.length;
-            return (
-              <Word
-                key={idx * i + i + "B"}
-                word={word}
-                progress={scrollYProgress}
-                range={[start, end]}
-              />
-            );
-          })}
-        </div>
-      </div>
-      <div className="max-w-5xl mx-auto">
-        <div className="flex flex-wrap text-xl font-bold leading-tight opacity-60 justify-center">
-          {wordsI.map((word, i) => {
-            const start = i / wordsI.length;
-            const end = (i + 1) / wordsI.length;
-            return (
-              <Word
-                key={idx * i + i + "I"}
-                word={word}
-                progress={scrollYProgress}
-                range={[start, end]}
-              />
-            );
-          })}
-        </div>
-      </div>
-    </div>
-  );
-};
-const Section2 = () => {
-  return (
-    <section className="relative flex flex-col h-[200vh] py-20 px-8  bg-my-cream text-my-black gap-1">
-      {LB.map((line, idx) => {
-        const sentenceLength = line.length;
-        return (
-          <Sentence key={idx} line={line} idx={idx} len={sentenceLength} />
-        );
-      })}
-    </section>
-  );
-};
 
 function Home() {
   // const navigate = useNavigate();
@@ -175,7 +34,7 @@ function Home() {
     <div className="min-h-screen">
       <section
         ref={containerRef}
-        className="relative h-screen md:h-[150vh] flex items-center justify-center"
+        className="relative h-screen sm:h-[150vh] flex items-center justify-center"
       >
         <div className="fixed top-[20vh] left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
           <motion.h1
@@ -238,6 +97,8 @@ function Home() {
         </svg>
       </section>
       <Section2 />
+      <Section3 />
+      <Section4 />
     </div>
   );
 }

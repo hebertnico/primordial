@@ -7,7 +7,7 @@ const Navbar = () => {
   return (
     <nav className="sticky top-0 z-100 bg-my-cream/80 backdrop-blur-md shadow-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-10">
+        <div className="flex justify-between items-center h-15">
           {/* Desktop Nav */}
           <div className="flex items-center space-x-2">
             <Link
@@ -17,7 +17,7 @@ const Navbar = () => {
               <Home color="var(--color-my-black)" size={20} />
             </Link>
           </div>
-          <div className=" items-center space-x-8 text-my-black">
+          <div className="flex items-center space-x-2 text-my-black">
             <Link
               to="/RSRP"
               className="text-sm font-bold text-brand-accent hover:text-brand-black transition-colors"
