@@ -42,14 +42,14 @@ function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             className="text-4xl"
           >
-            TRMB
+            TAROMBO
           </motion.h1>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="text-3xl"
+            className="text-3xl mt-5"
           >
-            Pomparan ni
+            Pomparan ni Ompu Raja Guna
           </motion.h2>
         </div>
         <div className="absolute left-2 z-0 h-auto top-0 flex content-start gap-4 pointer-events-none">
