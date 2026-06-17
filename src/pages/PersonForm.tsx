@@ -71,7 +71,7 @@ function PersonForm() {
         .trim()
         .toLowerCase()
         .replace(/\b\w/g, (char) => char.toUpperCase());
-      console.log(modifiedName);
+      // console.log(modifiedName);
       const checkName = await getDocs(
         query(collection(db, "person"), where("name", "==", modifiedName)),
       );
