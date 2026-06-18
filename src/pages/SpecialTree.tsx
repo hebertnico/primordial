@@ -60,10 +60,9 @@ function SpecialTree() {
           <motion.div
             key={famHead.id}
             onLayoutAnimationComplete={() => setExpandId(head)}
-            className="absolute left-[50vw] w-47 h-32 sm:top-[46vh] sm:w-40 sm:h-40 -translate-1/2"
+            className={`absolute left-[50vw] sm:top-[50vh] w-47 h-32 sm:w-40 sm:h-40 -translate-1/2 ${secondPlace ? "top-[36vh] sm:left-[40vw]" : "top-[61vh] sm:left-[60vw]"}`}
             style={{
               zIndex: famHead.id === activeId ? 40 : 20,
-              top: secondPlace ? "33vh" : "61vh",
             }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -104,10 +103,9 @@ function SpecialTree() {
           <div>
             <motion.div
               key={spouse[0]?.id}
-              className="absolute left-[50vw] sm:top-[46vh] sm:left-[27vw] size-38 -translate-1/2"
+              className={`absolute left-[50vw] sm:top-[50vh] size-38 -translate-1/2 ${secondPlace ? "top-[20vh]  sm:left-[24vw]" : "top-[48vh] sm:left-[44vw]"}`}
               style={{
                 zIndex: spouse[0].id === activeId ? 40 : 10,
-                top: secondPlace ? "20vh" : "48vh",
               }}
               initial={{ x: 0, y: 0, opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -144,10 +142,9 @@ function SpecialTree() {
             </motion.div>
             <motion.div
               key={spouse[1]?.id}
-              className="absolute left-[50vw] size-38 sm:left-[73vw] -translate-1/2"
+              className={`absolute left-[50vw] sm:top-[50vh] size-38 -translate-1/2 ${secondPlace ? "top-[46vh] sm:left-[55vw] " : "top-[74vh] sm:left-[75vw]"}`}
               style={{
                 zIndex: spouse[1].id === activeId ? 40 : 10,
-                top: secondPlace ? "46vh" : "74vh",
               }}
               initial={{ x: 0, y: 0, opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -185,10 +182,7 @@ function SpecialTree() {
           </div>
         )}
         <div
-          className="absolute"
-          style={{
-            top: secondPlace ? "8vh" : "8vh",
-          }}
+          className={`absolute sm:top-0 ${secondPlace ? "top-[8vh]" : "top-[8vh]"}`}
           key="fam1group"
         >
           {!loading && //fam1
@@ -241,10 +235,7 @@ function SpecialTree() {
             ))}
         </div>
         <div
-          className="absolute"
-          style={{
-            top: secondPlace ? "62vh" : "85vh",
-          }}
+          className={`absolute sm:top-0 ${secondPlace ? "top-[62vh] sm:left-[60vw]" : "top-[85vh] sm:left-[80vw]"}`}
           key="fam2group"
         >
           {!loading && //fam2
