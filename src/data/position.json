@@ -22,64 +22,64 @@
     },
     {
       "position": [
-        "top-60 left-[50vw] size-38 sm:top-20 sm:size-36 -translate-1/2",
-        "bottom-60 size-38 left-[23vw] sm:bottom-40 sm:size-36 -translate-x-1/2 translate-y-1/2",
-        "bottom-60 size-38 left-[77vw] sm:bottom-40 sm:size-36 -translate-x-1/2 translate-y-1/2"
+        "top-70 left-[50vw] size-38 sm:top-20 sm:size-36 -translate-1/2",
+        "top-170 left-[23vw] size-38 sm:top-60 sm:size-36 -translate-1/2",
+        "top-170 left-[77vw] size-38 sm:top-60 sm:size-36 -translate-1/2"
       ]
     },
     {
       "num" : 4,
       "position": [
-        "sm:top-25 sm:left-[24vw] top-60 left-[28vw] size-38 sm:size-36 -translate-1/2",
-        "sm:top-25 sm:left-[76vw] top-60 left-[72vw] size-38 sm:size-36 -translate-1/2",
-        "sm:bottom-35 sm:left-[24vw] bottom-60 left-[28vw] size-38 sm:size-36 -translate-x-1/2 translate-y-1/2",
-        "sm:bottom-35 sm:left-[76vw] bottom-60 left-[72vw] size-38 sm:size-36 -translate-x-1/2 translate-y-1/2"
+        "sm:top-25 sm:left-[24vw] top-70 left-[28vw] size-38 sm:size-36 -translate-1/2",
+        "sm:top-25 sm:left-[76vw] top-70 left-[72vw] size-38 sm:size-36 -translate-1/2",
+        "sm:top-95 sm:left-[24vw] top-170 left-[28vw] size-38 sm:size-36 -translate-1/2",
+        "sm:top-95 sm:left-[76vw] top-170 left-[72vw] size-38 sm:size-36 -translate-1/2"
       ]
     },
     {
       "num" : 5,
       "position": [
-        "sm:top-20 sm:left-[50vw] sm:size-36 top-24 left-[50vw] size-38 -translate-1/2",
-        "sm:top-45 sm:left-[20vw] sm:size-36 top-60 left-[23vw] size-38 -translate-1/2",
-        "sm:top-45 sm:left-[80vw] sm:size-36 top-60 left-[77vw] size-38 -translate-1/2",
-        "sm:bottom-35 sm:left-[25vw] sm:size-36 bottom-60 left-[28vw] size-38 -translate-x-1/2 translate-y-1/2",
-        "sm:bottom-35 sm:left-[75vw] sm:size-36 bottom-60 left-[72vw] size-38 -translate-x-1/2 translate-y-1/2"
+        "sm:top-20 sm:left-[50vw] sm:size-36 top-[12vh] left-[50vw] size-38 -translate-1/2",
+        "sm:top-45 sm:left-[20vw] sm:size-36 top-[30vh] left-[23vw] size-38 -translate-1/2",
+        "sm:top-45 sm:left-[80vw] sm:size-36 top-[30vh] left-[77vw] size-38 -translate-1/2",
+        "sm:top-100 sm:left-[25vw] sm:size-36 top-[72vh] left-[28vw] size-38 -translate-1/2",
+        "sm:top-100 sm:left-[75vw] sm:size-36 top-[72vh] left-[72vw] size-38 -translate-1/2"
       ]
     },
     {
       "num" : 6,
       "position": [
-        "sm:top-20 sm:left-[30vw] top-24 left-[50vw] size-38 sm:size-36 -translate-1/2",
-        "sm:top-[46vh] sm:left-[15vw] top-60 left-[23vw] size-38 sm:size-36 -translate-1/2",
-        "sm:top-110 sm:left-[30vw] top-60 left-[77vw] size-38 sm:size-36 -translate-1/2",
-        "sm:bottom-115 sm:left-[70vw] bottom-60 left-[23vw] size-38 sm:size-36 -translate-x-1/2 translate-y-1/2",
-        "sm:bottom-[54vh] sm:left-[85vw] bottom-60 left-[77vw] size-38 sm:size-36 -translate-x-1/2 translate-y-1/2",
-        "sm:bottom-30 sm:left-[70vw] bottom-24 left-[50vw] size-38 sm:size-36 -translate-x-1/2 translate-y-1/2"
+        "sm:top-[20vh] sm:left-[27vw] top-[17vh] left-[46vw] size-38 sm:size-36 -translate-1/2",
+        "sm:top-[48vh] sm:left-[15vw] top-[32vh] left-[21vw] size-38 sm:size-36 -translate-1/2",
+        "sm:top-[70vh] sm:left-[27vw] top-[32vh] left-[76vw] size-38 sm:size-36 -translate-1/2",
+        "sm:top-[20vh] sm:left-[73vw] top-[68vh] left-[21vw] size-38 sm:size-36 -translate-1/2",
+        "sm:top-[48vh] sm:left-[85vw] top-[68vh] left-[76vw] size-38 sm:size-36 -translate-1/2",
+        "sm:top-[70vh] sm:left-[73vw] top-[83vh] left-[50vw] size-38 sm:size-36 -translate-1/2"
       ]
     },
     {
       "num" : 7,
       "position": [
         "top-24 left-[50vw] size-36 -translate-1/2",
-        "sm:top-40 sm:left-[24vw] top-50 left-[23vw] size-36 -translate-1/2",
-        "sm:top-40 sm:left-[76vw] top-50 left-[77vw] size-36 -translate-1/2",
-        "sm:top-80 sm:left-[15vw] top-78 left-[50vw] size-36 -translate-1/2",
-        "sm:bottom-57 sm:left-[85vw] bottom-70 left-[23vw] size-36 -translate-x-1/2 translate-y-1/2",
-        "sm:bottom-30 sm:left-[35vw] bottom-70 left-[77vw] size-36 -translate-x-1/2 translate-y-1/2",
-        "sm:bottom-30 sm:left-[65vw] bottom-30 left-[50vw] size-36 -translate-x-1/2 translate-y-1/2"
+        "sm:top-40 sm:left-[26vw] top-50 left-[23vw] size-36 -translate-1/2",
+        "sm:top-40 sm:left-[74vw] top-50 left-[77vw] size-36 -translate-1/2",
+        "sm:top-75 sm:left-[12vw] top-78 left-[50vw] size-36 -translate-1/2",
+        "sm:top-75 sm:left-[88vw] top-[68vh] left-[21vw] size-36 -translate-1/2",
+        "sm:top-98 sm:left-[28vw] top-[68vh] left-[76vw] size-36 -translate-1/2",
+        "sm:top-98 sm:left-[72vw] top-[83vh] left-[50vw] size-36 -translate-1/2"
       ]
     },
     {
       "num" : 8,
       "position": [
-        "top-25 left-[50vw] size-34 sm:top-20 sm:left-[32vw] -translate-1/2",
-        "top-50 left-[20vw] size-34 sm:top-40 sm:left-[16vw] -translate-1/2",
-        "top-50 left-[80vw] size-34 sm:top-85 sm:left-[16vw] -translate-1/2" ,
-        "top-75 left-[50vw] size-34 sm:top-105 sm:left-[32vw] -translate-1/2",
-        "bottom-75 left-[50vw] size-34 sm:bottom-115 sm:left-[68vw] translate-y-1/2 -translate-x-1/2",
-        "bottom-50 left-[20vw] size-34 sm:bottom-95 sm:left-[84vw] translate-y-1/2 -translate-x-1/2",
-        "bottom-50 left-[80vw] size-34 sm:bottom-50 sm:left-[84vw] translate-y-1/2 -translate-x-1/2",
-        "bottom-25 left-[50vw] size-34 sm:bottom-30 sm:left-[68vw] translate-y-1/2 -translate-x-1/2"
+        "top-30 left-[50vw] size-34 sm:top-20 sm:left-[32vw] -translate-1/2",
+        "top-55 left-[20vw] size-34 sm:top-40 sm:left-[16vw] -translate-1/2",
+        "top-55 left-[80vw] size-34 sm:top-85 sm:left-[16vw] -translate-1/2" ,
+        "top-80 left-[50vw] size-34 sm:top-105 sm:left-[32vw] -translate-1/2",
+        "top-155 left-[50vw] size-34 sm:top-20 sm:left-[68vw] -translate-1/2",
+        "top-180 left-[20vw] size-34 sm:top-40 sm:left-[84vw] -translate-1/2",
+        "top-180 left-[80vw] size-34 sm:top-85 sm:left-[84vw] -translate-1/2",
+        "top-205 left-[50vw] size-34 sm:top-105 sm:left-[68vw] -translate-1/2"
       ]
     },
     {
@@ -102,7 +102,7 @@
         "top-[62vh] left-[84vw] size-30 sm:top-17 sm:left-[70vw] sm:size-28 -translate-1/2",
         "top-[74vh] left-[15vw] size-30 sm:top-21 sm:left-[81vw] sm:size-28 -translate-1/2",
         "top-[78vh] left-[37vw] size-30 sm:top-38 sm:left-[88vw] sm:size-28 -translate-1/2" ,
-        "top-[78vh] left-[63vw] size-30 sm:top-[46vh] sm:left-[93vw] sm:size-28 -translate-1/2",
+        "top-[78vh] left-[63vw] size-30 sm:top-[48vh] sm:left-[93vw] sm:size-28 -translate-1/2",
         "top-[74vh] left-[84vw] size-30 sm:top-88 sm:left-[88vw] sm:size-28 -translate-1/2",
         "top-[89vh] left-[17vw] size-32 sm:top-105 sm:left-[81vw] sm:size-28 -translate-1/2",
         "top-[90vh] left-[50vw] size-32 sm:top-112 sm:left-[71vw] sm:size-28 -translate-1/2",
@@ -112,20 +112,20 @@
     {
       "group": "special2",
       "position":[
-        "left-[24vw] size-34 -translate-1/2",
-        "left-[76vw] size-34 -translate-1/2"
+        "left-[24vw] sm:left-[10vw] sm:top-[30vh] size-34 -translate-1/2",
+        "left-[76vw] sm:left-[10vw] sm:top-[70vh] size-34 -translate-1/2"
       ]
     },
     {
       "group" : "special7",
       "position": [
-        "left-[35vw] size-32 sm:top-26 sm:left-[60vw] sm:size-28 -translate-1/2",
-        "left-[65vw] size-32 sm:top-17 sm:left-[70vw] sm:size-28 -translate-1/2",
-        "top-[14vh] left-[20vw] size-32 sm:top-21 sm:left-[81vw] sm:size-28 -translate-1/2",
-        "top-[14vh] left-[50vw] size-32 sm:top-38 sm:left-[88vw] sm:size-28 -translate-1/2" ,
-        "top-[14vh] left-[80vw] size-32 sm:top-[46vh] sm:left-[93vw] sm:size-28 -translate-1/2",
-        "top-[28vh] left-[35vw] size-32 sm:top-88 sm:left-[88vw] sm:size-28 -translate-1/2",
-        "top-[28vh] left-[65vw] size-32 sm:top-103 sm:left-[60vw] sm:size-28 -translate-1/2"
+        "left-[35vw] size-32 sm:top-[24vh] sm:left-[21vw] sm:size-34 -translate-1/2",
+        "left-[65vw] size-32 sm:top-[38vh] sm:left-[10vw] sm:size-34 -translate-1/2",
+        "top-[14vh] left-[20vw] size-32 sm:top-[38vh] sm:left-[32vw] sm:size-34 -translate-1/2",
+        "top-[14vh] left-[50vw] size-32 sm:top-[50vh] sm:left-[21vw] sm:size-34 -translate-1/2" ,
+        "top-[14vh] left-[80vw] size-32 sm:top-[64vh] sm:left-[10vw] sm:size-34 -translate-1/2",
+        "top-[28vh] left-[35vw] size-32 sm:top-[64vh] sm:left-[32vw] sm:size-34 -translate-1/2",
+        "top-[28vh] left-[65vw] size-32 sm:top-[76vh] sm:left-[21vw] sm:size-34 -translate-1/2"
       ]
     }
   ]
