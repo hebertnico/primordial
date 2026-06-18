@@ -36,7 +36,7 @@ function Home() {
         ref={containerRef}
         className="relative h-screen sm:h-[150vh] flex items-center justify-center"
       >
-        <div className="fixed top-[20vh] left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
+        <div className="fixed top-[40vh] sm:top-[20vh] left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -81,18 +81,18 @@ function Home() {
           />
         </div>
         <svg
-          className="absolute -bottom-px w-[101vw]"
+          className="absolute bottom-0 w-[101vw]"
           aria-hidden="true"
-          viewBox="0 0 10 5"
+          viewBox="0 0 10 9"
         >
           <motion.polygon
-            points="0,5 0,4 5,1 10,4 10,5"
+            points="0,9 0,8 5,0 10,8 10,9"
             fill="var(--color-my-black)"
             style={{
               translateY: useTransform(scrollYProgress, [0, 1], [0, 2]),
             }}
           />
-          <polygon points="0,5 5,2 10,5" fill="var(--color-my-cream)" />
+          <polygon points="0,9 5,1 10,9" fill="var(--color-my-cream)" />
           {/* <circle cx="12" cy="12" r="10" fill="var(--color-my-cream)" /> */}
         </svg>
       </section>
