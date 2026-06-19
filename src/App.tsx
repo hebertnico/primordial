@@ -40,9 +40,9 @@ function App() {
   }, [setTree]);
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col h-screen">
       <Navbar />
-      <main className="grow">
+      <main className="">
         <Routes>
           <Route path="/" element={<Home />} />
           {/* <Route path="/upload" element={<UploadImage />} /> */}
