@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ShoppingBag, Menu, X, Home } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
 const Navbar = () => {
+  const [hidden, setHidden] = useState(true);
   return (
-    <nav className="sticky top-0 z-100 bg-my-cream/80 backdrop-blur-md shadow-md">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <motion.nav
+      className="fixed top-0 z-100 w-full flex flex-col items-center"
+      animate={{ translateY: hidden ? "-80%" : 0 }}
+      transition={{ type: "tween" }}
+      onClick={() => setHidden(!hidden)}
+    >
+      <div className="mx-auto px-4 sm:px-6 lg:px-8 w-full bg-my-cream/80 backdrop-blur-md shadow-md z-10">
         <div className="flex justify-between items-center h-15">
           {/* Desktop Nav */}
           <div className="flex items-center space-x-2">
@@ -40,7 +46,8 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-    </nav>
+      <div className="w-20 h-5 bg-my-cream/80 rounded-b-lg backdrop-blur-md shadow-md z-20" />
+    </motion.nav>
   );
 };
 
