@@ -12,7 +12,7 @@
   ],
   "children": [
     {
-      "position": ["bottom-20 left-[50vw] size-38 sm:-bottom-5 sm:size-36 -translate-1/2"]
+      "position": ["top-[70vh] left-[50vw] size-38 sm:top-[80vh] sm:size-36 -translate-1/2"]
     },
     {
       "position": [
