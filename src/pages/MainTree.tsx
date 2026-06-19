@@ -35,7 +35,7 @@ function MainTree() {
   }, []);
 
   return (
-    <div className="min-h-screen relative m-auto overflow-x-hidden overflow-y-hidden">
+    <div className="h-screen relative m-auto overflow-hidden">
       {/* <AnimatePresence mode="popLayout"> */}
       {/* <div className="absolute flex items-center justify-center left-50 bottom-0 bg-yellow-300 w-1 h-100" /> */}
 

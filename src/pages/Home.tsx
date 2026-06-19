@@ -31,7 +31,7 @@ function Home() {
   });
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-x-hidden">
       <section
         ref={containerRef}
         className="relative h-screen sm:h-[150vh] flex items-center justify-center"
@@ -52,7 +52,7 @@ function Home() {
             Pomparan ni Ompu Raja Guna
           </motion.h2>
         </div>
-        <div className="absolute left-2 z-0 h-auto top-0 flex content-start gap-4 pointer-events-none">
+        <div className="fixed left-2 z-0 h-auto top-0 flex content-start gap-4 pointer-events-none">
           <Parallax
             w={20}
             style={{
@@ -66,7 +66,7 @@ function Home() {
             }}
           />
         </div>
-        <div className="absolute right-3 z-0 h-auto top-0 flex content-start gap-4 pointer-events-none">
+        <div className="fixed right-3 z-0 h-auto top-0 flex content-start gap-4 pointer-events-none">
           <Parallax
             w={20}
             style={{
