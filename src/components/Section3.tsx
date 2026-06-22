@@ -5,9 +5,9 @@ import { useState } from "react";
 export default function Section3() {
   const [isActive, setIsActive] = useState(false);
   return (
-    <section className="relative flex flex-col items-center h-[120vh] py-10 px-8 bg-my-cream text-my-black gap-5">
+    <section className="relative flex flex-col items-center h-[120vh] sm:h-[180vh] py-10 px-8 bg-my-cream text-my-black gap-5">
       <h1 className="font-bold text-2xl">Panduan penggunaan</h1>
-      <div className="flex flex-col items-center h-[75vh] gap-10">
+      <div className="flex flex-col items-center h-[75vh] sm:mb-[60vh] gap-10">
         <motion.div //magnetic center container
           className="relative size-40"
           animate={{ y: isActive ? 200 : 0 }}
@@ -86,10 +86,10 @@ export default function Section3() {
 
             {isActive && (
               <div
-                className="absolute flex justify-center gap-3 top-[150%] sm:-bottom-20 sm:z-20 left-[50%] -translate-x-1/2 cursor-pointer"
+                className="absolute flex justify-center gap-3 top-[150%] sm:z-20 left-[50%] -translate-x-1/2 cursor-pointer"
                 onClick={(e) => e.stopPropagation()}
               >
-                <div className="flex flex-col w-45 items-end gap-5">
+                <div className="flex flex-col w-45 sm:flex-row sm:w-[45vw] items-end sm:items-center sm:justify-end gap-5">
                   <motion.div //navigate button
                     className="flex flex-col justify-center items-center text-center size-20 sm:size-12 bg-my-white rounded-full"
                     whileTap={{ scale: 0.8 }}
@@ -107,12 +107,12 @@ export default function Section3() {
                       {/* </CircleChevronDown> */}
                     </Circle>
                   </motion.div>
-                  <h2 className="text-right text-[23px]">
+                  <h2 className="text-right text-[23px] sm:order-first">
                     Klik tombol ini untuk melihat keturunan
                   </h2>
                 </div>
                 <div className="w-1 bg-my-black"></div>
-                <div className="flex flex-col w-45 items-start gap-5">
+                <div className="flex flex-col w-45 sm:flex-row sm:w-[45vw] items-start sm:items-center gap-5">
                   <motion.div //edit button
                     className=" flex flex-col justify-center items-center text-center size-20 sm:size-12 bg-my-white rounded-full"
                     whileTap={{ scale: 0.8 }}

@@ -125,7 +125,7 @@ function Section4() {
 
   return (
     <div className="h-min-[60vh]">
-      <section className="relative flex flex-col h-[80vh] pt-5 px-8  bg-my-cream text-my-black gap-1">
+      <section className="relative flex flex-col h-[80vh] sm:h-[95vh] pt-5 px-8  bg-my-cream text-my-black gap-1">
         {LB.map((line, idx) => {
           const sentenceLength = line.length;
           return (
