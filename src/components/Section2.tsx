@@ -6,15 +6,15 @@ const LB = [
   "Di hamu ompung, tulang nantulang, amangboru namboru, amangtua/uda inangtua/uda, lae dohot ito, anggi dohot akang",
   "Sude na di hita pomparan ni Ompunta Raja Guna",
   "On pe tarombo nang tarbahen sian halongangan tu sistim panuratan pinompar halak batak on.",
-  "Alana molo diparateatehon, songon na pomparan raja di Inggris (alai ninna hita halak batak on sude gellengni raja)",
-  "Antong huhut halilian, gait-gait hubahen web ni on. Anggiat marlapatan.",
+  "Hubereng panuratan partuturan ni on songon na pomparan raja di Inggris (alai ninna hita halak batak on sude gellengni raja)",
+  "Antong huhut mangisi tingki na marlas, gait-gait hubahen web ni on. Anggiat marlapatan.",
 ];
 const LI = [
   "Salam untuk kita semuanya.",
   "Kepada kakek nenek, om tante, saudara-saudara sepantaran, adik dan kakak",
   "Kepada kita semua keluarga besar Ompung Raja Guna",
   "Berikut pohon keluarga yang dibuat dari kekaguman pada sistem pencatatan keturunan orang Batak.",
-  "Karena kalau diperhatikan, seperti keluarga kerajaan di Inggris (tapi ya katanya kita orang Batak semua keturunan raja)",
+  "Kulihat pencatatan silsilah ini seperti keluarga kerajaan di Inggris (tapi ya katanya kita orang Batak semua keturunan raja)",
   "Maka sambil mengisi waktu luang, iseng-iseng saya buat web ini. Semoga bermanfaat.",
 ];
 
