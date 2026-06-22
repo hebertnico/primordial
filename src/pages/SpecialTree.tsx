@@ -58,6 +58,7 @@ function SpecialTree() {
       <AnimatePresence mode="sync">
         {famHead && ( //head
           <motion.div
+            layoutId={head}
             key={famHead.id}
             onLayoutAnimationComplete={() => setExpandId(head)}
             className={`absolute left-[50vw] sm:top-[50vh] w-47 h-32 sm:w-40 sm:h-40 -translate-1/2 ${secondPlace ? "top-[34vh] sm:left-[40vw]" : "top-[61vh] sm:left-[60vw]"}`}
