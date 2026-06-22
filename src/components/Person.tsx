@@ -1,11 +1,5 @@
-import {
-  ChevronDown,
-  ChevronsDown,
-  Circle,
-  CircleChevronDown,
-  Pencil,
-} from "lucide-react";
-import { AnimatePresence, motion } from "motion/react";
+import { ChevronsDown, Circle, Pencil } from "lucide-react";
+import { motion } from "motion/react";
 import { useLayoutEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -24,9 +18,9 @@ function Person({
 }) {
   const navigate = useNavigate();
   const [isDesktop, setIsDesktop] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
-  const longName = person.length > 20;
+  // const [isHovered, setIsHovered] = useState(false);
   const [distance, setDistance] = useState([0, 0]);
+  const longName = person.length > 20;
 
   tubu = (tubu ?? "") === "" ? "dd Mmm YYYY" : tubu;
   // console.log(longName, person.length, person);
@@ -72,7 +66,7 @@ function Person({
       // initial={{ opacity: 0 }}
       animate={{
         // ...animate,
-        ...(isHovered || isActive
+        ...(isActive
           ? {
               // x: distance[0] * 1,
               // y: distance[1] * 0.6,
@@ -86,14 +80,14 @@ function Person({
       //   x: isActive ? 0 : distance[0] - 100,
       //   y: isActive ? 0 : -distance[1],
       // }}
-      transition={{ duration: 0.6 }}
-      onHoverStart={() => {
-        setIsHovered(true);
-      }}
-      onHoverEnd={() => {
-        setIsHovered(false);
-      }}
-      whileHover={{ scale: 1.1 }}
+      transition={{ duration: 0.4 }}
+      // onHoverStart={() => {
+      //   setIsHovered(true);
+      // }}
+      // onHoverEnd={() => {
+      //   setIsHovered(false);
+      // }}
+      whileHover={{ scale: 1.4 }}
       whileTap={{ scale: 0.95 }}
       // exit={exit}
     >
@@ -125,7 +119,7 @@ function Person({
         )}
         <motion.div //circular card, scale up container
           animate={
-            isHovered || isActive
+            isActive
               ? {
                   scale: "var(--activeSize)",
                 }
@@ -136,12 +130,12 @@ function Person({
                 }
           }
           transition={{ duration: 0.4 }}
-          className="relative size-full flex flex-col z-20 items-center bg-my-red border-my-red rounded-full shadow-2xl/80 [--activeSize:2] sm:[--activeSize:1.7]"
+          className="relative size-full flex flex-col z-20 items-center bg-my-red border-my-red rounded-full shadow-2xl/80 [--activeSize:2] sm:[--activeSize:1.4]"
         >
           <motion.div //img container
             className="absolute left-1/2 flex size-full rounded-full bg-my-black -translate-x-1/2 items-center justify-center overflow-hidden [--imgScale:1.5] sm:[--imgScale:1.2] [--yActive:-40%]"
             animate={
-              isHovered || isActive
+              isActive
                 ? {
                     y: "var(--yActive)",
                     scale: "calc(var(--imgScale)/var(--activeSize))",
@@ -160,7 +154,7 @@ function Person({
               }
               alt={person}
               className="size-full object-cover mask-luminance mask-b-from-white mask-b-from-50% mask-b-to-black"
-              style={{ maskMode: isHovered || isActive ? "unset" : "" }}
+              style={{ maskMode: isActive ? "unset" : "" }}
               // onLoad={handleImageLoaded}
             />
           </motion.div>
@@ -168,7 +162,7 @@ function Person({
             className={"absolute flex flex-col text-center items-center"}
             style={{ gap: longName ? 1 : 2 }}
             animate={
-              isHovered || isActive
+              isActive
                 ? { top: longName ? "50%" : "50%" }
                 : { top: longName ? "60%" : "70%" }
             }
@@ -176,7 +170,7 @@ function Person({
             <motion.h2 //name
               className="font-bold wrap-break-word [--activeFontSize:70%] sm:[--activeFontSize:50%] [--longSize:65%] sm:[--longSize:65%] [--activeTop:-100%] md:[--activeTop:-80%] [--activeWidth:78%] md:[--activeWidth:200%] [--activeLongTop:-120%] md:[--activeLongTop:-80%] [--activeLongWidth:75%] md:[--activeLongWidth:41.8vw]"
               animate={
-                isHovered || isActive
+                isActive
                   ? {
                       width: longName ? "75%" : "var(--activeWidth)",
                       fontSize: longName
@@ -193,9 +187,7 @@ function Person({
             </motion.h2>
             <motion.div //tubu, monding container
               className={"flex flex-col text-center w-40 text-[50%]"}
-              animate={
-                isHovered || isActive ? { opacity: 100 } : { opacity: 0 }
-              }
+              animate={isActive ? { opacity: 100 } : { opacity: 0 }}
             >
               <p>
                 Tubu: <span>{tubu}</span>
@@ -210,7 +202,7 @@ function Person({
           </motion.div>
         </motion.div>
 
-        {(isHovered || isActive) && (
+        {isActive && (
           <div className="absolute flex justify-center gap-3 -bottom-full sm:-bottom-20 sm:z-20 left-[50%] -translate-x-1/2 cursor-pointer">
             {hasFam > 0 && (
               <motion.div //navigate button
