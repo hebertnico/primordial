@@ -71,29 +71,29 @@ function Home() {
           <Parallax
             w={20}
             style={{
-              translateY: useTransform(scrollYProgress, [0, 1], [0, -1000]),
+              translateY: useTransform(scrollYProgress, [0, 1], [0, -200]),
             }}
           />
           <Parallax
             w={20}
             style={{
-              translateY: useTransform(scrollYProgress, [0, 1], [0, 400]),
+              translateY: useTransform(scrollYProgress, [0, 1], [0, 200]),
             }}
           />
         </div>
         <svg
           className="absolute bottom-0 w-[101vw]"
           aria-hidden="true"
-          viewBox="0 0 10 9"
+          viewBox="0 0 10 5"
         >
           <motion.polygon
-            points="0,9 0,8 5,0 10,8 10,9"
+            points="0,5 0,4 0,0 10,4 10,5"
             fill="var(--color-my-black)"
             style={{
-              translateY: useTransform(scrollYProgress, [0, 1], [0, 2]),
+              translateY: useTransform(scrollYProgress, [0, 1], [0, 4]),
             }}
           />
-          <polygon points="0,9 5,1 10,9" fill="var(--color-my-cream)" />
+          <polygon points="0,5 10,1 10,5" fill="var(--color-my-cream)" />
           {/* <circle cx="12" cy="12" r="10" fill="var(--color-my-cream)" /> */}
         </svg>
       </section>
