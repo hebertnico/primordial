@@ -25,9 +25,10 @@ function Home() {
   });
 
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 200,
-    damping: 30,
-    restDelta: 0.001,
+    stiffness: 50,
+    bounce: 0,
+    damping: 0,
+    restDelta: 0.01,
   });
 
   return (
@@ -56,13 +57,13 @@ function Home() {
           <Parallax
             w={20}
             style={{
-              translateY: useTransform(smoothProgress, [0, 1], [0, 400]),
+              translateY: useTransform(scrollYProgress, [0, 1], [0, 200]),
             }}
           />
           <Parallax
             w={20}
             style={{
-              translateY: useTransform(smoothProgress, [0, 1], [0, -400]),
+              translateY: useTransform(scrollYProgress, [0, 1], [0, -200]),
             }}
           />
         </div>
@@ -70,13 +71,13 @@ function Home() {
           <Parallax
             w={20}
             style={{
-              translateY: useTransform(smoothProgress, [0, 1], [0, -400]),
+              translateY: useTransform(scrollYProgress, [0, 1], [0, -1000]),
             }}
           />
           <Parallax
             w={20}
             style={{
-              translateY: useTransform(smoothProgress, [0, 1], [0, 400]),
+              translateY: useTransform(scrollYProgress, [0, 1], [0, 400]),
             }}
           />
         </div>
