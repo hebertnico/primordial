@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { ShoppingBag, Menu, X, Home } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
+import { Home } from "lucide-react";
+import { motion } from "motion/react";
 
 const Navbar = () => {
   const [hidden, setHidden] = useState(true);
@@ -46,7 +46,10 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <div className="w-20 h-5 bg-my-cream/80 rounded-b-lg backdrop-blur-md shadow-md z-20" />
+      <motion.div
+        className="w-20 bg-my-cream/80 rounded-b-xl backdrop-blur-md shadow-md z-20"
+        animate={{ height: hidden ? 20 : 0 }}
+      />
     </motion.nav>
   );
 };
