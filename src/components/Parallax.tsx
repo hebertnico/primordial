@@ -5,8 +5,8 @@ export default function Parallax({ w = 10, cn = "", style = {} }) {
     <motion.div className={cn} style={style}>
       <svg
         aria-hidden="true"
-        viewBox="0 0 10 600"
-        style={{ width: w, height: w * 60 }}
+        viewBox="0 0 10 700"
+        style={{ width: w, height: w * 70 }}
         preserveAspectRatio="none"
       >
         <defs>
@@ -43,7 +43,7 @@ export default function Parallax({ w = 10, cn = "", style = {} }) {
             </g>
           </pattern>
         </defs>
-        <rect y="0" width="10" height="644" fill="url(#ribbon)" />
+        <rect y="0" width="10" height="805" fill="url(#ribbon)" />
       </svg>
     </motion.div>
   );

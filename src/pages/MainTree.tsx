@@ -120,7 +120,7 @@ function MainTree() {
             </motion.div>
             <motion.div
               key={spouse[1]?.id}
-              className="absolute top-[36vh] left-[50vw] w-40 h-38 sm:top-[50vh] sm:left-[73vw] sm:w-38 sm:h-38 -translate-1/2"
+              className="absolute top-[64vh] left-[50vw] w-40 h-38 sm:top-[50vh] sm:left-[73vw] sm:w-38 sm:h-38 -translate-1/2"
               style={{ zIndex: spouse[1].id === activeId ? 40 : 10 }}
               initial={{ x: 0, y: 0, opacity: 0 }}
               animate={{ opacity: 1 }}

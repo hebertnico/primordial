@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 const LB = [
-  "Sititi ma sigompa",
+  "Sititip ma sigompa",
   "Golang-golang pangarahutna",
   "Boti ma tarombo na tarpatupa",
   "Pangido maap anggo adong hasalaan panuratanna",
@@ -133,12 +133,12 @@ function Section4() {
           );
         })}
       </section>
-      <section className="relative flex flex-col items-center h-[45vh] py-20 px-8  bg-my-cream text-my-black gap-5">
+      <section className="relative flex flex-col items-center h-[35vh] sm:h-[45vh] py-20 px-8  bg-my-red text-my-cream gap-5">
         <h1 className="font-bold text-lg">
           Klik di sini untuk mulai berkeliling
         </h1>
         <motion.div //navigate button
-          className="flex flex-col min-w-35 min-h-10 p-2 justify-center items-center text-center bg-my-white rounded-full"
+          className="flex flex-col min-w-35 min-h-10 p-2 justify-center items-center text-center bg-my-white text-my-black rounded-full"
           onClick={() => navigate("/RSRP")}
           whileTap={{ scale: 0.8 }}
         >

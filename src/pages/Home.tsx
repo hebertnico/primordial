@@ -10,6 +10,7 @@ import { getNode } from "../utils/treeHelpers";
 import Section2 from "../components/Section2";
 import Section3 from "../components/Section3";
 import Section4 from "../components/Section4";
+import { ChevronsUp } from "lucide-react";
 // import FloatingElement from "./Floating Element";
 // import Attempt from "./Attempt";
 
@@ -32,12 +33,12 @@ function Home() {
   });
 
   return (
-    <div className="min-h-screen overflow-x-hidden">
+    <div className="min-h-screen overflow-x-hidden bg-my-red">
       <section
         ref={containerRef}
         className="relative h-screen sm:h-[150vh] flex items-center justify-center"
       >
-        <div className="fixed top-[40vh] sm:top-[20vh] left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
+        <div className="fixed top-[40vh] sm:top-[20vh] left-1/2 transform -translate-1/2 text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -57,7 +58,7 @@ function Home() {
           <Parallax
             w={20}
             style={{
-              translateY: useTransform(scrollYProgress, [0, 1], [0, 200]),
+              translateY: useTransform(scrollYProgress, [0, 1], [-322, -122]),
             }}
           />
           <Parallax
@@ -77,25 +78,67 @@ function Home() {
           <Parallax
             w={20}
             style={{
-              translateY: useTransform(scrollYProgress, [0, 1], [0, 200]),
+              translateY: useTransform(scrollYProgress, [0, 1], [-322, -122]),
             }}
           />
         </div>
         <svg
-          className="absolute bottom-0 w-[101vw]"
+          className="absolute -bottom-1 w-[101vw]"
           aria-hidden="true"
           viewBox="0 0 10 5"
         >
+          <defs>
+            <filter id="frontShadow" x="0%" y="-10%" width="100%" height="190%">
+              <feDropShadow
+                dx="0"
+                dy="-0.05"
+                stdDeviation="0.08"
+                floodColor="rgba(0,0,0,0.5)"
+              />
+            </filter>
+          </defs>
           <motion.polygon
-            points="0,5 0,4 0,0 10,4 10,5"
+            points="0,5 0,0.5 10,3 10,5"
             fill="var(--color-my-black)"
+            filter="url(#frontShadow)"
             style={{
-              translateY: useTransform(scrollYProgress, [0, 1], [0, 4]),
+              translateY: useTransform(scrollYProgress, [0, 1], [0, 2.5]),
             }}
           />
-          <polygon points="0,5 10,1 10,5" fill="var(--color-my-cream)" />
-          {/* <circle cx="12" cy="12" r="10" fill="var(--color-my-cream)" /> */}
+          <motion.polygon
+            points="0,5 0,3.5 10,1 10,5"
+            fill="var(--color-my-cream)"
+            filter="url(#frontShadow)"
+            style={{
+              translateY: useTransform(scrollYProgress, [0, 1], [0, 2]),
+            }}
+          />
+          <motion.polygon
+            points="0,5 0,1.5 10,4 10,5"
+            fill="var(--color-my-black)"
+            filter="url(#frontShadow)"
+            style={{
+              translateY: useTransform(scrollYProgress, [0, 1], [0, 1.5]),
+            }}
+          />
+          <polygon
+            points="0,5 0,4.5 10,2 10,5"
+            fill="var(--color-my-cream)"
+            filter="url(#frontShadow)"
+          />
         </svg>
+        <motion.div //navigate button
+          className="absolute bottom-[2vh] flex flex-col justify-center items-center text-center size-10 sm:size-12 bg-my-black rounded-full"
+          transition={{
+            duration: 1,
+            repeat: Infinity,
+            repeatType: "mirror",
+          }}
+          initial={{ opacity: 0.6, y: 0 }}
+          animate={{ opacity: 0, y: -15 }}
+        >
+          <ChevronsUp color="var(--color-my-cream)" className="size-8" />
+        </motion.div>
       </section>
       <Section2 />
       <Section3 />

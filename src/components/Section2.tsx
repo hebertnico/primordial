@@ -126,7 +126,7 @@ const Sentence = ({
 };
 function Section2() {
   return (
-    <section className="relative flex flex-col h-[230vh] py-20 px-8  bg-my-cream text-my-black gap-1">
+    <section className="relative flex flex-col h-[250vh] py-20 px-8  bg-my-cream text-my-black gap-1">
       {LB.map((line, idx) => {
         const sentenceLength = line.length;
         return (

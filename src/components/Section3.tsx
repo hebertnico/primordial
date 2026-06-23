@@ -5,9 +5,9 @@ import { useState } from "react";
 export default function Section3() {
   const [isActive, setIsActive] = useState(false);
   return (
-    <section className="relative flex flex-col items-center h-[120vh] sm:h-[180vh] py-10 px-8 bg-my-cream text-my-black gap-5">
+    <section className="relative flex flex-col items-center h-[125vh] sm:h-[180vh] py-10 px-8 bg-my-black text-my-cream gap-5">
       <h1 className="font-bold text-2xl">Panduan penggunaan</h1>
-      <div className="flex flex-col items-center h-[75vh] sm:mb-[60vh] gap-10">
+      <div className="flex flex-col items-center h-[75vh] mb-[20vh] sm:mb-[60vh] gap-10">
         <motion.div //magnetic center container
           className="relative size-40"
           animate={{ y: isActive ? 200 : 0 }}
@@ -111,7 +111,7 @@ export default function Section3() {
                     Klik tombol ini untuk melihat keturunan
                   </h2>
                 </div>
-                <div className="w-1 bg-my-black"></div>
+                <div className="w-1 bg-my-cream"></div>
                 <div className="flex flex-col w-45 sm:flex-row sm:w-[45vw] items-start sm:items-center gap-5">
                   <motion.div //edit button
                     className=" flex flex-col justify-center items-center text-center size-20 sm:size-12 bg-my-white rounded-full"
@@ -136,6 +136,7 @@ export default function Section3() {
       </div>
 
       <h1 className="font-bold text-xl">Menu navigasi</h1>
+      <h1>Klik tab putih di paling atas layar</h1>
       <nav className="w-[98vw] bg-my-cream/80 backdrop-blur-md shadow-md">
         <div className="mx-auto px-2">
           <div className="flex justify-between items-center h-10">
@@ -162,6 +163,7 @@ export default function Section3() {
         Jika profil anda belum ada di tarombo, daftarkan diri anda dengan klik
         "Tambah"
       </h1>
+      <h1>Menu dapat disembunyikan kembali dengan diklik</h1>
     </section>
   );
 }
