@@ -5,7 +5,7 @@ import { useState } from "react";
 export default function Section3() {
   const [isActive, setIsActive] = useState(false);
   return (
-    <section className="relative flex flex-col items-center h-[125vh] sm:h-[180vh] py-10 px-8 bg-my-black text-my-cream gap-5">
+    <section className="relative flex flex-col items-center h-[130vh] sm:h-[180vh] py-10 px-8 bg-my-black text-my-cream gap-5">
       <h1 className="font-bold text-2xl">Panduan penggunaan</h1>
       <div className="flex flex-col items-center h-[75vh] mb-[20vh] sm:mb-[60vh] gap-10">
         <motion.div //magnetic center container

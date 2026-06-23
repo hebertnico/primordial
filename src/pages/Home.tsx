@@ -128,7 +128,7 @@ function Home() {
           />
         </svg>
         <motion.div //navigate button
-          className="absolute bottom-[2vh] flex flex-col justify-center items-center text-center size-10 sm:size-12 bg-my-black rounded-full"
+          className="absolute bottom-[18vh] flex flex-col justify-center items-center text-center size-10 sm:size-12 bg-my-black rounded-full"
           transition={{
             duration: 1,
             repeat: Infinity,
