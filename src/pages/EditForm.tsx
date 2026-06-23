@@ -12,9 +12,10 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase";
 import ImageCropper from "../components/ImageCropper";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useNodeStore } from "../store/nodeStore";
 import LoadingCircle from "../components/LoadingCircle";
+import { CircleArrowLeft } from "lucide-react";
 
 function EditForm() {
   let { id = "" } = useParams();
@@ -31,6 +32,7 @@ function EditForm() {
   const [croppedFile, setCroppedFile] = useState<Blob | null>(null);
 
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const updateNode = useNodeStore((s) => s.updateNode);
 
@@ -141,6 +143,15 @@ function EditForm() {
 
   return (
     <div className="min-h-screen bg-black flex items-center justify-center px-4">
+      <motion.div //back button
+        className="absolute flex items-center justify-center left-5 top-5 bg-my-cream size-15 cursor-pointer rounded-full shadow-2xl/80 z-50"
+        onClick={() => {
+          navigate(-1);
+        }}
+        whileTap={{ scale: 0.8 }}
+      >
+        <CircleArrowLeft size={45} color="var(--color-my-black)" />
+      </motion.div>
       <motion.div className="w-full max-w-md bg-neutral-900 border border-red-600/30 rounded-2xl shadow-2xl p-6">
         <h2 className="text-2xl font-bold text-white mb-6 text-center tracking-wide">
           Ubah Data
