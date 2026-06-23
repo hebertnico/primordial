@@ -1,5 +1,5 @@
 import Cropper from "react-easy-crop";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getCroppedImg } from "../utils/cropImage";
 
 type Props = {
@@ -11,6 +11,16 @@ function ImageCropper({ file, onCropDone }: Props) {
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState<any>(null);
+  const [imageUrl, setImageUrl] = useState("");
+
+  useEffect(() => {
+    const url = URL.createObjectURL(file);
+    setImageUrl(url);
+
+    return () => {
+      URL.revokeObjectURL(url);
+    };
+  }, [file]);
 
   function onCropComplete(_: any, croppedAreaPixels: any) {
     setCroppedAreaPixels(croppedAreaPixels);
@@ -27,7 +37,7 @@ function ImageCropper({ file, onCropDone }: Props) {
     <div className="w-75 h-auto mx-auto flex flex-col justify-center items-center gap-5">
       <div className="relative size-75 overflow-hidden">
         <Cropper
-          image={URL.createObjectURL(file)}
+          image={imageUrl}
           crop={crop}
           zoom={zoom}
           aspect={1}
