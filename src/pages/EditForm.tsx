@@ -14,6 +14,7 @@ import { db } from "../firebase";
 import ImageCropper from "../components/ImageCropper";
 import { useParams } from "react-router-dom";
 import { useNodeStore } from "../store/nodeStore";
+import LoadingCircle from "../components/LoadingCircle";
 
 function EditForm() {
   let { id = "" } = useParams();
@@ -148,14 +149,21 @@ function EditForm() {
           <div //img container
             className="absolute left-1/2 flex size-full rounded-full bg-my-black -translate-x-1/2 items-center justify-center overflow-hidden"
           >
-            {!loading && (
+            {loading ? (
+              <LoadingCircle
+                size={48}
+                strokeWidth={4}
+                color="var(--color-my-cream)"
+              />
+            ) : (
               <img
                 src={
-                  person.image
-                    ? person.image
-                    : person.sex === "F"
-                      ? "/images/def_F.webp"
-                      : "/images/def_M.webp"
+                  croppedFile
+                    ? URL.createObjectURL(croppedFile)
+                    : (person.image ??
+                      (person.sex === "F"
+                        ? "/images/def_F.webp"
+                        : "/images/def_M.webp"))
                 }
                 alt={person.name}
                 className="size-full object-cover"
@@ -222,7 +230,7 @@ function EditForm() {
               file={rawFile}
               onCropDone={(file) => {
                 setCroppedFile(file);
-                // setRawFile(null);
+                setRawFile(null);
               }}
             />
           )}
@@ -230,7 +238,7 @@ function EditForm() {
           {/* Button */}
           <span
             onClick={() => {
-              console.log(rawFile);
+              console.log(croppedFile);
               rawFile != null &&
                 alert(
                   `Upload gambarnya dulu, ${person.sex === "M" ? "amang" : "inang"}`,
