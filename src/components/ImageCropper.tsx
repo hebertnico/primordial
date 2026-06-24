@@ -1,4 +1,4 @@
-import Cropper from "react-easy-crop";
+import Cropper, { type Area } from "react-easy-crop";
 import { useEffect, useState } from "react";
 import { getCroppedImg } from "../utils/cropImage";
 
@@ -10,7 +10,7 @@ type Props = {
 function ImageCropper({ file, onCropDone }: Props) {
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
-  const [croppedAreaPixels, setCroppedAreaPixels] = useState<any>(null);
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area | null>(null);
   const [imageUrl, setImageUrl] = useState("");
 
   useEffect(() => {
@@ -22,7 +22,7 @@ function ImageCropper({ file, onCropDone }: Props) {
     };
   }, [file]);
 
-  function onCropComplete(_: any, croppedAreaPixels: any) {
+  function onCropComplete(_: Area, croppedAreaPixels: Area) {
     setCroppedAreaPixels(croppedAreaPixels);
   }
 
