@@ -30,10 +30,10 @@
     {
       "num" : 4,
       "position": [
-        "sm:top-[20vh] sm:left-[24vw] top-70 left-[28vw] size-38 sm:size-36 -translate-1/2",
-        "sm:top-[20vh] sm:left-[76vw] top-70 left-[72vw] size-38 sm:size-36 -translate-1/2",
-        "sm:top-[80vh] sm:left-[24vw] top-170 left-[28vw] size-38 sm:size-36 -translate-1/2",
-        "sm:top-[80vh] sm:left-[76vw] top-170 left-[72vw] size-38 sm:size-36 -translate-1/2"
+        "sm:top-[20vh] sm:left-[24vw] top-[25vh] left-[28vw] size-38 sm:size-36 -translate-1/2",
+        "sm:top-[20vh] sm:left-[76vw] top-[25vh] left-[72vw] size-38 sm:size-36 -translate-1/2",
+        "sm:top-[80vh] sm:left-[24vw] top-[75vh] left-[28vw] size-38 sm:size-36 -translate-1/2",
+        "sm:top-[80vh] sm:left-[76vw] top-[75vh] left-[72vw] size-38 sm:size-36 -translate-1/2"
       ]
     },
     {
