@@ -1,10 +1,17 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Home } from "lucide-react";
+import { Home, Volume2, VolumeOff } from "lucide-react";
 import { motion } from "motion/react";
 
-const Navbar = () => {
+type Props = {
+  isPlaying: boolean;
+  onPlay: () => void;
+  onPause: () => void;
+};
+
+const Navbar = ({ isPlaying, onPlay, onPause }: Props) => {
   const [hidden, setHidden] = useState(true);
+
   return (
     <motion.nav
       className="fixed top-0 z-100 w-full flex flex-col items-center"
@@ -15,13 +22,32 @@ const Navbar = () => {
       <div className="mx-auto px-4 sm:px-6 lg:px-8 w-full bg-my-cream/80 backdrop-blur-md shadow-md z-10">
         <div className="flex justify-between items-center h-15">
           {/* Desktop Nav */}
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2 gap-2">
             <Link
               to="/"
               className="flex flex-col justify-center items-center text-center"
             >
               <Home color="var(--color-my-black)" size={20} />
             </Link>
+            {isPlaying ? (
+              <Volume2
+                color="var(--color-my-black)"
+                size={20}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onPause();
+                }}
+              />
+            ) : (
+              <VolumeOff
+                color="var(--color-my-black)"
+                size={20}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onPlay();
+                }}
+              />
+            )}
           </div>
           <div className="flex items-center space-x-2 text-my-black">
             <Link
@@ -38,11 +64,6 @@ const Navbar = () => {
             >
               Tambah
             </a>
-            {/* <Link to="/cupcakes" className="text-sm font-bold text-brand-accent hover:text-brand-black transition-colors">CUPCAKES</Link>
-            <Link to="/typing-effect" className="text-sm font-bold text-brand-accent hover:text-brand-black transition-colors">TYPING EFFECT</Link>
-            <Link to="/category/T-Shirts" className="text-sm font-medium hover:text-brand-accent transition-colors">T-SHIRTS</Link>
-            <Link to="/category/Jeans" className="text-sm font-medium hover:text-brand-accent transition-colors">DENIM</Link>
-            <Link to="/category/Outerwear" className="text-sm font-medium hover:text-brand-accent transition-colors">OUTERWEAR</Link> */}
           </div>
         </div>
       </div>

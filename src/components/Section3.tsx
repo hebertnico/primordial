@@ -1,4 +1,4 @@
-import { ChevronsDown, Circle, Home, Pencil } from "lucide-react";
+import { ChevronsDown, Circle, Home, Pencil, Volume2 } from "lucide-react";
 import { motion } from "motion/react";
 import { useState } from "react";
 
@@ -142,8 +142,9 @@ export default function Section3() {
           <div className="flex justify-between items-center h-10">
             {/* Desktop Nav */}
             <div className="flex items-center space-x-2">
-              <div className="flex flex-col justify-center items-center text-center">
+              <div className="flex justify-center items-center text-center gap-4">
                 <Home color="var(--color-my-black)" size={20} />
+                <Volume2 color="var(--color-my-black)" size={20} />
               </div>
             </div>
             <div className="flex items-center space-x-2 text-my-black">
@@ -157,7 +158,8 @@ export default function Section3() {
           </div>
         </div>
       </nav>
-      <h1>Klik logo rumah untuk ke halaman utama</h1>
+      <h1>Klik ikon rumah untuk ke halaman utama</h1>
+      <h1>Klik ikon speaker untuk menjeda/memutar musik</h1>
       <h1>Klik "Tarombo" untuk ke halaman tarombo utama</h1>
       <h1>
         Jika profil anda belum ada di tarombo, daftarkan diri anda dengan klik

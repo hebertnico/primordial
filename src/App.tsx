@@ -7,15 +7,33 @@ import MainTree from "./pages/MainTree";
 import EditForm from "./pages/EditForm";
 import Navbar from "./components/Navbar";
 import { useNodeStore } from "./store/nodeStore";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { loadTree } from "./utils/loadTree";
 import { buildChildrenMap } from "./utils/buildChildrenMap";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "./firebase";
 import SpecialTree from "./pages/SpecialTree";
+import MusicPlayer from "./components/MusicPlayer";
 
 function App() {
   const setTree = useNodeStore((s) => s.setTree);
+
+  const musicRef = useRef<{
+    play: () => Promise<void>;
+    pause: () => void;
+  } | null>(null);
+
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const playMusic = async () => {
+    await musicRef.current?.play();
+    setIsPlaying(true);
+  };
+
+  const pauseMusic = () => {
+    musicRef.current?.pause();
+    setIsPlaying(false);
+  };
 
   useEffect(() => {
     async function init() {
@@ -41,10 +59,20 @@ function App() {
 
   return (
     <div className="flex flex-col h-screen">
-      <Navbar />
+      <Navbar isPlaying={isPlaying} onPlay={playMusic} onPause={pauseMusic} />
       <main className="">
+        <MusicPlayer ref={musicRef} />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route
+            path="/"
+            element={
+              <Home
+                isPlaying={isPlaying}
+                onPlay={playMusic}
+                onPause={pauseMusic}
+              />
+            }
+          />
           {/* <Route path="/upload" element={<UploadImage />} /> */}
           <Route path="/form" element={<PersonForm />} />
           <Route path="/RSRP" element={<MainTree />} />

@@ -3,37 +3,61 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { motion, useScroll, useSpring, useTransform } from "motion/react";
+import {
+  AnimatePresence,
+  motion,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "motion/react";
 import Parallax from "../components/Parallax";
 import { useNodeStore } from "../store/nodeStore";
 import { getNode } from "../utils/treeHelpers";
 import Section2 from "../components/Section2";
 import Section3 from "../components/Section3";
 import Section4 from "../components/Section4";
-import { ChevronsUp } from "lucide-react";
+import { ChevronsUp, Volume2 } from "lucide-react";
 // import FloatingElement from "./Floating Element";
 // import Attempt from "./Attempt";
 
 // const LOREM_IPSUM = "Horas ma di hita saluhutna.";
 // const LOREM_IPSUM2 = "Salam untuk kita semuanya.";
+type Props = {
+  isPlaying: boolean;
+  onPlay: () => void;
+  onPause: () => void;
+};
 
-function Home() {
+function Home({ isPlaying, onPlay, onPause }: Props) {
   // const navigate = useNavigate();
   const containerRef = useRef<HTMLDivElement>(null);
+  const [start, setStart] = useState(true);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
   });
 
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 50,
-    bounce: 0,
-    damping: 0,
-    restDelta: 0.01,
-  });
-
   return (
     <div className="min-h-screen overflow-x-hidden bg-my-red">
+      <AnimatePresence>
+        {start && (
+          <motion.div
+            className="fixed flex flex-col justify-center items-center h-screen w-screen bg-my-black z-999 p-10"
+            onClick={() => {
+              setStart(false);
+              onPlay();
+            }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Volume2 size={170} color="var(--color-my-cream)" />
+            <h1 className="text-2xl text-my-cream">
+              Web ini menggunakan musik, gunakan earphone untuk pengalaman lebih
+              baik.
+            </h1>
+          </motion.div>
+        )}
+      </AnimatePresence>
       <section
         ref={containerRef}
         className="relative h-screen sm:h-[150vh] flex items-center justify-center"
@@ -127,17 +151,27 @@ function Home() {
             filter="url(#frontShadow)"
           />
         </svg>
-        <motion.div //navigate button
-          className="absolute bottom-[18vh] flex flex-col justify-center items-center text-center size-10 sm:size-12 bg-my-black rounded-full"
-          transition={{
-            duration: 1,
-            repeat: Infinity,
-            repeatType: "mirror",
+        <motion.div
+          className="flex flex-col justify-center items-center"
+          style={{
+            opacity: useTransform(scrollYProgress, [0, 0.03], [1, 0]),
           }}
-          initial={{ opacity: 0.6, y: 0 }}
-          animate={{ opacity: 0, y: -15 }}
         >
-          <ChevronsUp color="var(--color-my-cream)" className="size-8" />
+          <motion.div //scroll icon
+            className="absolute bottom-[20vh] sm:bottom-[53vh] flex flex-col justify-center items-center text-center size-10 sm:size-12 bg-my-black rounded-full"
+            transition={{
+              duration: 1,
+              repeat: Infinity,
+              repeatType: "mirror",
+            }}
+            initial={{ opacity: 0.6, y: 0 }}
+            animate={{ opacity: 0, y: -15 }}
+          >
+            <ChevronsUp color="var(--color-my-cream)" className="size-8" />
+          </motion.div>
+          <h2 className="absolute bottom-[17vh] text-my-cream sm:opacity-0">
+            geser ke atas
+          </h2>
         </motion.div>
       </section>
       <Section2 />
