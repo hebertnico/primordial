@@ -133,6 +133,9 @@ function EditForm() {
       });
       await setDoc(doc(db, "person", id), data);
 
+      setRawFile(null);
+      setCroppedFile(null);
+
       alert("Data berhasil diubah");
     } catch (err) {
       console.error(err);
