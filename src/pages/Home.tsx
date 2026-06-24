@@ -52,9 +52,10 @@ function Home({ isPlaying, onPlay, onPause }: Props) {
           >
             <Volume2 size={170} color="var(--color-my-cream)" />
             <h1 className="text-2xl text-my-cream">
-              Web ini menggunakan musik, gunakan earphone untuk pengalaman lebih
-              baik.
+              Web ini menggunakan musik, gunakan earphone untuk pengalaman yang
+              lebih baik.
             </h1>
+            <h1 className="mt-10 text-lg text-my-cream">Klik untuk lanjut</h1>
           </motion.div>
         )}
       </AnimatePresence>
