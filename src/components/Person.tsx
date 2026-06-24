@@ -159,11 +159,13 @@ function Person({
             />
           </motion.div>
           <motion.div //text container
-            className={"absolute flex flex-col text-center items-center"}
+            className={
+              "absolute flex flex-col text-center items-center [--top:50%] sm:[--top:55%]"
+            }
             style={{ gap: longName ? 1 : 2 }}
             animate={
               isActive
-                ? { top: longName ? "50%" : "50%" }
+                ? { top: "var(--top)" }
                 : { top: longName ? "60%" : "70%" }
             }
           >
