@@ -15,7 +15,7 @@ const LI = [
   "Kepada kita semua keluarga besar Ompung Raja Guna",
   "Berikut pohon keluarga yang dibuat dari kekaguman pada sistem pencatatan keturunan orang Batak.",
   "Kulihat pencatatan silsilah ini seperti keluarga kerajaan di Inggris (tapi ya katanya kita orang Batak semua keturunan raja)",
-  "Maka sambil mengisi waktu luang, iseng-iseng saya buat web ini. Semoga bermanfaat.",
+  "Maka sambil mengisi waktu luang, iseng-iseng kubuat web ini. Semoga bermanfaat.",
 ];
 
 const Letter = ({

@@ -5,7 +5,7 @@ import { useState } from "react";
 export default function Section3() {
   const [isActive, setIsActive] = useState(false);
   return (
-    <section className="relative flex flex-col items-center h-[130vh] sm:h-[180vh] py-10 px-8 bg-my-black text-my-cream gap-5">
+    <section className="relative flex flex-col items-center h-[135vh] sm:h-[185vh] py-10 px-8 bg-my-black text-my-cream gap-5">
       <h1 className="font-bold text-2xl">Panduan penggunaan</h1>
       <div className="flex flex-col items-center h-[75vh] mb-[20vh] sm:mb-[60vh] gap-10">
         <motion.div //magnetic center container
@@ -48,7 +48,7 @@ export default function Section3() {
                 }
               >
                 <img
-                  src={"/images/def_M.webp"}
+                  src={"/images/def_F.webp"}
                   alt="example"
                   className="size-full object-cover mask-luminance mask-b-from-white mask-b-from-50% mask-b-to-black"
                   style={{ maskMode: isActive ? "unset" : "" }}
@@ -78,7 +78,7 @@ export default function Section3() {
                   className={"flex flex-col text-center w-40 text-[50%]"}
                   animate={isActive ? { opacity: 100 } : { opacity: 0 }}
                 >
-                  <p>Tubu: dd MMM yyyy</p>
+                  <p>Tubu: 21 Feb 1972</p>
                   <p className=" text-[90%]">Monding: dd MMM yyyy</p>
                 </motion.div>
               </motion.div>
