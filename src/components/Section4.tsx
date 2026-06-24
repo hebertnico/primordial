@@ -3,13 +3,13 @@ import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 const LB = [
-  "Sititip ma sigompa",
+  "Sititi ma sigompa",
   "Golang-golang pangarahutna",
   "Boti ma tarombo na tarpatupa",
   "Pangido maap anggo adong hasalaan panuratanna",
 ];
 const LI = [
-  "Pahat penyadap getah kemenyan",
+  "Kecilnya sigompa itu",
   "Gelang-gelang besi jadi pengikatnya",
   "Demikianlah pohon keluarga yang tersedia",
   "Mohon maaf jika ada kesalahan penulisannya",
