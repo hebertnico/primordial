@@ -21,6 +21,8 @@ function EditForm() {
   let { id = "" } = useParams();
 
   const nodes = useNodeStore((s) => s.nodes);
+  const state = useNodeStore.getState();
+
   const person = nodes[id];
   // const [person, setPerson] = useState<Record<string, any>>({});
   const [name, setName] = useState("");
@@ -123,7 +125,32 @@ function EditForm() {
         image: finalImageUrl,
       };
 
+      if (person.niain) {
+        const niainData = { ...data, niain: true };
+        console.log("Saving person:", niainData);
+        await setDoc(doc(db, "person", id), niainData);
+        await setDoc(doc(db, "metadata", "cache"), {
+          version: state.treeVersion + 1,
+        });
+
+        updateNode(id, {
+          name: modifiedName,
+          sibOrder: sibOrder,
+          tubu: tubu ?? null,
+          monding: monding ?? null,
+          image: finalImageUrl,
+          niain: true,
+        });
+        alert("Data berhasil diubah");
+
+        return;
+      }
       console.log("Saving person:", data);
+      await setDoc(doc(db, "person", id), data);
+      await setDoc(doc(db, "metadata", "cache"), {
+        version: state.treeVersion + 1,
+      });
+
       updateNode(id, {
         name: modifiedName,
         sibOrder: sibOrder,
@@ -131,17 +158,16 @@ function EditForm() {
         monding: monding ?? null,
         image: finalImageUrl,
       });
-      await setDoc(doc(db, "person", id), data);
-
-      setRawFile(null);
-      setCroppedFile(null);
 
       alert("Data berhasil diubah");
     } catch (err) {
       console.error(err);
       alert("Error adding node");
+    } finally {
+      setRawFile(null);
+      setCroppedFile(null);
+      setLoading(false);
     }
-    setLoading(false);
   }
 
   return (

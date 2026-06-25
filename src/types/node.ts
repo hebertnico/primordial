@@ -8,4 +8,5 @@ export interface NodeData {
   tubu: string | null;
   monding: string | null;
   spouse: string[] | null;
+  niain: boolean | undefined;
 }

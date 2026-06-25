@@ -123,6 +123,7 @@ function PersonForm() {
         spouse: spouseArray,
         parentId: parentId || null,
         image: finalImageUrl,
+        niain: false,
       });
       await setDoc(doc(db, "person", id), data);
 
