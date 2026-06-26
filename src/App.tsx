@@ -24,7 +24,15 @@ function App() {
   } | null>(null);
 
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(() => {
+    const saved = localStorage.getItem("isDesktop");
+    if (saved !== null) return JSON.parse(saved);
+    return window.innerWidth / 2 >= 470;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("isDesktop", JSON.stringify(isDesktop));
+  }, [isDesktop]);
 
   const playMusic = async () => {
     await musicRef.current?.play();
@@ -35,18 +43,6 @@ function App() {
     musicRef.current?.pause();
     setIsPlaying(false);
   };
-
-  const measure = () => {
-    setTimeout(() => {
-      const cx = window.innerWidth / 2;
-
-      setIsDesktop(cx >= 470);
-    }, 30);
-  };
-
-  useEffect(() => {
-    measure();
-  }, []);
 
   useEffect(() => {
     async function init() {
