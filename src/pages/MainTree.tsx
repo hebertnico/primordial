@@ -2,13 +2,11 @@ import { useEffect, useState } from "react";
 import Person from "../components/Person";
 import position from "../data/position.json" with { type: "json" };
 
-import { AnimatePresence, motion, scale } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { useNodeStore } from "../store/nodeStore";
 import { getChildren, getSpouses } from "../utils/treeHelpers";
 
-// let posA: string[] = [];
-// let posB: string[] = [];
-function MainTree() {
+function MainTree({ isDesktop = false }) {
   const [loading, setLoading] = useState(true);
   const [activeId, setActiveId] = useState<string>("");
   const [expandId, setExpandId] = useState<string>("");
@@ -28,8 +26,6 @@ function MainTree() {
     if (rg1.length > 0 && rg2.length > 0) {
       setPosA(position.children[8]?.position);
       setPosB(position.children[9]?.position);
-      // posA = position.children[8]?.position;
-      // posB = position.children[9]?.position;
       setLoading(false);
     }
   }, []);
@@ -43,10 +39,28 @@ function MainTree() {
         {famHead && ( //head
           <motion.div
             key={famHead.id}
-            className="absolute top-[50vh] left-[50vw] w-47 h-32 sm:w-40 sm:h-40 -translate-1/2"
+            className="absolute flex place-content-center top-[50vh] left-[50vw] w-47 h-32 sm:w-[40vh] sm:h-[40vh] -translate-1/2"
             style={{ zIndex: famHead.id === activeId ? 40 : 20 }}
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            animate={
+              famHead.id === activeId
+                ? isDesktop
+                  ? {
+                      opacity: 1,
+                      height: "50vh",
+                      width: "50vh",
+                    }
+                  : {
+                      top: "50vh",
+                      left: "50vw",
+                      height: "40vw",
+                      width: "40vw",
+                      opacity: 1,
+                    }
+                : {
+                    opacity: 1,
+                  }
+            }
             transition={{ duration: 0.4 }}
             exit={{ opacity: 0 }}
             whileHover={{ zIndex: 40 }}
@@ -75,6 +89,7 @@ function MainTree() {
                     })
                   : ""
               }
+              isDesktop={isDesktop}
               isActive={famHead.id === activeId ? true : false}
             />
           </motion.div>
@@ -82,11 +97,32 @@ function MainTree() {
         {spouse && ( //spouse
           <div>
             <motion.div
+              layout
               key={spouse[0]?.id}
-              className="absolute top-[36vh] left-[50vw] sm:top-[50vh] sm:left-[27vw] w-40 h-38 sm:w-38 sm:h-38 -translate-1/2"
-              style={{ zIndex: spouse[0].id === activeId ? 40 : 10 }}
+              className="absolute flex place-content-center top-[36vh] left-[50vw] sm:top-[50vh] sm:left-[27vw] w-40 h-38 sm:w-[35vh] sm:h-[35vh] -translate-1/2"
+              style={
+                spouse[0].id === activeId ? { zIndex: 40 } : { zIndex: 10 }
+              }
               initial={{ x: 0, y: 0, opacity: 0 }}
-              animate={{ opacity: 1 }}
+              animate={
+                spouse[0].id === activeId
+                  ? isDesktop
+                    ? {
+                        opacity: 1,
+                        height: "50vh",
+                        width: "50vh",
+                      }
+                    : {
+                        top: "50vh",
+                        left: "50vw",
+                        height: "40vw",
+                        width: "40vw",
+                        opacity: 1,
+                      }
+                  : {
+                      opacity: 1,
+                    }
+              }
               transition={{ duration: 0.4 }}
               exit={{ opacity: 0 }}
               whileHover={{ zIndex: 40 }}
@@ -115,15 +151,34 @@ function MainTree() {
                       })
                     : ""
                 }
+                isDesktop={isDesktop}
                 isActive={spouse[0].id === activeId ? true : false}
               />
             </motion.div>
             <motion.div
               key={spouse[1]?.id}
-              className="absolute top-[64vh] left-[50vw] w-40 h-38 sm:top-[50vh] sm:left-[73vw] sm:w-38 sm:h-38 -translate-1/2"
+              className="absolute flex place-content-center top-[64vh] left-[50vw] w-40 h-38 sm:top-[50vh] sm:left-[73vw] sm:w-[35vh] sm:h-[35vh] -translate-1/2"
               style={{ zIndex: spouse[1].id === activeId ? 40 : 10 }}
               initial={{ x: 0, y: 0, opacity: 0 }}
-              animate={{ opacity: 1 }}
+              animate={
+                spouse[1].id === activeId
+                  ? isDesktop
+                    ? {
+                        opacity: 1,
+                        height: "50vh",
+                        width: "50vh",
+                      }
+                    : {
+                        top: "50vh",
+                        left: "50vw",
+                        height: "40vw",
+                        width: "40vw",
+                        opacity: 1,
+                      }
+                  : {
+                      opacity: 1,
+                    }
+              }
               transition={{ duration: 0.4 }}
               exit={{ opacity: 0 }}
               whileHover={{ zIndex: 40 }}
@@ -152,6 +207,7 @@ function MainTree() {
                       })
                     : ""
                 }
+                isDesktop={isDesktop}
                 isActive={spouse[1].id === activeId ? true : false}
               />
             </motion.div>
@@ -166,10 +222,28 @@ function MainTree() {
               //   zRef.current[index] = el;
               // }}
               key={person.id}
-              className={`${posA[person.sibOrder - 1]} absolute`}
+              className={`${posA[person.sibOrder - 1]} absolute flex place-content-center`}
               style={{ zIndex: person.id === activeId ? 40 : 10 }}
               initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+              animate={
+                person.id === activeId
+                  ? isDesktop
+                    ? {
+                        opacity: 1,
+                        height: "50vh",
+                        width: "50vh",
+                      }
+                    : {
+                        top: "50vh",
+                        left: "50vw",
+                        height: "40vw",
+                        width: "40vw",
+                        opacity: 1,
+                      }
+                  : {
+                      opacity: 1,
+                    }
+              }
               transition={{ duration: 0.4 }}
               exit={{ opacity: 0 }}
               whileHover={{ zIndex: 40 }}
@@ -201,6 +275,7 @@ function MainTree() {
                     : ""
                 }
                 hasFam={person.spouse?.length}
+                isDesktop={isDesktop}
                 isActive={person.id === activeId ? true : false}
               />
             </motion.div>
@@ -214,10 +289,28 @@ function MainTree() {
               //   zRef.current[index] = el;
               // }}
               key={person.id}
-              className={`${posB[person.sibOrder - 1]} absolute`}
+              className={`${posB[person.sibOrder - 1]} absolute flex place-content-center`}
               style={{ zIndex: person.id === activeId ? 40 : 10 }}
               initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+              animate={
+                person.id === activeId
+                  ? isDesktop
+                    ? {
+                        opacity: 1,
+                        height: "50vh",
+                        width: "50vh",
+                      }
+                    : {
+                        top: "50vh",
+                        left: "50vw",
+                        height: "40vw",
+                        width: "40vw",
+                        opacity: 1,
+                      }
+                  : {
+                      opacity: 1,
+                    }
+              }
               transition={{ duration: 0.4 }}
               exit={{ opacity: 0 }}
               whileHover={{ zIndex: 40 }}
@@ -249,6 +342,7 @@ function MainTree() {
                     : ""
                 }
                 hasFam={person.spouse?.length}
+                isDesktop={isDesktop}
                 isActive={person.id === activeId ? true : false}
               />
             </motion.div>

@@ -24,6 +24,7 @@ function App() {
   } | null>(null);
 
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   const playMusic = async () => {
     await musicRef.current?.play();
@@ -34,6 +35,18 @@ function App() {
     musicRef.current?.pause();
     setIsPlaying(false);
   };
+
+  const measure = () => {
+    setTimeout(() => {
+      const cx = window.innerWidth / 2;
+
+      setIsDesktop(cx >= 470);
+    }, 30);
+  };
+
+  useEffect(() => {
+    measure();
+  }, []);
 
   useEffect(() => {
     async function init() {
@@ -75,9 +88,12 @@ function App() {
           />
           {/* <Route path="/upload" element={<UploadImage />} /> */}
           <Route path="/form" element={<PersonForm />} />
-          <Route path="/RSRP" element={<MainTree />} />
-          <Route path="/tree/:head" element={<Tree />} />
-          <Route path="/tree2/:head" element={<SpecialTree />} />
+          <Route path="/RSRP" element={<MainTree isDesktop={isDesktop} />} />
+          <Route path="/tree/:head" element={<Tree isDesktop={isDesktop} />} />
+          <Route
+            path="/tree2/:head"
+            element={<SpecialTree isDesktop={isDesktop} />}
+          />
           <Route path="/edit/:id" element={<EditForm />} />
           {/* <Route path=":head" element={<TreeG1 />}></Route> */}
         </Routes>

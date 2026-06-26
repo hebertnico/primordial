@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import Person from "../components/Person";
 import { useNavigate, useParams } from "react-router-dom";
 import position from "../data/position.json" with { type: "json" };
-import { AnimatePresence, motion, scale } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { CircleArrowLeft } from "lucide-react";
 import { useNodeStore } from "../store/nodeStore";
-import { getChildren, getNode, getSpouses } from "../utils/treeHelpers";
+import { getChildren, getSpouses } from "../utils/treeHelpers";
 
-function Tree() {
+function Tree({ isDesktop = false }) {
   const [loading, setLoading] = useState(true);
   const [activeId, setActiveId] = useState<string>("");
   const [expandId, setExpandId] = useState<string>("");
@@ -51,10 +51,28 @@ function Tree() {
             layoutId={head}
             onLayoutAnimationComplete={() => setExpandId(head)}
             key={famHead.id}
-            className="absolute top-[50vh] left-[27vw] sm:left-[40vw] sm:top-[46vh] size-38 sm:size-40 -translate-1/2"
+            className="absolute flex place-content-center top-[50vh] left-[27vw] sm:left-[40vw] sm:top-[46vh] size-38 sm:size-40 -translate-1/2"
             style={{ zIndex: famHead.id === activeId ? 40 : 20 }}
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            animate={
+              famHead.id === activeId
+                ? isDesktop
+                  ? {
+                      opacity: 1,
+                      height: "50vh",
+                      width: "50vh",
+                    }
+                  : {
+                      top: "50vh",
+                      left: "50vw",
+                      height: "40vw",
+                      width: "40vw",
+                      opacity: 1,
+                    }
+                : {
+                    opacity: 1,
+                  }
+            }
             transition={{ duration: 0.4 }}
             exit={{ opacity: 0 }}
             whileHover={{ zIndex: 40 }}
@@ -84,6 +102,7 @@ function Tree() {
                     })
                   : ""
               }
+              isDesktop={isDesktop}
               isActive={famHead.id === activeId ? true : false}
             />
           </motion.div>
@@ -92,10 +111,28 @@ function Tree() {
         {spouse && ( //spouse
           <motion.div
             key={spouse[0]?.id}
-            className="absolute top-[50vh] left-[73vw] sm:left-[60vw] sm:top-[46vh] size-38 sm:size-40 -translate-1/2"
+            className="absolute flex place-content-center top-[50vh] left-[73vw] sm:left-[60vw] sm:top-[46vh] size-38 sm:size-40 -translate-1/2"
             style={{ zIndex: spouse[0].id === activeId ? 40 : 20 }}
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            animate={
+              spouse[0].id === activeId
+                ? isDesktop
+                  ? {
+                      opacity: 1,
+                      height: "50vh",
+                      width: "50vh",
+                    }
+                  : {
+                      top: "50vh",
+                      left: "50vw",
+                      height: "40vw",
+                      width: "40vw",
+                      opacity: 1,
+                    }
+                : {
+                    opacity: 1,
+                  }
+            }
             transition={{ duration: 0.4 }}
             exit={{ opacity: 0 }}
             whileHover={{ zIndex: 40 }}
@@ -124,6 +161,7 @@ function Tree() {
                     })
                   : ""
               }
+              isDesktop={isDesktop}
               isActive={spouse[0].id === activeId ? true : false}
             />
           </motion.div>
@@ -138,11 +176,29 @@ function Tree() {
               //   zRef.current[index] = el;
               // }}
               key={person.id}
-              className={`${posA[person.sibOrder - 1]} absolute`}
+              className={`${posA[person.sibOrder - 1]} absolute flex place-content-center`}
               style={{ zIndex: person.id === activeId ? 40 : 10 }}
               // initial={{ x: "50vw", y: "50vh" }}
               initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+              animate={
+                person.id === activeId
+                  ? isDesktop
+                    ? {
+                        opacity: 1,
+                        height: "50vh",
+                        width: "50vh",
+                      }
+                    : {
+                        top: "50vh",
+                        left: "50vw",
+                        height: "40vw",
+                        width: "40vw",
+                        opacity: 1,
+                      }
+                  : {
+                      opacity: 1,
+                    }
+              }
               transition={{ duration: 0.4 }}
               exit={{ opacity: 0 }}
               whileHover={{ zIndex: 40 }}
@@ -175,6 +231,7 @@ function Tree() {
                     : ""
                 }
                 hasFam={person.spouse?.length}
+                isDesktop={isDesktop}
                 isActive={person.id === activeId ? true : false}
               />
             </motion.div>

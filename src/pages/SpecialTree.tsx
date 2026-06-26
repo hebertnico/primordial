@@ -8,7 +8,7 @@ import { getChildren, getSpouses } from "../utils/treeHelpers";
 import { useNavigate, useParams } from "react-router-dom";
 import { CircleArrowLeft } from "lucide-react";
 
-function SpecialTree() {
+function SpecialTree({ isDesktop = false }) {
   const [loading, setLoading] = useState(true);
   const [activeId, setActiveId] = useState<string>("");
   const [expandId, setExpandId] = useState<string>("");
@@ -61,12 +61,30 @@ function SpecialTree() {
             layoutId={head}
             key={famHead.id}
             onLayoutAnimationComplete={() => setExpandId(head)}
-            className={`absolute left-[50vw] sm:top-[50vh] w-47 h-32 sm:w-40 sm:h-40 -translate-1/2 ${secondPlace ? "top-[34vh] sm:left-[40vw]" : "top-[61vh] sm:left-[60vw]"}`}
+            className={`absolute flex place-content-center left-[50vw] sm:top-[50vh] w-47 h-32 sm:w-40 sm:h-40 -translate-1/2 ${secondPlace ? "top-[34vh] sm:left-[40vw]" : "top-[61vh] sm:left-[60vw]"}`}
             style={{
               zIndex: famHead.id === activeId ? 40 : 20,
             }}
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            animate={
+              famHead.id === activeId
+                ? isDesktop
+                  ? {
+                      opacity: 1,
+                      height: "50vh",
+                      width: "50vh",
+                    }
+                  : {
+                      top: "50vh",
+                      left: "50vw",
+                      height: "40vw",
+                      width: "40vw",
+                      opacity: 1,
+                    }
+                : {
+                    opacity: 1,
+                  }
+            }
             transition={{ duration: 0.4 }}
             exit={{ opacity: 0 }}
             whileHover={{ zIndex: 40 }}
@@ -96,6 +114,7 @@ function SpecialTree() {
                     })
                   : ""
               }
+              isDesktop={isDesktop}
               isActive={famHead.id === activeId ? true : false}
             />
           </motion.div>
@@ -104,12 +123,30 @@ function SpecialTree() {
           <div>
             <motion.div
               key={spouse[0]?.id}
-              className={`absolute left-[50vw] sm:top-[50vh] size-38 -translate-1/2 ${secondPlace ? "top-[20vh]  sm:left-[24vw]" : "top-[48vh] sm:left-[44vw]"}`}
+              className={`absolute flex place-content-center left-[50vw] sm:top-[50vh] size-38 -translate-1/2 ${secondPlace ? "top-[20vh]  sm:left-[24vw]" : "top-[48vh] sm:left-[44vw]"}`}
               style={{
                 zIndex: spouse[0].id === activeId ? 40 : 10,
               }}
               initial={{ x: 0, y: 0, opacity: 0 }}
-              animate={{ opacity: 1 }}
+              animate={
+                spouse[0].id === activeId
+                  ? isDesktop
+                    ? {
+                        opacity: 1,
+                        height: "50vh",
+                        width: "50vh",
+                      }
+                    : {
+                        top: "50vh",
+                        left: "50vw",
+                        height: "40vw",
+                        width: "40vw",
+                        opacity: 1,
+                      }
+                  : {
+                      opacity: 1,
+                    }
+              }
               transition={{ duration: 0.4 }}
               exit={{ opacity: 0 }}
               whileHover={{ zIndex: 40 }}
@@ -138,17 +175,36 @@ function SpecialTree() {
                       })
                     : ""
                 }
+                isDesktop={isDesktop}
                 isActive={spouse[0].id === activeId ? true : false}
               />
             </motion.div>
             <motion.div
               key={spouse[1]?.id}
-              className={`absolute left-[50vw] sm:top-[50vh] size-38 -translate-1/2 ${secondPlace ? "top-[46vh] sm:left-[55vw] " : "top-[74vh] sm:left-[75vw]"}`}
+              className={`absolute flex place-content-center left-[50vw] sm:top-[50vh] size-38 -translate-1/2 ${secondPlace ? "top-[46vh] sm:left-[55vw] " : "top-[74vh] sm:left-[75vw]"}`}
               style={{
                 zIndex: spouse[1].id === activeId ? 40 : 10,
               }}
               initial={{ x: 0, y: 0, opacity: 0 }}
-              animate={{ opacity: 1 }}
+              animate={
+                spouse[1].id === activeId
+                  ? isDesktop
+                    ? {
+                        opacity: 1,
+                        height: "50vh",
+                        width: "50vh",
+                      }
+                    : {
+                        top: "50vh",
+                        left: "50vw",
+                        height: "40vw",
+                        width: "40vw",
+                        opacity: 1,
+                      }
+                  : {
+                      opacity: 1,
+                    }
+              }
               transition={{ duration: 0.4 }}
               exit={{ opacity: 0 }}
               whileHover={{ zIndex: 40 }}
@@ -177,6 +233,7 @@ function SpecialTree() {
                       })
                     : ""
                 }
+                isDesktop={isDesktop}
                 isActive={spouse[1].id === activeId ? true : false}
               />
             </motion.div>
@@ -195,10 +252,28 @@ function SpecialTree() {
                 //   zRef.current[index] = el;
                 // }}
                 key={person.id}
-                className={`${posA[person.sibOrder - 1]} absolute`}
+                className={`${posA[person.sibOrder - 1]} absolute flex place-content-center`}
                 style={{ zIndex: person.id === activeId ? 40 : 10 }}
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
+                animate={
+                  person.id === activeId
+                    ? isDesktop
+                      ? {
+                          opacity: 1,
+                          height: "50vh",
+                          width: "50vh",
+                        }
+                      : {
+                          top: "50vh",
+                          left: "50vw",
+                          height: "40vw",
+                          width: "40vw",
+                          opacity: 1,
+                        }
+                    : {
+                        opacity: 1,
+                      }
+                }
                 transition={{ duration: 0.4 }}
                 exit={{ opacity: 0 }}
                 whileHover={{ zIndex: 40 }}
@@ -230,6 +305,7 @@ function SpecialTree() {
                       : ""
                   }
                   hasFam={person.spouse?.length}
+                  isDesktop={isDesktop}
                   isActive={person.id === activeId ? true : false}
                 />
               </motion.div>
@@ -248,10 +324,28 @@ function SpecialTree() {
                 //   zRef.current[index] = el;
                 // }}
                 key={person.id}
-                className={`${posB[person.sibOrder - 1]} absolute`}
+                className={`${posB[person.sibOrder - 1]} absolute flex place-content-center`}
                 style={{ zIndex: person.id === activeId ? 40 : 10 }}
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
+                animate={
+                  person.id === activeId
+                    ? isDesktop
+                      ? {
+                          opacity: 1,
+                          height: "50vh",
+                          width: "50vh",
+                        }
+                      : {
+                          top: "50vh",
+                          left: "50vw",
+                          height: "40vw",
+                          width: "40vw",
+                          opacity: 1,
+                        }
+                    : {
+                        opacity: 1,
+                      }
+                }
                 transition={{ duration: 0.4 }}
                 exit={{ opacity: 0 }}
                 whileHover={{ zIndex: 40 }}
@@ -283,6 +377,7 @@ function SpecialTree() {
                       : ""
                   }
                   hasFam={person.spouse?.length}
+                  isDesktop={isDesktop}
                   isActive={person.id === activeId ? true : false}
                 />
               </motion.div>

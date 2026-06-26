@@ -2,6 +2,7 @@ import { ChevronsDown, Circle, Pencil } from "lucide-react";
 import { motion } from "motion/react";
 import { useLayoutEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import LoadingCircle from "./LoadingCircle";
 
 function Person({
   id = "",
@@ -15,12 +16,12 @@ function Person({
   isActive = false,
   hasFam = 0,
   niain = false,
+  isDesktop = false,
 }) {
   const navigate = useNavigate();
-  const [isDesktop, setIsDesktop] = useState(false);
-  // const [isHovered, setIsHovered] = useState(false);
   const [distance, setDistance] = useState([0, 0]);
   const longName = person.length > 20;
+  const [loading, setLoading] = useState(true);
 
   tubu = (tubu ?? "") === "" ? "dd Mmm YYYY" : tubu;
   // console.log(longName, person.length, person);
@@ -37,8 +38,6 @@ function Person({
       const cx = window.innerWidth / 2;
       const cy = window.innerHeight / 2;
 
-      setIsDesktop(cx >= 470);
-
       const ex = rect.left + rect.width / 2;
       const ey = rect.top + rect.height / 2;
 
@@ -48,8 +47,9 @@ function Person({
 
   // const handleImageLoaded = () => {
   useLayoutEffect(() => {
-    measure();
-    // };
+    if (isDesktop) {
+      measure();
+    }
   }, [expanded]);
 
   return (
@@ -58,7 +58,7 @@ function Person({
       // layoutId={id}
       ref={ref}
       // onLayoutAnimationComplete={() => measure()}
-      className="relative w-full h-full [--x-factor:0.6] [--y-factor:0.6] sm:[--x-factor:0.2] sm:[--y-factor:0.8] "
+      className="relative w-full h-full"
       // initial={{
       //   x: distance[0] - 100,
       //   y: -distance[1],
@@ -67,13 +67,20 @@ function Person({
       animate={{
         // ...animate,
         ...(isActive
-          ? {
-              // x: distance[0] * 1,
-              // y: distance[1] * 0.6,
-              x: `calc(${distance[0]}px * var(--x-factor))`,
-              y: `calc(${distance[1]}px * var(--y-factor))`,
-              height: ref.current?.clientWidth,
-            }
+          ? isDesktop
+            ? {
+                // x: distance[0] * 1,
+                // y: distance[1] * 0.6,
+                x: `calc(${distance[0]}px * 0.8)`,
+                y: `calc(${distance[1]}px * 0.8)`,
+                height: "50vh",
+                width: "50vh",
+              }
+            : {
+                height: "40vw",
+                width: "40vw",
+                translateX: 0,
+              }
           : { x: 0, y: 0, height: "100%" }),
       }}
       // exit={{
@@ -87,7 +94,7 @@ function Person({
       // onHoverEnd={() => {
       //   setIsHovered(false);
       // }}
-      whileHover={{ scale: 1.4 }}
+      whileHover={{ scale: isActive ? 1 : 1.4 }}
       whileTap={{ scale: 0.95 }}
       // exit={exit}
     >
@@ -110,11 +117,21 @@ function Person({
       >
         {childnum && (
           <motion.div //child number
-            // animate={{ scale: isActive ? 1.5 : 1 }}
-            // transition={{ type: "spring", stiffness: 300, damping: 20 }}
             className="absolute flex flex-col justify-center items-center text-center size-[20%] bg-my-cream rounded-full"
+            style={
+              isActive
+                ? {
+                    left: isDesktop ? "-6%" : "-50%",
+                    top: isDesktop ? "8%" : "-30%",
+                    fontSize: isDesktop ? "150%" : "80%",
+                    scale: isDesktop ? 1 : 2,
+                  }
+                : {
+                    fontSize: "70%",
+                  }
+            }
           >
-            <p className="text-my-black font-bold text-sm">{childnum}</p>
+            <p className="text-my-black font-bold ">{childnum}</p>
           </motion.div>
         )}
         <motion.div //circular card, scale up container
@@ -130,7 +147,7 @@ function Person({
                 }
           }
           transition={{ duration: 0.4 }}
-          className="relative size-full flex flex-col z-20 items-center bg-my-red border-my-red rounded-full shadow-2xl/80 [--activeSize:2] sm:[--activeSize:1.4]"
+          className="relative size-full flex flex-col z-20 items-center bg-my-red border-my-red rounded-full shadow-2xl/80 [--activeSize:2] sm:[--activeSize:1]"
         >
           <motion.div //img container
             className="absolute left-1/2 flex size-full rounded-full bg-my-black -translate-x-1/2 items-center justify-center overflow-hidden [--imgScale:1.5] sm:[--imgScale:1.2] [--yActive:-40%]"
@@ -138,12 +155,19 @@ function Person({
               isActive
                 ? {
                     y: "var(--yActive)",
-                    scale: "calc(var(--imgScale)/var(--activeSize))",
+                    scale: isDesktop
+                      ? 0.8
+                      : "calc(var(--imgScale)/var(--activeSize))",
                     // borderRadius: "100%",
                   }
                 : { scale: 1 }
             }
           >
+            {loading && (
+              <div className="absolute z-50">
+                <LoadingCircle />
+              </div>
+            )}
             <img
               src={
                 photo
@@ -155,7 +179,7 @@ function Person({
               alt={person}
               className="size-full object-cover mask-luminance mask-b-from-white mask-b-from-50% mask-b-to-black"
               style={{ maskMode: isActive ? "unset" : "" }}
-              // onLoad={handleImageLoaded}
+              onLoad={() => setLoading(false)}
             />
           </motion.div>
           <motion.div //text container
@@ -170,7 +194,7 @@ function Person({
             }
           >
             <motion.h2 //name
-              className="font-bold wrap-break-word [--activeFontSize:70%] sm:[--activeFontSize:50%] [--longSize:65%] sm:[--longSize:65%] [--activeTop:-100%] md:[--activeTop:-80%] [--activeWidth:78%] md:[--activeWidth:200%] [--activeLongTop:-120%] md:[--activeLongTop:-80%] [--activeLongWidth:75%] md:[--activeLongWidth:41.8vw]"
+              className="font-bold wrap-break-word [--activeFontSize:70%] sm:[--activeFontSize:100%] [--longSize:65%] sm:[--longSize:100%] [--activeTop:-100%] md:[--activeTop:-80%] [--activeWidth:78%] md:[--activeWidth:200%] [--activeLongTop:-120%] md:[--activeLongTop:-80%] [--activeLongWidth:75%] md:[--activeLongWidth:41.8vw]"
               animate={
                 isActive
                   ? {
@@ -188,7 +212,9 @@ function Person({
               {person}
             </motion.h2>
             <motion.div //tubu, monding container
-              className={"flex flex-col text-center w-40 text-[50%]"}
+              className={
+                "flex flex-col text-center w-40 text-[50%] sm:text-[75%]"
+              }
               animate={isActive ? { opacity: 100 } : { opacity: 0 }}
             >
               <p>
@@ -205,7 +231,7 @@ function Person({
         </motion.div>
 
         {isActive && (
-          <div className="absolute flex justify-center gap-3 -bottom-full sm:-bottom-20 sm:z-20 left-[50%] -translate-x-1/2 cursor-pointer">
+          <div className="absolute flex justify-center gap-3 -bottom-full sm:-bottom-5 sm:z-20 left-[50%] -translate-x-1/2 cursor-pointer">
             {hasFam > 0 && (
               <motion.div //navigate button
                 className="flex flex-col justify-center items-center text-center size-20 sm:size-12 bg-my-white rounded-full"
