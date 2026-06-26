@@ -27,6 +27,7 @@ const MusicPlayer = forwardRef<MusicPlayerHandle>((_, ref) => {
     play: async () => {
       const audio = audioRef.current;
       if (!audio) return;
+      if (isPlaying) return;
 
       try {
         await audio.play();
