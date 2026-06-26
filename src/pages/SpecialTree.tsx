@@ -264,7 +264,7 @@ function SpecialTree({ isDesktop = false }) {
                           width: "50vh",
                         }
                       : {
-                          top: "50vh",
+                          top: "40vh",
                           left: "50vw",
                           height: "40vw",
                           width: "40vw",
@@ -336,7 +336,7 @@ function SpecialTree({ isDesktop = false }) {
                           width: "50vh",
                         }
                       : {
-                          top: "50vh",
+                          top: secondPlace ? "-10vh" : "-40vh",
                           left: "50vw",
                           height: "40vw",
                           width: "40vw",
