@@ -235,11 +235,12 @@ function Person({
             {hasFam > 0 && (
               <motion.div //navigate button
                 className="flex flex-col justify-center items-center text-center size-20 sm:size-12 bg-my-white rounded-full"
-                onClick={() =>
+                onClick={(e) => {
                   hasFam > 1
                     ? navigate(`/tree2/${id}`)
-                    : navigate(`/tree/${id}`)
-                }
+                    : navigate(`/tree/${id}`);
+                  e.stopPropagation();
+                }}
                 whileTap={{ scale: 0.8 }}
               >
                 <Circle

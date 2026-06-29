@@ -51,7 +51,7 @@ function Tree({ isDesktop = false }) {
             layoutId={head}
             onLayoutAnimationComplete={() => setExpandId(head)}
             key={famHead.id}
-            className="absolute flex place-content-center top-[50vh] left-[27vw] sm:left-[40vw] sm:top-[46vh] size-38 sm:size-40 -translate-1/2"
+            className="absolute flex place-content-center [--topVar:50vh] [--leftVar:27vw] sm:[--topVar:46vh] sm:[--leftVar:40vw] size-38 sm:size-40 -translate-1/2"
             style={{ zIndex: famHead.id === activeId ? 40 : 20 }}
             initial={{ opacity: 0 }}
             animate={
@@ -71,6 +71,8 @@ function Tree({ isDesktop = false }) {
                     }
                 : {
                     opacity: 1,
+                    top: "var(--topVar)",
+                    left: "var(--leftVar)",
                   }
             }
             transition={{ duration: 0.4 }}
@@ -179,7 +181,11 @@ function Tree({ isDesktop = false }) {
               className={`${posA[person.sibOrder - 1]} absolute flex place-content-center`}
               style={{ zIndex: person.id === activeId ? 40 : 10 }}
               // initial={{ x: "50vw", y: "50vh" }}
-              initial={{ opacity: 0 }}
+              initial={{
+                opacity: 0,
+                top: "var(--childTop)",
+                left: "var(--childLeft)",
+              }}
               animate={
                 person.id === activeId
                   ? isDesktop
@@ -187,6 +193,8 @@ function Tree({ isDesktop = false }) {
                         opacity: 1,
                         height: "50vh",
                         width: "50vh",
+                        top: "var(--childTop)",
+                        left: "var(--childLeft)",
                       }
                     : {
                         top: "50vh",
@@ -197,6 +205,8 @@ function Tree({ isDesktop = false }) {
                       }
                   : {
                       opacity: 1,
+                      top: "var(--childTop)",
+                      left: "var(--childLeft)",
                     }
               }
               transition={{ duration: 0.4 }}

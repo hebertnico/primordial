@@ -224,7 +224,11 @@ function MainTree({ isDesktop = false }) {
               key={person.id}
               className={`${posA[person.sibOrder - 1]} absolute flex place-content-center`}
               style={{ zIndex: person.id === activeId ? 40 : 10 }}
-              initial={{ opacity: 0 }}
+              initial={{
+                opacity: 0,
+                top: "var(--childTop)",
+                left: "var(--childLeft)",
+              }}
               animate={
                 person.id === activeId
                   ? isDesktop
@@ -232,6 +236,8 @@ function MainTree({ isDesktop = false }) {
                         opacity: 1,
                         height: "50vh",
                         width: "50vh",
+                        top: "var(--childTop)",
+                        left: "var(--childLeft)",
                       }
                     : {
                         top: "50vh",
@@ -242,6 +248,8 @@ function MainTree({ isDesktop = false }) {
                       }
                   : {
                       opacity: 1,
+                      top: "var(--childTop)",
+                      left: "var(--childLeft)",
                     }
               }
               transition={{ duration: 0.4 }}
@@ -291,7 +299,11 @@ function MainTree({ isDesktop = false }) {
               key={person.id}
               className={`${posB[person.sibOrder - 1]} absolute flex place-content-center`}
               style={{ zIndex: person.id === activeId ? 40 : 10 }}
-              initial={{ opacity: 0 }}
+              initial={{
+                opacity: 0,
+                top: "var(--childTop)",
+                left: "var(--childLeft)",
+              }}
               animate={
                 person.id === activeId
                   ? isDesktop
@@ -299,6 +311,8 @@ function MainTree({ isDesktop = false }) {
                         opacity: 1,
                         height: "50vh",
                         width: "50vh",
+                        top: "var(--childTop)",
+                        left: "var(--childLeft)",
                       }
                     : {
                         top: "50vh",
@@ -309,6 +323,8 @@ function MainTree({ isDesktop = false }) {
                       }
                   : {
                       opacity: 1,
+                      top: "var(--childTop)",
+                      left: "var(--childLeft)",
                     }
               }
               transition={{ duration: 0.4 }}
