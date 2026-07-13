@@ -224,11 +224,25 @@ function MainTree({ isDesktop = false }) {
               // }}
               key={person.id}
               className={`${posA[person.sibOrder - 1]} absolute flex place-content-center`}
-              style={{ zIndex: person.id === activeId ? 40 : 10 }}
+              style={
+                person.id === activeId
+                  ? {
+                      zIndex: 40,
+                      width: "42vw",
+                      height: "42vw",
+                      top: "50vh",
+                      left: "50vw",
+                    }
+                  : {
+                      zIndex: 10,
+                      top: "var(--childTop)",
+                      left: "var(--childLeft)",
+                    }
+              }
               initial={{
                 opacity: 0,
-                top: "var(--childTop)",
-                left: "var(--childLeft)",
+                // top: "var(--childTop)",
+                // left: "var(--childLeft)",
               }}
               animate={
                 person.id === activeId
@@ -241,17 +255,17 @@ function MainTree({ isDesktop = false }) {
                         left: "var(--childLeft)",
                       }
                     : {
-                        top: "50vh",
-                        left: "50vw",
+                        // top: "50vh",
+                        // left: "50vw",
                         // height: "40vw",
                         // width: "40vw",
-                        scale: 1.2,
+                        // scale: 1.2,
                         opacity: 1,
                       }
                   : {
                       opacity: 1,
-                      top: "var(--childTop)",
-                      left: "var(--childLeft)",
+                      // top: "var(--childTop)",
+                      // left: "var(--childLeft)",
                     }
               }
               transition={{ duration: 0.4 }}
@@ -300,11 +314,25 @@ function MainTree({ isDesktop = false }) {
               // }}
               key={person.id}
               className={`${posB[person.sibOrder - 1]} absolute flex place-content-center`}
-              style={{ zIndex: person.id === activeId ? 40 : 10 }}
+              style={
+                person.id === activeId
+                  ? {
+                      zIndex: 40,
+                      width: "42vw",
+                      height: "42vw",
+                      top: "50vh",
+                      left: "50vw",
+                    }
+                  : {
+                      zIndex: 10,
+                      top: "var(--childTop)",
+                      left: "var(--childLeft)",
+                    }
+              }
               initial={{
                 opacity: 0,
-                top: "var(--childTop)",
-                left: "var(--childLeft)",
+                // top: "var(--childTop)",
+                // left: "var(--childLeft)",
               }}
               animate={
                 person.id === activeId
@@ -317,16 +345,16 @@ function MainTree({ isDesktop = false }) {
                         left: "var(--childLeft)",
                       }
                     : {
-                        top: "50vh",
-                        left: "50vw",
-                        height: "40vw",
-                        width: "40vw",
+                        // top: "50vh",
+                        // left: "50vw",
+                        // height: "40vw",
+                        // width: "40vw",
                         opacity: 1,
                       }
                   : {
                       opacity: 1,
-                      top: "var(--childTop)",
-                      left: "var(--childLeft)",
+                      // top: "var(--childTop)",
+                      // left: "var(--childLeft)",
                     }
               }
               transition={{ duration: 0.4 }}
