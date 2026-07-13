@@ -73,15 +73,19 @@ function Person({
                 // y: distance[1] * 0.6,
                 x: `calc(${distance[0]}px * 0.8)`,
                 y: `calc(${distance[1]}px * 0.8)`,
-                height: "50vh",
-                width: "50vh",
               }
             : {
-                height: "40vw",
-                width: "40vw",
-                translateX: 0,
+                // height: "40vw",
+                // width: "40vw",
+                x: 0,
+                y: 0,
               }
-          : { x: 0, y: 0, height: "100%" }),
+          : {
+              x: 0,
+              y: 0,
+              // height: "100%",
+              // width: "100%",
+            }),
       }}
       // exit={{
       //   x: isActive ? 0 : distance[0] - 100,

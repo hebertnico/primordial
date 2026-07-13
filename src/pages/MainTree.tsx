@@ -47,12 +47,11 @@ function MainTree({ isDesktop = false }) {
                 ? isDesktop
                   ? {
                       opacity: 1,
-                      height: "50vh",
-                      width: "50vh",
+                      scale: 1.25,
                     }
                   : {
-                      top: "50vh",
-                      left: "50vw",
+                      // top: "50vh",
+                      // left: "50vw",
                       height: "40vw",
                       width: "40vw",
                       opacity: 1,
@@ -99,7 +98,7 @@ function MainTree({ isDesktop = false }) {
             <motion.div
               layout
               key={spouse[0]?.id}
-              className="absolute flex place-content-center top-[36vh] left-[50vw] sm:top-[50vh] sm:left-[27vw] w-40 h-38 sm:w-[35vh] sm:h-[35vh] -translate-1/2"
+              className="absolute flex place-content-center top-[36vh] left-[50vw] sm:top-[50vh] sm:left-[27vw] size-[40vw] sm:size-[35vh] -translate-1/2"
               style={
                 spouse[0].id === activeId ? { zIndex: 40 } : { zIndex: 10 }
               }
@@ -113,10 +112,11 @@ function MainTree({ isDesktop = false }) {
                         width: "50vh",
                       }
                     : {
-                        top: "50vh",
-                        left: "50vw",
-                        height: "40vw",
-                        width: "40vw",
+                        // top: "50vh",
+                        // left: "50vw",
+                        y: "14vh",
+                        // height: "40vw",
+                        // width: "40vw",
                         opacity: 1,
                       }
                   : {
@@ -157,7 +157,7 @@ function MainTree({ isDesktop = false }) {
             </motion.div>
             <motion.div
               key={spouse[1]?.id}
-              className="absolute flex place-content-center top-[64vh] left-[50vw] w-40 h-38 sm:top-[50vh] sm:left-[73vw] sm:w-[35vh] sm:h-[35vh] -translate-1/2"
+              className="absolute flex place-content-center top-[64vh] left-[50vw] size-[40vw] sm:top-[50vh] sm:left-[73vw] sm:size-[35vh] -translate-1/2"
               style={{ zIndex: spouse[1].id === activeId ? 40 : 10 }}
               initial={{ x: 0, y: 0, opacity: 0 }}
               animate={
@@ -169,10 +169,11 @@ function MainTree({ isDesktop = false }) {
                         width: "50vh",
                       }
                     : {
-                        top: "50vh",
-                        left: "50vw",
-                        height: "40vw",
-                        width: "40vw",
+                        // top: "50vh",
+                        // left: "50vw",
+                        // height: "40vw",
+                        // width: "40vw",
+                        y: "-14vh",
                         opacity: 1,
                       }
                   : {
@@ -242,8 +243,9 @@ function MainTree({ isDesktop = false }) {
                     : {
                         top: "50vh",
                         left: "50vw",
-                        height: "40vw",
-                        width: "40vw",
+                        // height: "40vw",
+                        // width: "40vw",
+                        scale: 1.2,
                         opacity: 1,
                       }
                   : {
